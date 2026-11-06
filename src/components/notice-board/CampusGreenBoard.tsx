@@ -456,6 +456,8 @@ export function CampusGreenBoard({
                             <span className="bg-black/60 backdrop-blur-xs px-1.5 py-0.5 rounded border border-white/20 flex items-center gap-1 font-semibold">
                               {notice.embedUrl ? (
                                 <span>💃 Dance Reel Preview</span>
+                              ) : notice.id === 'nb-2026-flash-mob' ? (
+                                <span>⚡ Flash Mob Poster</span>
                               ) : (
                                 <span>Official Poster</span>
                               )}
@@ -487,6 +489,8 @@ export function CampusGreenBoard({
                           <p className="font-tech font-bold text-xs text-[#231942] leading-snug line-clamp-2">
                             {notice.id === 'nb-2026-launch' ? (
                               <>🌐 Official Launch of Blossoms Website &amp; Social Media Page — Flames to Flight, White Onyx Ignites!</>
+                            ) : notice.id === 'nb-2026-flash-mob' ? (
+                              <>⚡ Flash Mob: Come at 12:45 at Block 1 Island!</>
                             ) : (
                               <>{notice.imageUrl ? '💃' : '🎬'} {notice.summary}</>
                             )}
@@ -641,6 +645,8 @@ export function CampusGreenBoard({
                             ? 'Reignite the Flame with Team Onyx!'
                             : activeNotice.id === 'nb-2026-reel-wind'
                             ? 'Official Instagram Teaser • Team Onyx'
+                            : activeNotice.id === 'nb-2026-flash-mob'
+                            ? '⚡ Live Campus Flash Mob • Team Onyx'
                             : 'Flames to Flight — White Onyx Ignites'}
                         </span>
                       </div>
@@ -710,6 +716,60 @@ export function CampusGreenBoard({
                           </div>
                         </div>
                       </div>
+                    ) : activeNotice.id === 'nb-2026-flash-mob' ? (
+                      <div className="space-y-3.5">
+                        <div className="mt-3.5 grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                          <div className="p-3 rounded-xl bg-white border border-[#3D246C]/12 flex items-start gap-2.5 shadow-2xs">
+                            <div className="p-2 rounded-lg bg-[#5C4B99]/10 text-[#5C4B99] shrink-0">
+                              <Calendar className="w-4 h-4" />
+                            </div>
+                            <div>
+                              <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#3D246C]/60 block">
+                                Date &amp; Time
+                              </span>
+                              <p className="font-tech font-bold text-xs sm:text-sm text-[#231942]">
+                                Friday, 6 Nov 2026
+                              </p>
+                              <p className="font-mono text-[11px] text-[#5C4B99] font-bold flex items-center gap-1 mt-0.5">
+                                <Clock className="w-3 h-3 inline" />
+                                <span>12:45 PM IST</span>
+                              </p>
+                            </div>
+                          </div>
+
+                          <div className="p-3 rounded-xl bg-white border border-[#3D246C]/12 flex items-start gap-2.5 shadow-2xs">
+                            <div className="p-2 rounded-lg bg-[#5C4B99]/10 text-[#5C4B99] shrink-0">
+                              <MapPin className="w-4 h-4" />
+                            </div>
+                            <div>
+                              <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#3D246C]/60 block">
+                                Venue
+                              </span>
+                              <p className="font-tech font-bold text-xs sm:text-sm text-[#231942]">
+                                Block 1, Island
+                              </p>
+                              <p className="font-mono text-[10px] text-[#3D246C]/75 mt-0.5">
+                                Central Campus • CHRIST (Deemed to be University)
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="p-3.5 rounded-xl bg-white border border-[#3D246C]/15 space-y-2">
+                          <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#5C4B99] flex items-center gap-1.5">
+                            <FileText className="w-3.5 h-3.5" />
+                            <span>Event Brief &amp; Notice</span>
+                          </span>
+                          <ul className="space-y-1.5 text-xs sm:text-sm font-body text-[#231942]/90">
+                            {activeNotice.details.map((line, i) => (
+                              <li key={i} className="flex items-start gap-2 leading-relaxed">
+                                <span className="w-1.5 h-1.5 rounded-full bg-[#5C4B99] mt-2 shrink-0" />
+                                <span>{line}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
                     ) : (
                       <div className="mt-3.5 p-3.5 rounded-xl bg-white border border-[#3D246C]/15 space-y-2">
                         <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#5C4B99] flex items-center gap-1.5">
@@ -735,6 +795,8 @@ export function CampusGreenBoard({
                         ? 'From Flames to Flight, White Onyx Ignites!'
                         : activeNotice.id === 'nb-2026-reel-wind'
                         ? 'The wind knows what its doing • Team Onyx'
+                        : activeNotice.id === 'nb-2026-flash-mob'
+                        ? 'Come at 12:45 at Block 1 Island • Team Onyx'
                         : 'Explore • Engage • Be a part of the journey'}
                     </span>
 

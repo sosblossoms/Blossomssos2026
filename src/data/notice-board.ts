@@ -55,7 +55,7 @@ export const FESTIVAL_WEEKS_2026: FestivalWeek[] = [
     endDate: '2026-11-08',
     displayRange: '26 Oct – 8 Nov 2026',
     weeklyHighlight:
-      'Prelims registration slots are live! Review the Blossoms Rulebook 2026-27 and handbook ahead of the 12 Nov Inauguration at Block 1 Quadrangle.',
+      'Flash Mob alert: Come at 12:45 at Block 1 Island on Friday, 6 Nov! Prelims registration slots are live ahead of the 12 Nov Inauguration at Block 1 Quadrangle.',
   },
   {
     id: 'week-1',
@@ -120,6 +120,45 @@ export const FESTIVAL_WEEKS_2026: FestivalWeek[] = [
 ];
 
 export const NOTICE_BOARD_ITEMS: NoticeItem[] = [
+  {
+    id: 'nb-2026-flash-mob',
+    refCode: 'SOS/BLSM/26-27/FLASH-MOB',
+    weekId: 'week-0',
+    category: 'venue-alert',
+    categoryLabel: 'Flash Mob Alert',
+    title: 'Flash Mob: Come at 12:45 at Block 1 Island',
+    summary:
+      'Come at 12:45 at Block 1 Island! Get ready for an electrifying live performance by School of Sciences dancers as Team Onyx brings the energy.',
+    details: [
+      'Event: Official Blossoms 2026–27 Campus Flash Mob.',
+      'Date & Time: Friday, 6th November 2026 at 12:45 PM sharp.',
+      'Venue: Block 1 Island, CHRIST (Deemed to be University), Central Campus.',
+      'Theme & Spirit: From Flames to Flight, White Onyx Ignites!',
+      'Performers: School of Sciences Cultural & Dance Troupe (Team Onyx).',
+      'All students, faculty members, and supporters are invited to gather at Block 1 Island at 12:45 PM to witness the action live!',
+    ],
+    postedLabel: 'Pre-Fest Dispatch • Cultural & Dance Desk',
+    departmentStamp: 'SCHOOL OF SCIENCES • TEAM ONYX',
+    stampBadge: '6 NOV • 12:45 PM',
+    pinColor: 'amber',
+    paperTone: 'sticky-yellow',
+    tiltDeg: -1.2,
+    isPinnedTop: true,
+    featuredOnMiniBoard: true,
+    isTentative: false,
+    discipline: 'dance',
+    imageUrl: '/flash_mob_poster.jpg',
+    imageAlt: 'Blossoms 2026-27 Flash Mob Poster - 6th November 2026 at Block 1 Island',
+    taggedHandles: [
+      '@computer_science_bangalore',
+      '@stds.christ.bangalore',
+      '@swo_centralcampus',
+      '@chemistry.christuniversity',
+      '@lifesciences.christ.bangalore',
+    ],
+    actionLabel: 'Explore Prelims Schedule',
+    actionHref: '/schedule',
+  },
   {
     id: 'nb-2026-reel-2',
     refCode: 'SOS/BLSM/26-27/REEL-02',
