@@ -561,10 +561,11 @@ export function CampusGreenBoard({
                 {/* Left Column: Poster Image OR Embedded Iframe */}
                 <div className="md:col-span-5 flex items-center justify-center">
                   {activeNotice.embedUrl ? (
-                    <div className="relative w-full aspect-[9/16] max-h-[520px] rounded-2xl overflow-hidden border-2 border-[#3D246C]/25 shadow-xl bg-black">
+                    <div className="relative w-full aspect-[9/16] max-h-[560px] rounded-2xl overflow-hidden border-2 border-[#3D246C]/25 shadow-xl bg-black">
                       <iframe
                         src={activeNotice.embedUrl}
-                        className="w-full h-full"
+                        className="w-full border-0"
+                        style={{ height: 'calc(100% + 150px)', marginTop: '-62px' }}
                         frameBorder="0"
                         scrolling="no"
                         allowFullScreen
