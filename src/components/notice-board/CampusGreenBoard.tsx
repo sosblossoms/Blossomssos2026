@@ -467,6 +467,14 @@ export function CampusGreenBoard({
                         </div>
                       )}
 
+                      {/* Play-preview tile for reels without a thumbnail */}
+                      {!notice.imageUrl && notice.embedUrl && (
+                        <div className="relative mt-2 mb-2.5 rounded-lg overflow-hidden border-2 border-[#3D246C]/30 shadow-xs aspect-[16/10] bg-gradient-to-br from-[#3D246C] via-[#5C4B99] to-[#9F91CC] flex items-center justify-center group/flyer">
+                          <span className="flex items-center justify-center w-14 h-14 rounded-full bg-white/90 text-[#3D246C] text-2xl pl-1 shadow-lg transition-transform duration-300 group-hover:scale-110">▶</span>
+                          <span className="absolute bottom-1.5 left-2 bg-black/60 backdrop-blur-xs px-1.5 py-0.5 rounded border border-white/20 text-white text-[10px] font-mono font-semibold">🎬 Reel Preview</span>
+                        </div>
+                      )}
+
                       {/* Notice Title */}
                       <h3 className="font-tech font-extrabold text-sm sm:text-base text-[#231942] group-hover:text-[#5C4B99] transition-colors leading-snug">
                         {notice.title}
@@ -480,7 +488,7 @@ export function CampusGreenBoard({
                             {notice.id === 'nb-2026-launch' ? (
                               <>🌐 Official Launch of Blossoms Website &amp; Social Media Page — Flames to Flight, White Onyx Ignites!</>
                             ) : (
-                              <>💃 {notice.summary}</>
+                              <>{notice.imageUrl ? '💃' : '🎬'} {notice.summary}</>
                             )}
                           </p>
                         </div>
