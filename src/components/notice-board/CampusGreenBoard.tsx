@@ -458,6 +458,8 @@ export function CampusGreenBoard({
                                 <span>💃 Dance Reel Preview</span>
                               ) : notice.id === 'nb-2026-flash-mob' ? (
                                 <span>⚡ Flash Mob Poster</span>
+                              ) : notice.id === 'nb-2026-inauguration-dance' || notice.id === 'nb-2026-02' ? (
+                                <span>💃 Inauguration Dance Poster</span>
                               ) : (
                                 <span>Official Poster</span>
                               )}

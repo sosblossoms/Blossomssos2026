@@ -54,7 +54,7 @@ export const SCHEDULE_CATEGORY_CONFIG: Record<
 export const BLOSSOMS_SCHEDULE_2026: ScheduleEvent[] = [
   {
     id: 'sch-2026-01',
-    title: 'Blossoms Inauguration',
+    title: 'Blossoms Inauguration & Dance',
     date: '2026-11-12',
     dayOfWeek: 'Thursday',
     timeDisplay: '12:45 PM',
@@ -62,8 +62,9 @@ export const BLOSSOMS_SCHEDULE_2026: ScheduleEvent[] = [
     venue: 'Block 1 Quadrangle',
     category: 'ceremony',
     categoryLabel: 'Festival & Ceremonies',
-    status: 'tentative',
-    sourceReference: 'Blossoms Tentative Schedule 2026-27 PDF, Page 1',
+    notes: 'Inauguration Dance by Team Onyx',
+    status: 'confirmed',
+    sourceReference: 'Blossoms 2026-27 Official Poster & Tentative Schedule, Page 1',
   },
   {
     id: 'sch-2026-02',
