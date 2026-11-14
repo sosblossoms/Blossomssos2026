@@ -14,7 +14,7 @@ const NAV_LINKS: Array<{ href: string; label: string }> = [
   { href: '/schedule', label: 'Schedule' },
   { href: '/notice-board', label: 'Notice Board' },
   { href: '/gallery', label: 'Gallery' },
-  // { href: '/team', label: 'Team' }, // Deactivated for now
+  // { href: '/team', label: 'Team' }, // Temporarily deactivated
 ];
 
 export function Navbar() {
