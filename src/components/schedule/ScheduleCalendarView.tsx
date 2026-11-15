@@ -125,7 +125,7 @@ export function ScheduleCalendarView({
                 type="button"
                 onClick={() => setActiveMonthIndex(0)}
                 aria-pressed={activeMonthIndex === 0}
-                className={`px-3 py-1.5 min-h-[36px] rounded-lg text-xs font-semibold font-mono transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] ${
+                className={`px-3.5 py-2 min-h-[44px] rounded-lg text-xs font-semibold font-mono transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] ${
                   activeMonthIndex === 0
                     ? 'bg-[#5C4B99] text-white shadow-xs'
                     : 'text-[#3D246C]/85 hover:text-[#3D246C] hover:bg-white/75'
@@ -137,7 +137,7 @@ export function ScheduleCalendarView({
                 type="button"
                 onClick={() => setActiveMonthIndex(1)}
                 aria-pressed={activeMonthIndex === 1}
-                className={`px-3 py-1.5 min-h-[36px] rounded-lg text-xs font-semibold font-mono transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] ${
+                className={`px-3.5 py-2 min-h-[44px] rounded-lg text-xs font-semibold font-mono transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] ${
                   activeMonthIndex === 1
                     ? 'bg-[#5C4B99] text-white shadow-xs'
                     : 'text-[#3D246C]/85 hover:text-[#3D246C] hover:bg-white/75'

@@ -204,7 +204,7 @@ export function WeeklyRadarSection({
             type="button"
             onClick={() => onSelectDiscipline('all')}
             aria-pressed={selectedDiscipline === 'all'}
-            className={`px-3 py-1 rounded-full text-xs font-tech transition-all ${
+            className={`min-h-[44px] px-3.5 py-2 rounded-full text-xs font-tech transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] ${
               selectedDiscipline === 'all'
                 ? 'bg-[#5C4B99] text-white font-bold shadow-xs'
                 : 'bg-white text-[#3D246C]/90 border border-[#3D246C]/18 hover:border-[#5C4B99]/40 font-medium'
@@ -228,7 +228,7 @@ export function WeeklyRadarSection({
                 type="button"
                 onClick={() => onSelectDiscipline(catKey)}
                 aria-pressed={active}
-                className={`px-3 py-1 rounded-full text-xs font-tech transition-all ${
+                className={`min-h-[44px] px-3.5 py-2 rounded-full text-xs font-tech transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] ${
                   active
                     ? 'bg-[#5C4B99] text-white font-bold shadow-xs'
                     : 'bg-white text-[#3D246C]/90 border border-[#3D246C]/18 hover:border-[#5C4B99]/40 font-medium'
@@ -434,7 +434,7 @@ export function WeeklyRadarSection({
                   <button
                     type="button"
                     onClick={() => onInspectEvent(ev)}
-                    className="text-xs font-tech font-bold text-[#5C4B99] hover:text-[#3D246C] inline-flex items-center gap-1 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] rounded"
+                    className="min-h-[44px] px-2 -ml-2 text-xs font-tech font-bold text-[#5C4B99] hover:text-[#3D246C] inline-flex items-center gap-1 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] rounded"
                   >
                     <span>Event Details</span>
                     <ArrowRight className="w-3.5 h-3.5" />

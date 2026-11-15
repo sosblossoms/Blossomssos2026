@@ -88,7 +88,7 @@ export function DepartmentModal({ department, onClose }: DepartmentModalProps) {
             </div>
             <div>
               <span
-                className="text-[11px] font-tech font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full inline-block mb-1 bg-[#FFDBC3]/70 text-[#3D246C] border border-[#3D246C]/15"
+                className="text-xs font-tech font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full inline-block mb-1 bg-[#FFDBC3]/70 text-[#3D246C] border border-[#3D246C]/15"
               >
                 {department.groupLabel}
               </span>
@@ -101,7 +101,7 @@ export function DepartmentModal({ department, onClose }: DepartmentModalProps) {
           <button
             type="button"
             onClick={onClose}
-            className="p-2 rounded-full text-[#5C4B99] hover:text-[#3D246C] hover:bg-[#FFDBC3]/30 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
+            className="min-w-[44px] min-h-[44px] flex items-center justify-center p-2 rounded-full text-[#4C3C82] hover:text-[#3D246C] hover:bg-[#FFDBC3]/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
             aria-label="Close modal dialog"
           >
             <X className="w-5 h-5" />
@@ -142,7 +142,7 @@ export function DepartmentModal({ department, onClose }: DepartmentModalProps) {
             <h3 className="font-angular text-xs font-bold uppercase tracking-wider text-[#3D246C]">
               Department Overview
             </h3>
-            <p className="font-body text-sm text-[#5C4B99] leading-relaxed font-medium">
+            <p className="font-body text-sm text-[#4C3C82] leading-relaxed font-medium">
               {department.description}
             </p>
           </div>
@@ -154,7 +154,7 @@ export function DepartmentModal({ department, onClose }: DepartmentModalProps) {
                 <UserCheck className="w-4 h-4 text-[#5C4B99]" />
                 <span>Department Members &amp; Roster</span>
               </h3>
-              <span className="text-[11px] font-tech text-[#5C4B99]/80 font-medium">
+              <span className="text-xs font-tech text-[#4C3C82] font-medium">
                 {department.members.length} Confirmed Leads
               </span>
             </div>
@@ -176,23 +176,23 @@ export function DepartmentModal({ department, onClose }: DepartmentModalProps) {
                         <p className="font-tech font-bold text-xs text-[#3D246C] truncate">
                           {member.name}
                         </p>
-                        <p className="text-[10px] font-tech font-semibold text-[#5C4B99] truncate">
+                        <p className="text-xs font-tech font-semibold text-[#4C3C82] truncate">
                           {member.role}
                         </p>
                       </div>
                     </div>
-                    <p className="text-[11px] font-body text-[#5C4B99] line-clamp-3 leading-snug">
+                    <p className="text-xs font-body text-[#4C3C82] line-clamp-3 leading-snug">
                       {member.bio}
                     </p>
                   </div>
 
-                  <div className="pt-2 border-t border-[#3D246C]/10 flex items-center justify-between text-[10px] font-tech text-[#5C4B99]/80">
+                  <div className="pt-2 border-t border-[#3D246C]/10 flex items-center justify-between text-xs font-tech text-[#4C3C82]">
                     <span>{department.shortName}</span>
                     <a
                       href={`mailto:${member.contactEmail}`}
-                      className="text-[#5C4B99] hover:text-[#3D246C] hover:underline flex items-center gap-1 font-semibold"
+                      className="min-h-[44px] inline-flex items-center gap-1 px-2 text-[#4C3C82] hover:text-[#3D246C] hover:underline font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] rounded"
                     >
-                      <Mail className="w-3 h-3" />
+                      <Mail className="w-3.5 h-3.5" />
                       <span>Contact</span>
                     </a>
                   </div>
@@ -203,7 +203,7 @@ export function DepartmentModal({ department, onClose }: DepartmentModalProps) {
 
           {/* Operational Scope */}
           <div className="p-4 rounded-2xl bg-[#FFDBC3]/30 border border-[#3D246C]/15 space-y-1">
-            <span className="text-[11px] font-tech font-bold uppercase tracking-wider text-[#5C4B99]">
+            <span className="text-xs font-tech font-bold uppercase tracking-wider text-[#4C3C82]">
               Operational Scope
             </span>
             <p className="font-body text-xs sm:text-sm text-[#3D246C] font-medium">
@@ -268,14 +268,14 @@ export function DepartmentModal({ department, onClose }: DepartmentModalProps) {
         </div>
 
         {/* Modal Footer */}
-        <div className="p-4 sm:p-5 bg-[#FFDBC3]/30 border-t border-[#3D246C]/15 flex items-center justify-between">
-          <span className="text-[11px] font-tech text-[#5C4B99]">
+        <div className="p-4 sm:p-5 bg-[#FFDBC3]/30 border-t border-[#3D246C]/15 flex items-center justify-between gap-3">
+          <span className="text-xs font-tech text-[#4C3C82]">
             CHRIST (Deemed to be University) · School of Sciences
           </span>
           <button
             type="button"
             onClick={onClose}
-            className="font-tech px-5 py-2 rounded-xl bg-[#5C4B99] hover:bg-[#4C3C82] text-white font-semibold text-xs transition-colors shadow-xs"
+            className="min-h-[44px] font-tech px-5 py-2.5 rounded-xl bg-[#5C4B99] hover:bg-[#4C3C82] text-white font-semibold text-xs transition-colors shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C]"
           >
             Close Scope
           </button>

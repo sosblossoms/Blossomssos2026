@@ -48,7 +48,7 @@ export default function NotFound() {
             />
           </div>
 
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold bg-white/85 border border-[#3D246C]/20 text-[#3D246C] shadow-sm">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold bg-white border border-[#3D246C]/20 text-[#3D246C] shadow-sm">
             <span>ERROR 404 • ROUTE NOT FOUND</span>
           </div>
         </div>
@@ -58,7 +58,7 @@ export default function NotFound() {
           <h1 className="text-3xl sm:text-5xl font-extrabold text-[#3D246C] tracking-tight leading-tight">
             Lost in the Quadrangle?
           </h1>
-          <p className="text-sm sm:text-base text-[#3D246C]/80 leading-relaxed font-normal">
+          <p className="text-sm sm:text-base text-[#3D246C]/85 leading-relaxed font-normal">
             The festival page, event category, or document you are seeking has been moved, renamed, or is not in the active route manifest. Use the verified directories below to navigate back on track.
           </p>
         </div>
@@ -68,21 +68,21 @@ export default function NotFound() {
           <BackButton label="Go Back to Previous Page" />
           <Link
             href="/"
-            className="px-5 py-2.5 rounded-xl bg-white hover:bg-[#FFDBC3]/50 text-[#3D246C] border border-[#3D246C]/20 text-xs font-bold flex items-center gap-2 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
+            className="min-h-[44px] px-5 py-2.5 rounded-xl bg-white hover:bg-[#FFDBC3]/50 text-[#3D246C] border border-[#3D246C]/20 text-xs font-bold flex items-center gap-2 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
           >
             <Home className="w-4 h-4 text-[#5C4B99]" />
             <span>Festival Homepage</span>
           </Link>
           <Link
             href="/notice-board"
-            className="px-5 py-2.5 rounded-xl bg-white hover:bg-[#FFDBC3]/50 text-[#3D246C] border border-[#3D246C]/20 text-xs font-bold flex items-center gap-2 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
+            className="min-h-[44px] px-5 py-2.5 rounded-xl bg-white hover:bg-[#FFDBC3]/50 text-[#3D246C] border border-[#3D246C]/20 text-xs font-bold flex items-center gap-2 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
           >
             <Pin className="w-4 h-4 text-[#5C4B99]" />
             <span>Notice Board</span>
           </Link>
           <Link
             href="/events"
-            className="clay-btn-primary px-5 py-2.5 rounded-xl text-xs font-bold text-white flex items-center gap-2 shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C]"
+            className="clay-btn-primary min-h-[44px] px-5 py-2.5 rounded-xl text-xs font-bold text-white flex items-center gap-2 shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C]"
           >
             <Compass className="w-4 h-4" />
             <span>Explore 5 Disciplines</span>
@@ -96,13 +96,13 @@ export default function NotFound() {
               <Compass className="w-3.5 h-3.5 text-[#5C4B99]" />
               <span>Main Navigation Directories</span>
             </span>
-            <span className="text-[11px] text-[#5C4B99] font-mono font-bold">Verified Routes</span>
+            <span className="text-xs text-[#4C3C82] font-mono font-bold">Verified Routes</span>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-left">
             <Link
               href="/"
-              className="p-5 rounded-2xl bg-white/85 hover:bg-white border border-[#3D246C]/15 hover:border-[#5C4B99] transition-all flex flex-col justify-between group shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
+              className="p-5 rounded-2xl bg-white hover:bg-[#FFFCF5] border border-[#3D246C]/15 hover:border-[#5C4B99] transition-all flex flex-col justify-between group shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
             >
               <div>
                 <div className="w-9 h-9 rounded-xl bg-[#FFDBC3]/60 text-[#5C4B99] flex items-center justify-center mb-3 border border-[#3D246C]/15 group-hover:scale-105 transition-transform">
@@ -111,7 +111,7 @@ export default function NotFound() {
                 <h3 className="font-bold text-sm text-[#3D246C] group-hover:text-[#5C4B99] transition-colors">
                   Homepage
                 </h3>
-                <p className="text-xs text-[#3D246C]/75 mt-1 line-clamp-2">
+                <p className="text-xs text-[#3D246C]/85 mt-1 line-clamp-2">
                   Festival theme, official guidelines, and registration portals.
                 </p>
               </div>
@@ -123,7 +123,7 @@ export default function NotFound() {
 
             <Link
               href="/notice-board"
-              className="p-5 rounded-2xl bg-white/85 hover:bg-white border border-[#3D246C]/15 hover:border-[#5C4B99] transition-all flex flex-col justify-between group shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
+              className="p-5 rounded-2xl bg-white hover:bg-[#FFFCF5] border border-[#3D246C]/15 hover:border-[#5C4B99] transition-all flex flex-col justify-between group shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
             >
               <div>
                 <div className="w-9 h-9 rounded-xl bg-[#FFDBC3]/60 text-[#5C4B99] flex items-center justify-center mb-3 border border-[#3D246C]/15 group-hover:scale-105 transition-transform">
@@ -132,7 +132,7 @@ export default function NotFound() {
                 <h3 className="font-bold text-sm text-[#3D246C] group-hover:text-[#5C4B99] transition-colors">
                   Notice Board
                 </h3>
-                <p className="text-xs text-[#3D246C]/75 mt-1 line-clamp-2">
+                <p className="text-xs text-[#3D246C]/85 mt-1 line-clamp-2">
                   Pinned weekly circulars, theme reveals, deadlines, and live weekly radar.
                 </p>
               </div>
@@ -144,7 +144,7 @@ export default function NotFound() {
 
             <Link
               href="/schedule"
-              className="p-5 rounded-2xl bg-white/85 hover:bg-white border border-[#3D246C]/15 hover:border-[#5C4B99] transition-all flex flex-col justify-between group shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
+              className="p-5 rounded-2xl bg-white hover:bg-[#FFFCF5] border border-[#3D246C]/15 hover:border-[#5C4B99] transition-all flex flex-col justify-between group shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
             >
               <div>
                 <div className="w-9 h-9 rounded-xl bg-[#FFDBC3]/60 text-[#5C4B99] flex items-center justify-center mb-3 border border-[#3D246C]/15 group-hover:scale-105 transition-transform">
@@ -153,7 +153,7 @@ export default function NotFound() {
                 <h3 className="font-bold text-sm text-[#3D246C] group-hover:text-[#5C4B99] transition-colors">
                   Festival Schedule
                 </h3>
-                <p className="text-xs text-[#3D246C]/75 mt-1 line-clamp-2">
+                <p className="text-xs text-[#3D246C]/85 mt-1 line-clamp-2">
                   Filterable timelines, venue allocations, and preliminary session hours.
                 </p>
               </div>
@@ -165,19 +165,19 @@ export default function NotFound() {
 
             <Link
               href="/about"
-              className="p-5 rounded-2xl bg-white/85 hover:bg-white border border-[#3D246C]/15 hover:border-[#5C4B99] transition-all hover:-translate-y-1 group flex flex-col justify-between shadow-sm"
+              className="p-5 rounded-2xl bg-white hover:bg-[#FFFCF5] border border-[#3D246C]/15 hover:border-[#5C4B99] transition-all hover:-translate-y-1 group flex flex-col justify-between shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
             >
               <div className="flex items-center justify-between mb-4">
                 <span className="w-9 h-9 rounded-xl bg-[#FFDBC3]/60 border border-[#3D246C]/15 flex items-center justify-center text-[#5C4B99] group-hover:scale-110 transition-transform">
                   <Compass className="w-4 h-4" />
                 </span>
-                <span className="text-[10px] font-mono text-[#5C4B99] uppercase font-bold">Overview</span>
+                <span className="text-xs font-mono text-[#4C3C82] uppercase font-bold">Overview</span>
               </div>
               <div className="text-left">
                 <h3 className="font-tech font-bold text-base text-[#3D246C] group-hover:text-[#5C4B99] transition-colors">
                   About Team Onyx
                 </h3>
-                <p className="font-body text-xs text-[#3D246C]/75 mt-1">
+                <p className="font-body text-xs text-[#3D246C]/85 mt-1">
                   Motto, vision &amp; heritage
                 </p>
               </div>
@@ -191,7 +191,7 @@ export default function NotFound() {
             <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#3D246C] flex items-center gap-1.5">
               <span>Jump Directly into a Discipline</span>
             </span>
-            <span className="text-[11px] text-[#5C4B99] font-mono font-bold">5 Pillars</span>
+            <span className="text-xs text-[#4C3C82] font-mono font-bold">5 Pillars</span>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 text-left">
@@ -201,13 +201,13 @@ export default function NotFound() {
                 <Link
                   key={d.slug}
                   href={`/events/${d.slug}`}
-                  className="p-4 rounded-xl bg-white/85 hover:bg-white border border-[#3D246C]/15 hover:border-[#5C4B99] transition-all flex flex-col justify-between group shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
+                  className="p-4 rounded-xl bg-white hover:bg-[#FFFCF5] border border-[#3D246C]/15 hover:border-[#5C4B99] transition-all flex flex-col justify-between group shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
                 >
                   <div className="flex items-center justify-between mb-2">
                     <div className="p-2 rounded-lg bg-[#FFDBC3]/60 text-[#5C4B99] group-hover:scale-110 transition-transform">
                       <IconComp className="w-4 h-4" />
                     </div>
-                    <span className="text-[10px] font-mono font-bold text-[#5C4B99]">
+                    <span className="text-xs font-mono font-bold text-[#4C3C82]">
                       {d.count}
                     </span>
                   </div>
@@ -215,7 +215,7 @@ export default function NotFound() {
                     <h4 className="font-bold text-xs sm:text-sm text-[#3D246C] group-hover:text-[#5C4B99] transition-colors">
                       {d.name}
                     </h4>
-                    <span className="text-[10px] text-[#3D246C]/65 font-mono">
+                    <span className="text-xs text-[#3D246C]/85 font-mono">
                       /events/{d.slug}
                     </span>
                   </div>
@@ -227,17 +227,17 @@ export default function NotFound() {
 
         {/* Need Help / Support Pill */}
         <div className="pt-8 max-w-2xl mx-auto">
-          <div className="p-4 rounded-2xl bg-white/85 border border-[#3D246C]/15 backdrop-blur-sm flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#3D246C]/80 shadow-sm">
+          <div className="p-4 rounded-2xl bg-white border border-[#3D246C]/15 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#3D246C]/85 shadow-sm">
             <div className="flex items-center gap-2">
               <HelpCircle className="w-4 h-4 text-[#5C4B99] shrink-0" />
               <span>Looking for general festival information or assistance?</span>
             </div>
             <div className="flex items-center gap-3 shrink-0">
-              <Link href="/about" className="text-[#5C4B99] hover:underline font-bold">
+              <Link href="/about" className="min-h-[44px] inline-flex items-center px-2 text-[#4C3C82] hover:underline font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] rounded">
                 About Blossoms
               </Link>
               <span>•</span>
-              <a href={`mailto:${siteConfig.contactEmail}`} className="text-[#3D246C] hover:text-[#5C4B99] font-medium transition-colors">
+              <a href={`mailto:${siteConfig.contactEmail}`} className="min-h-[44px] inline-flex items-center px-2 text-[#3D246C] hover:text-[#5C4B99] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] rounded">
                 Contact Helpdesk
               </a>
             </div>

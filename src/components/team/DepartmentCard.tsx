@@ -55,7 +55,7 @@ export function DepartmentCard({ department, onOpenDetails }: DepartmentCardProp
         ) : (
           <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-[#3D246C] via-[#5C4B99] to-[#3D246C] text-[#FFDBC3] p-4">
             <IconComponent className="w-8 h-8 text-[#FFDBC3]/90 mb-1" />
-            <span className="font-tech text-[11px] font-bold tracking-wider uppercase text-white/90">
+            <span className="font-tech text-xs font-bold tracking-wider uppercase text-white/95">
               {department.shortName}
             </span>
           </div>
@@ -65,7 +65,7 @@ export function DepartmentCard({ department, onOpenDetails }: DepartmentCardProp
         {/* Category Pill over image */}
         <div className="absolute top-2.5 left-2.5">
           <span 
-            className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-semibold backdrop-blur-md shadow-xs text-white bg-[#5C4B99]/90 border border-white/20"
+            className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold backdrop-blur-md shadow-xs text-white bg-[#3D246C]/90 border border-white/25"
           >
             <IconComponent className="w-3 h-3" />
             <span>{department.groupLabel}</span>
@@ -74,7 +74,7 @@ export function DepartmentCard({ department, onOpenDetails }: DepartmentCardProp
 
         {/* Short Tagline over image bottom */}
         <div className="absolute bottom-2 left-2.5 right-2.5 text-left">
-          <p className="text-white text-[11px] font-tech font-bold tracking-wide drop-shadow-sm truncate">
+          <p className="text-white text-xs font-tech font-bold tracking-wide drop-shadow-sm truncate">
             {department.tagline}
           </p>
         </div>
@@ -96,19 +96,19 @@ export function DepartmentCard({ department, onOpenDetails }: DepartmentCardProp
           </div>
 
           {/* Description */}
-          <p className="font-body text-xs text-[#5C4B99] leading-relaxed line-clamp-3 font-medium">
+          <p className="font-body text-xs text-[#4C3C82] leading-relaxed line-clamp-3 font-medium">
             {department.description}
           </p>
 
           {/* Key Responsibilities Snippet */}
           <div className="space-y-1">
-            <span className="text-[10px] font-tech font-bold uppercase tracking-wider text-[#3D246C] block">
+            <span className="text-xs font-tech font-bold uppercase tracking-wider text-[#3D246C] block">
               Core Mandate:
             </span>
-            <ul className="space-y-1 text-[11px] text-[#5C4B99]">
+            <ul className="space-y-1 text-xs text-[#4C3C82]">
               {department.responsibilities.slice(0, 2).map((item, idx) => (
                 <li key={idx} className="flex items-start gap-1.5 line-clamp-1">
-                  <CheckCircle2 className="w-3 h-3 shrink-0 text-[#5C4B99] mt-0.5" />
+                  <CheckCircle2 className="w-3.5 h-3.5 shrink-0 text-[#5C4B99] mt-0.5" />
                   <span>{item}</span>
                 </li>
               ))}
@@ -117,7 +117,7 @@ export function DepartmentCard({ department, onOpenDetails }: DepartmentCardProp
 
           {/* Verified Coordinator / Lead Info */}
           <div className="pt-0.5">
-            <span className="text-[10px] font-tech text-[#5C4B99]/70 block truncate">
+            <span className="text-xs font-tech text-[#4C3C82] block truncate">
               Lead: <span className="text-[#3D246C] font-semibold">{department.contactRole}</span>
             </span>
           </div>
@@ -125,18 +125,18 @@ export function DepartmentCard({ department, onOpenDetails }: DepartmentCardProp
 
         {/* Footer Area — pinned to bottom via mt-auto */}
         <div className="mt-auto pt-3 border-t border-[#3D246C]/15 flex items-center justify-between gap-2">
-          <div className="flex items-center gap-1 text-[10px] text-[#5C4B99] font-tech truncate">
-            <MapPin className="w-3 h-3 text-[#5C4B99] shrink-0" />
+          <div className="flex items-center gap-1 text-xs text-[#4C3C82] font-tech truncate">
+            <MapPin className="w-3.5 h-3.5 text-[#5C4B99] shrink-0" />
             <span className="truncate">{department.venuesCovered[0]}</span>
           </div>
 
           <button
             type="button"
             onClick={() => onOpenDetails(department)}
-            className="inline-flex items-center gap-1 text-[11px] font-tech font-bold text-[#3D246C] hover:text-[#5C4B99] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] rounded-md px-2 py-1 bg-[#FFDBC3]/40 hover:bg-[#FFDBC3]"
+            className="inline-flex items-center gap-1 min-h-[44px] text-xs font-tech font-bold text-[#3D246C] hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] rounded-xl px-3 py-2 bg-[#FFDBC3]/60 hover:bg-[#5C4B99] shrink-0"
           >
             <span>Meet the Team</span>
-            <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5" />
+            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
           </button>
         </div>
       </div>

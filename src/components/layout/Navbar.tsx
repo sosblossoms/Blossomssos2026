@@ -262,7 +262,7 @@ export function Navbar() {
             ref={closeDrawerBtnRef}
             type="button"
             onClick={() => setMobileMenuOpen(false)}
-            className="p-2 rounded-xl text-white hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFDBC3] focus-visible:ring-offset-2 focus-visible:ring-offset-[#2B1750] transition-colors"
+            className="min-w-[44px] min-h-[44px] flex items-center justify-center p-2 rounded-xl text-white hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFDBC3] focus-visible:ring-offset-2 focus-visible:ring-offset-[#2B1750] transition-colors"
             aria-label="Close navigation menu"
           >
             <X className="w-5 h-5 text-white" aria-hidden="true" />

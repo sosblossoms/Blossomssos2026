@@ -56,10 +56,10 @@ export function TeamView() {
                 role="tab"
                 aria-selected={isActive}
                 onClick={() => setSelectedGroup(group.id)}
-                className={`font-tech text-xs px-3.5 py-1.5 rounded-full border transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] ${
+                className={`min-h-[44px] font-tech text-xs px-4 py-2 rounded-full border transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] ${
                   isActive
                     ? 'bg-[#5C4B99] text-white border-[#5C4B99] font-bold shadow-sm shadow-[#5C4B99]/25'
-                    : 'bg-white/90 text-[#3D246C] border-[#3D246C]/15 hover:bg-[#FFDBC3]/40 hover:border-[#5C4B99]/40 hover:text-[#5C4B99] font-medium'
+                    : 'bg-white text-[#3D246C] border-[#3D246C]/15 hover:bg-[#FFDBC3]/40 hover:border-[#5C4B99]/40 hover:text-[#5C4B99] font-medium'
                 }`}
               >
                 {group.label}
@@ -73,20 +73,20 @@ export function TeamView() {
           <label htmlFor="dept-search-input" className="sr-only">
             Search organizing departments
           </label>
-          <Search className="w-3.5 h-3.5 text-[#5C4B99] absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+          <Search className="w-3.5 h-3.5 text-[#4C3C82] absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
           <input
             id="dept-search-input"
             type="search"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search departments..."
-            className="w-full pl-8 pr-8 py-1.5 rounded-full bg-white border border-[#3D246C]/15 text-xs font-body text-[#3D246C] placeholder-[#5C4B99]/60 focus:outline-none focus:ring-2 focus:ring-[#5C4B99] focus:border-transparent transition-all shadow-2xs"
+            className="w-full min-h-[44px] pl-9 pr-10 py-2 rounded-full bg-white border border-[#3D246C]/20 text-xs font-body text-[#3D246C] placeholder:text-[#3D246C]/65 focus:outline-none focus:ring-2 focus:ring-[#5C4B99] focus:border-transparent transition-all shadow-2xs"
           />
           {searchQuery && (
             <button
               type="button"
               onClick={() => setSearchQuery('')}
-              className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#5C4B99] hover:text-[#3D246C] p-0.5 rounded transition-colors"
+              className="absolute right-0.5 top-1/2 -translate-y-1/2 min-w-[44px] min-h-[44px] flex items-center justify-center text-[#4C3C82] hover:text-[#3D246C] rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
               aria-label="Clear search"
             >
               <X className="w-3.5 h-3.5" />
@@ -96,7 +96,7 @@ export function TeamView() {
       </div>
 
       {/* ── Results Count and Reset Action ── */}
-      <div className="flex items-center justify-between px-1 text-xs text-[#5C4B99]">
+      <div className="flex items-center justify-between px-1 text-xs text-[#4C3C82]">
         <div className="flex items-center gap-1.5">
           <span className="font-tech font-bold text-[#3D246C]">
             {filteredDepartments.length === DEPARTMENTS_DATA.length
@@ -104,7 +104,7 @@ export function TeamView() {
               : `Showing ${filteredDepartments.length} of ${DEPARTMENTS_DATA.length} departments`}
           </span>
           {searchQuery && (
-            <span className="font-body text-[#5C4B99]">
+            <span className="font-body text-[#4C3C82]">
               for &ldquo;{searchQuery}&rdquo;
             </span>
           )}
@@ -114,7 +114,7 @@ export function TeamView() {
           <button
             type="button"
             onClick={handleResetFilters}
-            className="inline-flex items-center gap-1 text-[#5C4B99] font-tech font-bold hover:text-[#3D246C] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] rounded text-xs"
+            className="min-h-[44px] px-2 inline-flex items-center gap-1 text-[#4C3C82] font-tech font-bold hover:text-[#3D246C] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] rounded text-xs"
           >
             <X className="w-3 h-3" />
             <span>Reset Filters</span>
@@ -142,13 +142,13 @@ export function TeamView() {
           <h3 className="font-angular text-base font-bold text-[#3D246C]">
             No matching departments found
           </h3>
-          <p className="font-body text-xs text-[#5C4B99] max-w-md mx-auto">
+          <p className="font-body text-xs text-[#4C3C82] max-w-md mx-auto">
             We couldn&apos;t find any organizing departments matching &ldquo;{searchQuery}&rdquo;. Try another keyword or reset the filter.
           </p>
           <button
             type="button"
             onClick={handleResetFilters}
-            className="font-tech px-4 py-1.5 rounded-full bg-[#5C4B99] text-white font-bold text-xs hover:bg-[#4C3C82] transition-colors shadow-xs"
+            className="min-h-[44px] font-tech px-5 py-2 rounded-full bg-[#5C4B99] text-white font-bold text-xs hover:bg-[#4C3C82] transition-colors shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C]"
           >
             Show All Departments
           </button>
@@ -158,14 +158,14 @@ export function TeamView() {
       {/* ── Student Volunteer Callout Section ── */}
       <div className="mt-8 p-5 sm:p-6 rounded-2xl bg-white border border-[#3D246C]/15 shadow-2xs flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="space-y-1 text-center md:text-left">
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#FFDBC3]/60 text-[#5C4B99] text-[11px] font-tech font-bold border border-[#3D246C]/15">
-            <Users className="w-3 h-3 text-[#5C4B99]" />
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#FFDBC3]/60 text-[#4C3C82] text-xs font-tech font-bold border border-[#3D246C]/15">
+            <Users className="w-3.5 h-3.5 text-[#5C4B99]" />
             <span>School of Sciences Cultural Delegation</span>
           </div>
           <h3 className="font-angular text-base sm:text-lg font-black text-[#3D246C]">
             Interested in joining the Blossoms Volunteer Crew?
           </h3>
-          <p className="font-body text-xs text-[#5C4B99] max-w-xl font-medium">
+          <p className="font-body text-xs text-[#4C3C82] max-w-xl font-medium">
             Volunteer inductions for Logistics, Hospitality, Stage Management, and Media coverage take place via the School of Sciences Deanery Cultural Committee prior to the preliminary competition cycle.
           </p>
         </div>
@@ -176,7 +176,7 @@ export function TeamView() {
               href={siteConfig.registrationUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="clay-btn-primary font-tech px-4 py-2 rounded-xl font-bold text-xs flex items-center gap-1.5 shadow-md shadow-[#5C4B99]/20 hover:scale-105 transition-all bg-[#5C4B99] hover:bg-[#4C3C82] text-white"
+              className="clay-btn-primary min-h-[44px] font-tech px-4 py-2.5 rounded-xl font-bold text-xs flex items-center gap-1.5 shadow-md shadow-[#5C4B99]/20 hover:scale-105 transition-all bg-[#5C4B99] hover:bg-[#4C3C82] text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C]"
             >
               <span>Festival Desk</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
@@ -184,7 +184,7 @@ export function TeamView() {
           )}
           <a
             href={`mailto:${siteConfig.contactEmail}`}
-            className="font-tech px-4 py-2 rounded-xl bg-white border border-[#3D246C]/15 text-[#3D246C] hover:bg-[#FFDBC3]/30 font-semibold text-xs shadow-2xs transition-all hover:scale-105"
+            className="min-h-[44px] font-tech px-4 py-2.5 rounded-xl bg-white border border-[#3D246C]/15 text-[#3D246C] hover:bg-[#FFDBC3]/30 font-semibold text-xs shadow-2xs transition-all hover:scale-105 inline-flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
           >
             <span>Contact Deanery</span>
           </a>

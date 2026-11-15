@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import {
@@ -122,14 +122,18 @@ export function CampusGreenBoard({
   const [selectedCategory, setSelectedCategory] = useState<NoticeCategory | 'all'>('all');
   const [activeNotice, setActiveNotice] = useState<NoticeItem | null>(null);
   const [internalModalEvent, setInternalModalEvent] = useState<ScheduleEvent | null>(null);
+  const modalCloseBtnRef = useRef<HTMLButtonElement>(null);
+  const lastFocusedRef = useRef<HTMLElement | null>(null);
 
   const activeLiveWeek = useMemo(() => {
     return mounted ? getActiveFestivalWeek(new Date()) : FESTIVAL_WEEKS_2026[0];
   }, [mounted]);
 
-  // Close notice reader modal on Escape
+  // Close notice reader modal on Escape + save/restore focus
   useEffect(() => {
     if (!activeNotice) return;
+    lastFocusedRef.current = document.activeElement as HTMLElement | null;
+    modalCloseBtnRef.current?.focus();
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setActiveNotice(null);
     };
@@ -139,6 +143,7 @@ export function CampusGreenBoard({
     return () => {
       document.removeEventListener('keydown', handleKey);
       document.body.style.overflow = prevOverflow;
+      lastFocusedRef.current?.focus?.();
     };
   }, [activeNotice]);
 
@@ -184,7 +189,7 @@ export function CampusGreenBoard({
           FULL-MODE FILTER BAR ABOVE THE WOODEN FRAME
           ========================================================= */}
       {mode === 'full' && (
-        <div className="mb-5 p-3.5 sm:p-4 rounded-2xl bg-white/90 border border-[#3D246C]/15 backdrop-blur-md shadow-md space-y-3">
+        <div className="mb-5 p-3.5 sm:p-4 rounded-2xl bg-white border border-[#3D246C]/15 shadow-md space-y-3">
           {onSelectWeekScope && selectedWeekId !== 'all' && (
             <div className="flex flex-wrap items-center gap-2">
               <div
@@ -196,10 +201,10 @@ export function CampusGreenBoard({
                   type="button"
                   onClick={() => onSelectWeekScope('all')}
                   aria-pressed={weekScope === 'all'}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-tech font-bold transition-all ${
+                  className={`min-h-[44px] px-3.5 py-2 rounded-lg text-xs font-tech font-bold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] ${
                     weekScope === 'all'
                       ? 'bg-[#5C4B99] text-white shadow-xs'
-                      : 'text-[#3D246C]/80 hover:text-[#3D246C]'
+                      : 'text-[#3D246C]/85 hover:text-[#3D246C]'
                   }`}
                 >
                   All Pinned Circulars ({NOTICE_BOARD_ITEMS.length})
@@ -208,10 +213,10 @@ export function CampusGreenBoard({
                   type="button"
                   onClick={() => onSelectWeekScope('week')}
                   aria-pressed={weekScope === 'week'}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-tech font-bold transition-all ${
+                  className={`min-h-[44px] px-3.5 py-2 rounded-lg text-xs font-tech font-bold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] ${
                     weekScope === 'week'
                       ? 'bg-[#5C4B99] text-white shadow-xs'
-                      : 'text-[#3D246C]/80 hover:text-[#3D246C]'
+                      : 'text-[#3D246C]/85 hover:text-[#3D246C]'
                   }`}
                 >
                   Selected Week Slips
@@ -239,10 +244,10 @@ export function CampusGreenBoard({
                   type="button"
                   onClick={() => setSelectedCategory(tab.key)}
                   aria-pressed={active}
-                  className={`px-3 py-1 rounded-full text-xs font-tech transition-all ${
+                  className={`min-h-[44px] px-3.5 py-2 rounded-full text-xs font-tech transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] ${
                     active
                       ? 'bg-[#5C4B99] text-white font-bold shadow-xs'
-                      : 'bg-[#FFDBC3]/40 text-[#3D246C]/85 hover:bg-[#FFDBC3]/80 border border-[#3D246C]/15 font-medium'
+                      : 'bg-[#FFDBC3]/40 text-[#3D246C] hover:bg-[#FFDBC3]/80 border border-[#3D246C]/15 font-medium'
                   }`}
                 >
                   {tab.label}
@@ -259,7 +264,7 @@ export function CampusGreenBoard({
           THE PHYSICAL COLLEGIATE GREEN BAIZE NOTICE BOARD FRAME
           ========================================================= */}
       <div
-        className="relative rounded-[26px] p-2.5 sm:p-4 bg-gradient-to-b from-[#7A4E2D] via-[#5C391E] to-[#462A14] border-2 border-[#94633E] shadow-[0_22px_50px_-12px_rgba(61,36,108,0.38),0_4px_12px_rgba(0,0,0,0.22)]"
+        className="relative rounded-[26px] p-2.5 sm:p-4 bg-gradient-to-b from-[#7A4E2D] via-[#5C391E] to-[#462A14] border-2 border-[#94633E] shadow-[0_22px_50px_-12px_rgba(61,36,108,0.38),0_4px_12px_rgba(61,36,108,0.22)]"
         role="region"
         aria-label="School of Sciences Campus Green Notice Board"
       >
@@ -290,11 +295,11 @@ export function CampusGreenBoard({
         {/* Top-Center Engraved Brass & Enamel Department Plaque */}
         <div className="relative z-20 flex justify-center -mt-1 mb-2.5 sm:mb-3.5">
           <div className="inline-flex items-center gap-2 px-3.5 sm:px-5 py-1 rounded-full bg-gradient-to-r from-[#2A1B12] via-[#3A2518] to-[#2A1B12] border border-[#EAB308]/55 shadow-md">
-            <span className="font-tech text-[10px] sm:text-xs font-bold tracking-[0.18em] uppercase text-[#FDE68A]">
+            <span className="font-tech text-xs font-bold tracking-[0.16em] uppercase text-[#FDE68A]">
               SOS &bull; Official Green Notice Board
             </span>
-            <span className="hidden sm:inline text-[10px] text-[#FDE68A]/80 font-bold">&bull;</span>
-            <span className="hidden sm:inline font-mono text-[10px] text-[#FFDBC3]/90 uppercase">
+            <span className="hidden sm:inline text-xs text-[#FDE68A]/85 font-bold">&bull;</span>
+            <span className="hidden sm:inline font-mono text-xs text-[#FFDBC3]/95 uppercase">
               Block II Corridor
             </span>
           </div>
@@ -304,16 +309,7 @@ export function CampusGreenBoard({
             RECESSED GREEN FELT / BAIZE PINBOARD SURFACE
             ========================================================= */}
         <div
-          className="relative rounded-2xl overflow-hidden border-2 border-[#0B291E] shadow-[inset_0_6px_26px_rgba(0,0,0,0.52)] px-3.5 py-5 sm:px-6 sm:py-7"
-          style={{
-            backgroundColor: '#174938',
-            backgroundImage: `
-              radial-gradient(circle at 25% 20%, rgba(44, 122, 95, 0.42) 0%, transparent 55%),
-              radial-gradient(circle at 80% 80%, rgba(12, 43, 32, 0.65) 0%, transparent 60%),
-              repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.026) 0px, rgba(255, 255, 255, 0.026) 1px, transparent 1px, transparent 5px),
-              repeating-linear-gradient(-45deg, rgba(0, 0, 0, 0.06) 0px, rgba(0, 0, 0, 0.06) 1px, transparent 1px, transparent 5px)
-            `,
-          }}
+          className="campus-baize-surface relative rounded-2xl overflow-hidden border-2 border-[#0B291E] shadow-[inset_0_6px_26px_rgba(61,36,108,0.48)] px-3.5 py-5 sm:px-6 sm:py-7"
         >
           {/* Subtle Sliding Glass Cabinet Diagonal Reflection (Non-blocking, Zero Washout) */}
           <div
@@ -322,9 +318,9 @@ export function CampusGreenBoard({
           />
 
           {/* Top Pinned Ticker Ribbon Inside the Green Board */}
-          <div className="relative z-10 mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 px-3.5 py-2.5 rounded-xl bg-[#0E3125]/85 border border-emerald-200/20 text-[#F8FAFC] shadow-sm">
+          <div className="relative z-10 mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 px-3.5 py-2.5 rounded-xl bg-[#0E3125]/90 border border-emerald-200/20 text-[#F8FAFC] shadow-sm">
             <div className="flex items-center gap-2.5 text-xs font-tech">
-              <span className="px-2 py-0.5 rounded-md bg-[#FDE68A] text-[#1E293B] font-extrabold text-[10px] uppercase tracking-wider shrink-0">
+              <span className="px-2 py-0.5 rounded-md bg-[#FDE68A] text-[#1E293B] font-extrabold text-xs uppercase tracking-wider shrink-0">
                 {activeLiveWeek.shortLabel} Live
               </span>
               <span className="font-semibold text-emerald-50 line-clamp-1">
@@ -335,13 +331,13 @@ export function CampusGreenBoard({
             {mode === 'mini' ? (
               <Link
                 href="/notice-board"
-                className="inline-flex items-center gap-1.5 text-[11px] font-tech font-bold text-[#FFDBC3] hover:text-white transition-colors shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFDBC3] rounded px-1"
+                className="inline-flex items-center gap-1.5 min-h-[44px] text-xs font-tech font-bold text-[#FFDBC3] hover:text-white transition-colors shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFDBC3] rounded px-2"
               >
                 <span>See All {NOTICE_BOARD_ITEMS.length} Circulars &amp; Weekly Radar</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             ) : (
-              <span className="text-[11px] font-mono text-emerald-100/85 shrink-0">
+              <span className="text-xs font-mono text-emerald-100/90 shrink-0">
                 Click any pinned circular to read full notice
               </span>
             )}
@@ -353,7 +349,7 @@ export function CampusGreenBoard({
               <p className="font-tech text-sm sm:text-base font-bold">
                 No circulars pinned under this filter right now.
               </p>
-              <p className="font-body text-xs text-emerald-100/80 max-w-md mx-auto">
+              <p className="font-body text-xs text-emerald-100/90 max-w-md mx-auto">
                 Try switching to &quot;All Pinned Circulars&quot; or selecting another filter category.
               </p>
               <button
@@ -362,7 +358,7 @@ export function CampusGreenBoard({
                   setSelectedCategory('all');
                   if (onSelectWeekScope) onSelectWeekScope('all');
                 }}
-                className="mt-2 px-4 py-2 rounded-xl bg-[#FFFCF5] text-[#3D246C] font-tech text-xs font-bold shadow-md hover:bg-[#FFDBC3] transition-colors"
+                className="mt-2 min-h-[44px] px-4 py-2.5 rounded-xl bg-[#FFFCF5] text-[#3D246C] font-tech text-xs font-bold shadow-md hover:bg-[#FFDBC3] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFDBC3]"
               >
                 Show All Pinned Circulars
               </button>
@@ -395,7 +391,7 @@ export function CampusGreenBoard({
                     tabIndex={0}
                     role="button"
                     aria-label={`Read pinned circular: ${notice.title}`}
-                    className={`group relative pt-5 pb-4 px-4 sm:px-5 rounded-sm ${paper.bg} border ${paper.border} text-[#231942] shadow-[0_10px_22px_rgba(0,0,0,0.34),0_2px_4px_rgba(0,0,0,0.2)] hover:shadow-[0_18px_32px_rgba(0,0,0,0.46)] transition-all duration-200 hover:!rotate-0 hover:-translate-y-1.5 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-[#FFDBC3] cursor-pointer flex flex-col justify-between`}
+                    className={`group relative pt-5 pb-4 px-4 sm:px-5 rounded-sm ${paper.bg} border ${paper.border} text-[#231942] shadow-[0_10px_22px_rgba(61,36,108,0.34),0_2px_4px_rgba(61,36,108,0.2)] hover:shadow-[0_18px_32px_rgba(61,36,108,0.46)] transition-all duration-200 hover:!rotate-0 hover:-translate-y-1.5 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-[#FFDBC3] cursor-pointer flex flex-col justify-between`}
                   >
                     {/* 3D Thumbtack Centered at Top of Slip */}
                     <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-20 group-hover:scale-105 transition-transform">
@@ -411,12 +407,12 @@ export function CampusGreenBoard({
                     <div>
                       {/* Department Circular Header Line */}
                       <div className="flex items-center justify-between gap-2 pb-2 mb-2.5 border-b border-dashed border-[#3D246C]/20">
-                        <span className="font-mono text-[10px] font-bold tracking-wider text-[#3D246C]/70 uppercase truncate">
+                        <span className="font-mono text-xs font-bold tracking-wider text-[#4C3C82] uppercase truncate">
                           {notice.refCode}
                         </span>
                         {notice.stampBadge && (
                           <span
-                            className={`px-2 py-0.5 rounded text-[9px] font-mono font-extrabold uppercase tracking-wider border ${paper.stampColor} shrink-0`}
+                            className={`px-2 py-0.5 rounded text-xs font-mono font-extrabold uppercase tracking-wider border ${paper.stampColor} shrink-0`}
                           >
                             {notice.stampBadge}
                           </span>
@@ -426,7 +422,7 @@ export function CampusGreenBoard({
                       {/* Category + Week Pill */}
                       <div className="flex flex-wrap items-center gap-1.5 mb-2">
                         <span
-                          className={`px-2 py-0.5 rounded text-[10px] font-tech font-bold border ${
+                          className={`px-2 py-0.5 rounded text-xs font-tech font-bold border ${
                             NOTICE_CATEGORY_META[notice.category].badgeBg
                           } ${NOTICE_CATEGORY_META[notice.category].badgeText} ${
                             NOTICE_CATEGORY_META[notice.category].badgeBorder
@@ -435,7 +431,7 @@ export function CampusGreenBoard({
                           {notice.categoryLabel}
                         </span>
                         {weekMeta && (
-                          <span className="text-[10px] font-mono font-semibold text-[#3D246C]/65">
+                          <span className="text-xs font-mono font-semibold text-[#4C3C82]">
                             • {weekMeta.shortLabel}
                           </span>
                         )}
@@ -451,9 +447,9 @@ export function CampusGreenBoard({
                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
-                          <div className="absolute bottom-1.5 left-2 right-2 flex items-center justify-between text-white text-[10px] font-mono">
-                            <span className="bg-black/60 backdrop-blur-xs px-1.5 py-0.5 rounded border border-white/20 flex items-center gap-1 font-semibold">
+                          <div className="absolute inset-0 bg-gradient-to-t from-[#3D246C]/85 via-transparent to-transparent opacity-85 group-hover:opacity-95 transition-opacity" />
+                          <div className="absolute bottom-1.5 left-2 right-2 flex items-center justify-between text-white text-xs font-mono">
+                            <span className="bg-[#3D246C]/85 backdrop-blur-xs px-2 py-0.5 rounded border border-white/25 flex items-center gap-1 font-semibold">
                               {notice.embedUrl ? (
                                 <span>💃 Dance Reel Preview</span>
                               ) : notice.id === 'nb-2026-the-prelude' ? (
@@ -468,7 +464,7 @@ export function CampusGreenBoard({
                                 <span>Official Poster</span>
                               )}
                             </span>
-                            <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-[#5C4B99]/90 px-1.5 py-0.5 rounded text-[9px] font-tech font-bold uppercase tracking-wide">
+                            <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-[#5C4B99]/95 px-2 py-0.5 rounded text-xs font-tech font-bold uppercase tracking-wide">
                               {notice.embedUrl ? '▶ Watch Reel' : 'Inspect'}
                             </span>
                           </div>
@@ -478,8 +474,8 @@ export function CampusGreenBoard({
                       {/* Play-preview tile for reels without a thumbnail */}
                       {!notice.imageUrl && notice.embedUrl && (
                         <div className="relative mt-2 mb-2.5 rounded-lg overflow-hidden border-2 border-[#3D246C]/30 shadow-xs aspect-[16/10] bg-gradient-to-br from-[#3D246C] via-[#5C4B99] to-[#9F91CC] flex items-center justify-center group/flyer">
-                          <span className="flex items-center justify-center w-14 h-14 rounded-full bg-white/90 text-[#3D246C] text-2xl pl-1 shadow-lg transition-transform duration-300 group-hover:scale-110">▶</span>
-                          <span className="absolute bottom-1.5 left-2 bg-black/60 backdrop-blur-xs px-1.5 py-0.5 rounded border border-white/20 text-white text-[10px] font-mono font-semibold">🎬 Reel Preview</span>
+                          <span className="flex items-center justify-center w-14 h-14 rounded-full bg-white/95 text-[#3D246C] text-2xl pl-1 shadow-lg transition-transform duration-300 group-hover:scale-110">▶</span>
+                          <span className="absolute bottom-1.5 left-2 bg-[#3D246C]/85 backdrop-blur-xs px-2 py-0.5 rounded border border-white/25 text-white text-xs font-mono font-semibold">🎬 Reel Preview</span>
                         </div>
                       )}
 
@@ -507,7 +503,7 @@ export function CampusGreenBoard({
                           </p>
                         </div>
                       ) : (
-                        <p className="mt-2 font-body text-xs text-[#231942]/85 leading-relaxed line-clamp-3">
+                        <p className="mt-2 font-body text-xs text-[#231942]/90 leading-relaxed line-clamp-3">
                           {notice.summary}
                         </p>
                       )}
@@ -515,7 +511,7 @@ export function CampusGreenBoard({
 
                     {/* Circular Footer: Stamp */}
                     <div className="mt-4 pt-2.5 border-t border-[#3D246C]/12 flex items-center justify-between gap-2">
-                      <span className="font-mono text-[10px] text-[#3D246C]/70 truncate">
+                      <span className="font-mono text-xs text-[#4C3C82] truncate">
                         {notice.postedLabel}
                       </span>
                     </div>
@@ -528,12 +524,12 @@ export function CampusGreenBoard({
           {/* Mini-Mode Bottom Chalk-Rail Action Bar */}
           {mode === 'mini' && (
             <div className="relative z-10 mt-6 pt-4 border-t border-emerald-200/15 flex flex-col sm:flex-row items-center justify-between gap-3">
-              <p className="font-body text-xs text-emerald-50/90 text-center sm:text-left">
+              <p className="font-body text-xs text-emerald-50/95 text-center sm:text-left">
                 Pinned straight from the Blossoms 2026–27 Prelims desk • Click any circular to inspect details.
               </p>
               <Link
                 href="/notice-board"
-                className="clay-btn-primary bg-[#FFDBC3] hover:bg-white !text-[#3D246C] font-tech px-5 py-2.5 rounded-xl text-xs font-extrabold inline-flex items-center gap-2 shadow-lg transition-all hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white shrink-0"
+                className="min-h-[44px] bg-[#FFDBC3] hover:bg-white text-[#3D246C] font-tech px-5 py-2.5 rounded-xl text-xs font-extrabold inline-flex items-center gap-2 shadow-lg transition-all hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white shrink-0"
               >
                 <span>Open Full Notice Board</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -575,7 +571,7 @@ export function CampusGreenBoard({
                 {/* Left Column: Poster Image OR Embedded Iframe */}
                 <div className="md:col-span-5 flex items-center justify-center">
                   {activeNotice.embedUrl ? (
-                    <div className="relative w-full aspect-[9/16] max-h-[560px] rounded-2xl overflow-hidden border-2 border-[#3D246C]/25 shadow-xl bg-black">
+                    <div className="relative w-full aspect-[9/16] max-h-[560px] rounded-2xl overflow-hidden border-2 border-[#3D246C]/25 shadow-xl bg-[#231942]">
                       <iframe
                         src={activeNotice.embedUrl}
                         className="w-full border-0"
@@ -608,11 +604,11 @@ export function CampusGreenBoard({
                     {/* Header: Department + Category Badge + Close Button */}
                     <div className="flex items-center justify-between gap-3 pb-3 border-b border-dashed border-[#3D246C]/20">
                       <div className="flex flex-wrap items-center gap-2">
-                        <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-[#5C4B99]">
+                        <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#4C3C82]">
                           {activeNotice.departmentStamp}
                         </span>
                         <span
-                          className={`px-2.5 py-0.5 rounded-full text-[11px] font-tech font-bold border ${
+                          className={`px-2.5 py-0.5 rounded-full text-xs font-tech font-bold border ${
                             NOTICE_CATEGORY_META[activeNotice.category].badgeBg
                           } ${NOTICE_CATEGORY_META[activeNotice.category].badgeText} ${
                             NOTICE_CATEGORY_META[activeNotice.category].badgeBorder
@@ -621,19 +617,20 @@ export function CampusGreenBoard({
                           {activeNotice.categoryLabel}
                         </span>
                         {activeNotice.stampBadge && (
-                          <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-bold bg-[#FFDBC3]/80 text-[#3D246C] border border-[#3D246C]/20">
+                          <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-[#FFDBC3]/80 text-[#3D246C] border border-[#3D246C]/20">
                             {activeNotice.stampBadge}
                           </span>
                         )}
                       </div>
 
                       <button
+                        ref={modalCloseBtnRef}
                         type="button"
                         onClick={() => {
                           setActiveNotice(null);
                           }}
                         aria-label="Close circular reader"
-                        className="p-1.5 rounded-xl bg-[#FFDBC3]/65 hover:bg-[#FFDBC3] text-[#3D246C] border border-[#3D246C]/15 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] shrink-0"
+                        className="min-w-[44px] min-h-[44px] flex items-center justify-center p-2 rounded-xl bg-[#FFDBC3]/65 hover:bg-[#FFDBC3] text-[#3D246C] border border-[#3D246C]/15 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] shrink-0"
                       >
                         <X className="w-4 h-4" />
                       </button>
@@ -649,7 +646,7 @@ export function CampusGreenBoard({
 
                     {/* Highlight Card */}
                     <div className="mt-3.5 p-3.5 rounded-xl border-2 border-[#3D246C] bg-white shadow-xs">
-                      <div className="flex items-center gap-2 text-xs font-tech font-extrabold text-[#5C4B99] uppercase tracking-wider">
+                      <div className="flex items-center gap-2 text-xs font-tech font-extrabold text-[#4C3C82] uppercase tracking-wider">
                         <span>
                           {activeNotice.id === 'nb-2026-inauguration-dancers'
                             ? 'Reignite the Flame with Team Onyx!'
@@ -668,7 +665,7 @@ export function CampusGreenBoard({
                     {/* Tagged Departments & Handles */}
                     {activeNotice.taggedHandles && activeNotice.taggedHandles.length > 0 && (
                       <div className="mt-3.5 p-3 rounded-xl bg-white border border-[#3D246C]/15 space-y-1.5 shadow-2xs">
-                        <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#5C4B99] block">
+                        <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#4C3C82] block">
                           Tagged Departments &amp; Student Bodies
                         </span>
                         <div className="flex flex-wrap gap-1.5">
@@ -678,10 +675,10 @@ export function CampusGreenBoard({
                               href={`https://www.instagram.com/${handle.replace('@', '')}/`}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-[#FFDBC3]/70 hover:bg-[#FFDBC3] text-[#3D246C] text-xs font-mono font-bold transition-all border border-[#3D246C]/20 hover:scale-105"
+                              className="inline-flex items-center gap-1 min-h-[36px] px-2.5 py-1 rounded-lg bg-[#FFDBC3]/70 hover:bg-[#FFDBC3] text-[#3D246C] text-xs font-mono font-bold transition-all border border-[#3D246C]/20 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
                             >
                               <span>{handle}</span>
-                              <ExternalLink className="w-2.5 h-2.5 opacity-60" />
+                              <ExternalLink className="w-3 h-3 opacity-75" />
                             </a>
                           ))}
                         </div>
@@ -696,13 +693,13 @@ export function CampusGreenBoard({
                             <Calendar className="w-4 h-4" />
                           </div>
                           <div>
-                            <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#3D246C]/60 block">
+                            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#4C3C82] block">
                               Date &amp; Time
                             </span>
                             <p className="font-tech font-bold text-xs sm:text-sm text-[#231942]">
                               Thursday, 29 Oct 2026
                             </p>
-                            <p className="font-mono text-[11px] text-[#5C4B99] font-bold flex items-center gap-1 mt-0.5">
+                            <p className="font-mono text-xs text-[#4C3C82] font-bold flex items-center gap-1 mt-0.5">
                               <Clock className="w-3 h-3 inline" />
                               <span>2:00 PM IST</span>
                             </p>
@@ -714,13 +711,13 @@ export function CampusGreenBoard({
                             <MapPin className="w-4 h-4" />
                           </div>
                           <div>
-                            <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#3D246C]/60 block">
+                            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#4C3C82] block">
                               Venue
                             </span>
                             <p className="font-tech font-bold text-xs sm:text-sm text-[#231942]">
                               Meeting Hall III, Room 329
                             </p>
-                            <p className="font-mono text-[10px] text-[#3D246C]/75 mt-0.5">
+                            <p className="font-mono text-xs text-[#3D246C]/85 mt-0.5">
                               3rd Floor, Block I Main • Central Campus
                             </p>
                           </div>
@@ -734,13 +731,13 @@ export function CampusGreenBoard({
                               <Calendar className="w-4 h-4" />
                             </div>
                             <div>
-                              <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#3D246C]/60 block">
+                              <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#4C3C82] block">
                                 Date &amp; Time
                               </span>
                               <p className="font-tech font-bold text-xs sm:text-sm text-[#231942]">
                                 Friday, 6 Nov 2026
                               </p>
-                              <p className="font-mono text-[11px] text-[#5C4B99] font-bold flex items-center gap-1 mt-0.5">
+                              <p className="font-mono text-xs text-[#4C3C82] font-bold flex items-center gap-1 mt-0.5">
                                 <Clock className="w-3 h-3 inline" />
                                 <span>12:45 PM IST</span>
                               </p>
@@ -752,13 +749,13 @@ export function CampusGreenBoard({
                               <MapPin className="w-4 h-4" />
                             </div>
                             <div>
-                              <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#3D246C]/60 block">
+                              <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#4C3C82] block">
                                 Venue
                               </span>
                               <p className="font-tech font-bold text-xs sm:text-sm text-[#231942]">
                                 Block 1, Island
                               </p>
-                              <p className="font-mono text-[10px] text-[#3D246C]/75 mt-0.5">
+                              <p className="font-mono text-xs text-[#3D246C]/85 mt-0.5">
                                 Central Campus • CHRIST (Deemed to be University)
                               </p>
                             </div>
@@ -766,7 +763,7 @@ export function CampusGreenBoard({
                         </div>
 
                         <div className="p-3.5 rounded-xl bg-white border border-[#3D246C]/15 space-y-2">
-                          <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#5C4B99] flex items-center gap-1.5">
+                          <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#4C3C82] flex items-center gap-1.5">
                             <FileText className="w-3.5 h-3.5" />
                             <span>Event Brief &amp; Notice</span>
                           </span>
@@ -782,7 +779,7 @@ export function CampusGreenBoard({
                       </div>
                     ) : (
                       <div className="mt-3.5 p-3.5 rounded-xl bg-white border border-[#3D246C]/15 space-y-2">
-                        <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#5C4B99] flex items-center gap-1.5">
+                        <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#4C3C82] flex items-center gap-1.5">
                           <FileText className="w-3.5 h-3.5" />
                           <span>Audition Brief &amp; Guidelines</span>
                         </span>
@@ -800,7 +797,7 @@ export function CampusGreenBoard({
 
                   {/* Modal Action Bar */}
                   <div className="mt-5 pt-3.5 border-t border-[#3D246C]/15 flex items-center justify-between gap-3">
-                    <span className="font-mono text-[11px] text-[#3D246C]/70 italic hidden sm:inline">
+                    <span className="font-mono text-xs text-[#4C3C82] italic hidden sm:inline">
                       {activeNotice.id === 'nb-2026-inauguration-dancers'
                         ? 'From Flames to Flight, White Onyx Ignites!'
                         : activeNotice.id === 'nb-2026-reel-wind'
@@ -816,7 +813,7 @@ export function CampusGreenBoard({
                           href={activeNotice.actionHref}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="clay-btn-primary bg-[#5C4B99] hover:bg-[#4C3C82] text-white px-5 py-2.5 rounded-xl text-xs font-tech font-bold inline-flex items-center gap-1.5 transition-transform hover:scale-[1.02] shadow-sm ml-auto"
+                          className="clay-btn-primary min-h-[44px] bg-[#5C4B99] hover:bg-[#4C3C82] text-white px-5 py-2.5 rounded-xl text-xs font-tech font-bold inline-flex items-center gap-1.5 transition-transform hover:scale-[1.02] shadow-sm ml-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C]"
                         >
                           <span>{activeNotice.actionLabel || 'Open Link'}</span>
                           <ExternalLink className="w-3.5 h-3.5" />
@@ -827,7 +824,7 @@ export function CampusGreenBoard({
                           onClick={() => {
                             setActiveNotice(null);
                             }}
-                          className="clay-btn-accent bg-[#9F91CC] hover:bg-[#8D7DBE] text-[#3D246C] px-5 py-2.5 rounded-xl text-xs font-tech font-extrabold inline-flex items-center gap-2 transition-transform hover:scale-[1.02] shadow-sm ml-auto"
+                          className="clay-btn-accent min-h-[44px] bg-[#9F91CC] hover:bg-[#8D7DBE] px-5 py-2.5 rounded-xl text-xs font-tech font-extrabold inline-flex items-center gap-2 transition-transform hover:scale-[1.02] shadow-sm ml-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C]"
                         >
                           <span>{activeNotice.actionLabel || 'Explore Festival Schedule'}</span>
                           <ArrowRight className="w-3.5 h-3.5" />
@@ -843,19 +840,20 @@ export function CampusGreenBoard({
                 {/* Modal Top Header */}
                 <div className="flex items-start justify-between gap-3 pb-3.5 border-b border-dashed border-[#3D246C]/20">
                   <div>
-                    <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-[#5C4B99] block">
+                    <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#4C3C82] block">
                       {activeNotice.departmentStamp}
                     </span>
-                    <span className="font-mono text-[10px] text-[#3D246C]/65">
+                    <span className="font-mono text-xs text-[#3D246C]/85">
                       Circular Ref: {activeNotice.refCode} • {activeNotice.postedLabel}
                     </span>
                   </div>
 
                   <button
+                    ref={modalCloseBtnRef}
                     type="button"
                     onClick={() => setActiveNotice(null)}
                     aria-label="Close circular reader"
-                    className="p-1.5 rounded-xl bg-[#FFDBC3]/65 hover:bg-[#FFDBC3] text-[#3D246C] border border-[#3D246C]/15 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
+                    className="min-w-[44px] min-h-[44px] flex items-center justify-center p-2 rounded-xl bg-[#FFDBC3]/65 hover:bg-[#FFDBC3] text-[#3D246C] border border-[#3D246C]/15 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] shrink-0"
                   >
                     <X className="w-4 h-4" />
                   </button>
@@ -873,12 +871,12 @@ export function CampusGreenBoard({
                     {activeNotice.categoryLabel}
                   </span>
                   {activeNotice.isTentative && (
-                    <span className="px-2.5 py-0.5 rounded-md text-[11px] font-mono font-bold bg-[#5C4B99]/12 text-[#3D246C] border border-[#5C4B99]/30">
+                    <span className="px-2.5 py-0.5 rounded-md text-xs font-mono font-bold bg-[#5C4B99]/12 text-[#3D246C] border border-[#5C4B99]/30">
                       TENTATIVE SCHEDULE
                     </span>
                   )}
                   {activeNotice.stampBadge && (
-                    <span className="px-2.5 py-0.5 rounded-md text-[11px] font-mono font-bold bg-[#FFDBC3]/80 text-[#3D246C] border border-[#3D246C]/20">
+                    <span className="px-2.5 py-0.5 rounded-md text-xs font-mono font-bold bg-[#FFDBC3]/80 text-[#3D246C] border border-[#3D246C]/20">
                       {activeNotice.stampBadge}
                     </span>
                   )}
@@ -891,13 +889,13 @@ export function CampusGreenBoard({
                 >
                   {activeNotice.title}
                 </h3>
-                <p className="mt-2 font-body text-sm text-[#231942]/85 leading-relaxed">
+                <p className="mt-2 font-body text-sm text-[#231942]/90 leading-relaxed">
                   {activeNotice.summary}
                 </p>
 
                 {/* Detailed Bullet Points */}
                 <div className="mt-4 p-4 rounded-xl bg-white border border-[#3D246C]/12 space-y-2.5">
-                  <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#5C4B99] flex items-center gap-1.5">
+                  <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#4C3C82] flex items-center gap-1.5">
                     <FileText className="w-3.5 h-3.5" />
                     <span>Official Circular Notes</span>
                   </span>
@@ -918,7 +916,7 @@ export function CampusGreenBoard({
                       <button
                         type="button"
                         onClick={() => handleLinkedEventOpen(activeNotice.linkedEventId!)}
-                        className="clay-btn-primary bg-[#5C4B99] hover:bg-[#4C3C82] text-white px-4 py-2 rounded-xl text-xs font-tech font-bold inline-flex items-center gap-1.5"
+                        className="clay-btn-primary min-h-[44px] bg-[#5C4B99] hover:bg-[#4C3C82] text-white px-4 py-2.5 rounded-xl text-xs font-tech font-bold inline-flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C]"
                       >
                         <Calendar className="w-3.5 h-3.5" />
                         <span>Event Details</span>
@@ -931,7 +929,7 @@ export function CampusGreenBoard({
                           href={activeNotice.actionHref}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="clay-btn-primary bg-[#5C4B99] hover:bg-[#4C3C82] text-white px-4 py-2 rounded-xl text-xs font-tech font-bold inline-flex items-center gap-1.5"
+                          className="clay-btn-primary min-h-[44px] bg-[#5C4B99] hover:bg-[#4C3C82] text-white px-4 py-2.5 rounded-xl text-xs font-tech font-bold inline-flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C]"
                         >
                           <span>{activeNotice.actionLabel || 'Open Link'}</span>
                           <ExternalLink className="w-3.5 h-3.5" />
@@ -940,7 +938,7 @@ export function CampusGreenBoard({
                         <Link
                           href={activeNotice.actionHref}
                           onClick={() => setActiveNotice(null)}
-                          className="clay-btn-accent bg-[#9F91CC] hover:bg-[#8D7DBE] text-[#3D246C] px-4 py-2 rounded-xl text-xs font-tech font-bold inline-flex items-center gap-1.5"
+                          className="clay-btn-accent min-h-[44px] bg-[#9F91CC] hover:bg-[#8D7DBE] px-4 py-2.5 rounded-xl text-xs font-tech font-bold inline-flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C]"
                         >
                           <span>{activeNotice.actionLabel || 'View Details'}</span>
                           <ArrowRight className="w-3.5 h-3.5" />

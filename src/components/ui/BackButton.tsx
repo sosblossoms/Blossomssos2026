@@ -12,7 +12,7 @@ interface BackButtonProps {
 
 export function BackButton({ 
   label = 'Go Back', 
-  className = 'px-4 py-2.5 rounded-xl bg-white hover:bg-[#FFDBC3]/50 text-[#3D246C] border border-[#3D246C]/20 text-xs font-semibold flex items-center justify-center gap-2 transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]',
+  className = 'min-h-[44px] px-4 py-2.5 rounded-xl bg-white hover:bg-[#FFDBC3]/50 text-[#3D246C] border border-[#3D246C]/20 text-xs font-semibold flex items-center justify-center gap-2 transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]',
   fallbackUrl = '/'
 }: BackButtonProps) {
   const router = useRouter();

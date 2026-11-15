@@ -11,19 +11,19 @@ export function CoreCommitteeSpotlight() {
       {/* Section Header */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-[#3D246C]/15 pb-4">
         <div className="space-y-1">
-          <div className="inline-flex items-center gap-1.5 text-[10px] font-tech font-bold uppercase tracking-[0.16em] text-[#5C4B99]">
+          <div className="inline-flex items-center gap-1.5 text-xs font-tech font-bold uppercase tracking-[0.16em] text-[#4C3C82]">
             <ShieldCheck className="w-3.5 h-3.5" />
             <span>STEERING COUNCIL &amp; EXECUTIVE DESK</span>
           </div>
           <h2 id="core-spotlight-heading" className="font-angular text-2xl sm:text-3xl font-black text-[#3D246C] tracking-tight">
             Core Committee Spotlight
           </h2>
-          <p className="font-body text-xs sm:text-sm text-[#5C4B99] max-w-xl font-medium">
+          <p className="font-body text-xs sm:text-sm text-[#4C3C82] max-w-xl font-medium">
             The faculty advisors, student conveners, and executive directors leading Team Onyx at CHRIST (Deemed to be University).
           </p>
         </div>
 
-        <div className="text-[11px] font-tech text-[#5C4B99]/70 shrink-0 self-start sm:self-end">
+        <div className="text-xs font-tech text-[#4C3C82] font-medium shrink-0 self-start sm:self-end">
           Deanery of Science Governance Roster
         </div>
       </div>
@@ -61,14 +61,14 @@ export function CoreCommitteeSpotlight() {
 
               <div className="overflow-hidden">
                 <span 
-                  className="text-[9px] font-tech font-bold uppercase tracking-wider px-2 py-0.5 rounded-full inline-block mb-1 bg-[#FFDBC3]/70 text-[#3D246C] border border-[#3D246C]/15"
+                  className="text-xs font-tech font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full inline-block mb-1 bg-[#FFDBC3]/70 text-[#3D246C] border border-[#3D246C]/15"
                 >
                   {lead.designation}
                 </span>
                 <h3 className="font-angular text-sm sm:text-base font-bold text-[#3D246C] leading-snug group-hover:text-[#5C4B99] transition-colors truncate">
                   {lead.roleTitle}
                 </h3>
-                <p className="text-[11px] font-tech text-[#5C4B99] truncate">
+                <p className="text-xs font-tech text-[#4C3C82] truncate">
                   {lead.office}
                 </p>
               </div>
@@ -76,18 +76,18 @@ export function CoreCommitteeSpotlight() {
 
             {/* Scope & Mandate */}
             <div className="mt-4 pt-3 border-t border-[#3D246C]/15 flex-1 flex flex-col justify-between space-y-3">
-              <div className="space-y-1.5 text-xs text-[#5C4B99]">
-                <p className="font-body text-[11px] leading-relaxed line-clamp-2">
+              <div className="space-y-1.5 text-xs text-[#4C3C82]">
+                <p className="font-body text-xs leading-relaxed line-clamp-2">
                   <strong className="text-[#3D246C] font-semibold">Scope: </strong>
                   {lead.scope}
                 </p>
-                <p className="font-body text-[11px] leading-relaxed line-clamp-2 text-[#5C4B99]/80">
+                <p className="font-body text-xs leading-relaxed line-clamp-2 text-[#4C3C82]">
                   <strong className="text-[#3D246C] font-semibold">Mandate: </strong>
                   {lead.mandate}
                 </p>
               </div>
 
-              <div className="flex items-center justify-between text-[10px] font-tech text-[#5C4B99] font-semibold pt-1">
+              <div className="flex items-center justify-between text-xs font-tech text-[#4C3C82] font-semibold pt-1">
                 <span>Executive Steering</span>
                 <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </div>

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import {
   Users,
   GraduationCap,
@@ -25,6 +25,28 @@ export function OurTeamsSection() {
   const [activeSection, setActiveSection] = useState<'faculty' | 'student'>('student');
   const [selectedSubTeam, setSelectedSubTeam] = useState<string>('all');
   const [activeMember, setActiveMember] = useState<BlossomTeamMember | null>(null);
+  const modalCloseBtnRef = useRef<HTMLButtonElement>(null);
+  const lastFocusedRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (!activeMember) return;
+    lastFocusedRef.current = document.activeElement as HTMLElement | null;
+    modalCloseBtnRef.current?.focus();
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setActiveMember(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = prevOverflow;
+      lastFocusedRef.current?.focus?.();
+    };
+  }, [activeMember]);
 
   // Filter members based on section & working team
   const displayedMembers = useMemo(() => {
@@ -39,8 +61,7 @@ export function OurTeamsSection() {
   }, [activeSection, selectedSubTeam]);
 
   return (
-    <div className="relative w-full rounded-3xl bg-[#FFDBC3] text-[#3D246C] py-12 px-4 sm:px-6 lg:px-10 overflow-hidden shadow-sm border border-[#3D246C]/15"
-      style={{ backgroundColor: '#FFDBC3' }}>
+    <div className="relative w-full rounded-3xl bg-[#FFDBC3] text-[#3D246C] py-12 px-4 sm:px-6 lg:px-10 overflow-hidden shadow-sm border border-[#3D246C]/15">
 
       {/* ── Subtle Ambient Refractions (Homepage Palette: Lavender #9F91CC & Royal Purple #5C4B99) ── */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#9F91CC]/15 rounded-full blur-3xl pointer-events-none" />
@@ -63,9 +84,9 @@ export function OurTeamsSection() {
                 setActiveSection('faculty');
                 setSelectedSubTeam('all');
               }}
-              className={`font-tech text-xs sm:text-sm font-semibold px-6 py-2.5 rounded-xl transition-all duration-200 flex items-center gap-2 ${activeSection === 'faculty'
+              className={`min-h-[44px] font-tech text-xs sm:text-sm font-semibold px-6 py-2.5 rounded-xl transition-all duration-200 flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C] ${activeSection === 'faculty'
                   ? 'bg-[#5C4B99] text-white shadow-md shadow-[#5C4B99]/25 font-bold'
-                  : 'bg-transparent text-[#5C4B99] hover:text-[#3D246C] hover:bg-white/80'
+                  : 'bg-transparent text-[#4C3C82] hover:text-[#3D246C] hover:bg-white/80'
                 }`}
             >
               <GraduationCap className="w-4 h-4" />
@@ -77,9 +98,9 @@ export function OurTeamsSection() {
               role="tab"
               aria-selected={activeSection === 'student'}
               onClick={() => setActiveSection('student')}
-              className={`font-tech text-xs sm:text-sm font-semibold px-6 py-2.5 rounded-xl transition-all duration-200 flex items-center gap-2 ${activeSection === 'student'
+              className={`min-h-[44px] font-tech text-xs sm:text-sm font-semibold px-6 py-2.5 rounded-xl transition-all duration-200 flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C] ${activeSection === 'student'
                   ? 'bg-[#5C4B99] text-white shadow-md shadow-[#5C4B99]/25 font-bold'
-                  : 'bg-transparent text-[#5C4B99] hover:text-[#3D246C] hover:bg-white/80'
+                  : 'bg-transparent text-[#4C3C82] hover:text-[#3D246C] hover:bg-white/80'
                 }`}
             >
               <Users className="w-4 h-4" />
@@ -132,7 +153,7 @@ export function OurTeamsSection() {
               : 'School of Sciences Student Coordinators & Working Committees'}
           </p>
 
-          <p className="font-tech text-[11px] text-[#3D246C]/60 uppercase tracking-[0.2em] font-medium pt-0.5">
+          <p className="font-tech text-xs text-[#4C3C82] uppercase tracking-[0.2em] font-semibold pt-0.5">
             CHRIST (Deemed to be University) &bull; Team Onyx
           </p>
         </div>
@@ -147,9 +168,10 @@ export function OurTeamsSection() {
                   key={sub.id}
                   type="button"
                   onClick={() => setSelectedSubTeam(sub.id)}
-                  className={`font-tech text-xs px-4 py-1.5 rounded-full border transition-all duration-150 ${isActive
+                  aria-pressed={isActive}
+                  className={`min-h-[44px] font-tech text-xs px-4 py-2 rounded-full border transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C] ${isActive
                       ? 'bg-[#5C4B99] text-white border-[#5C4B99] font-bold shadow-xs'
-                      : 'bg-white/90 text-[#3D246C] border-[#3D246C]/15 hover:bg-[#FFDBC3]/40 hover:border-[#5C4B99]/40 hover:text-[#5C4B99] font-medium'
+                      : 'bg-white text-[#3D246C] border-[#3D246C]/15 hover:bg-[#FFDBC3]/40 hover:border-[#5C4B99]/40 hover:text-[#5C4B99] font-medium'
                     }`}
                 >
                   {sub.label}
@@ -160,7 +182,7 @@ export function OurTeamsSection() {
         )}
 
         {/* ── Result Status Counter ── */}
-        <div className="flex items-center justify-between text-xs font-tech text-[#5C4B99] px-2 max-w-6xl mx-auto border-b border-[#3D246C]/15 pb-3">
+        <div className="flex items-center justify-between text-xs font-tech text-[#4C3C82] px-2 max-w-6xl mx-auto border-b border-[#3D246C]/15 pb-3">
           <span>
             Displaying <strong className="text-[#3D246C]">{displayedMembers.length}</strong> {activeSection === 'faculty' ? 'faculty advisors' : 'team coordinators'}
           </span>
@@ -168,7 +190,7 @@ export function OurTeamsSection() {
             <button
               type="button"
               onClick={() => setSelectedSubTeam('all')}
-              className="text-[#5C4B99] hover:text-[#3D246C] hover:underline font-bold"
+              className="min-h-[44px] px-2 text-[#4C3C82] hover:text-[#3D246C] hover:underline font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C] rounded"
             >
               View All Teams
             </button>
@@ -178,10 +200,12 @@ export function OurTeamsSection() {
         {/* ── Arched Silhouette Card Grid in Homepage Palette (Peach / Lavender / Royal Purple / Deep Purple) ── */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7 max-w-6xl mx-auto">
           {displayedMembers.map((member, index) => (
-            <article
+            <button
               key={member.id}
+              type="button"
               onClick={() => setActiveMember(member)}
-              className="group relative flex flex-col items-center pt-5 cursor-pointer text-center"
+              aria-label={`Inspect profile for ${member.name}, ${member.role}`}
+              className="group relative flex flex-col items-center pt-5 cursor-pointer text-center w-full rounded-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C] focus-visible:ring-offset-4 focus-visible:ring-offset-[#FFDBC3]"
             >
               {/* 
                 THE ARCHED PORTRAIT:
@@ -214,16 +238,16 @@ export function OurTeamsSection() {
                 </h3>
 
                 {/* Subtitle / Role in Royal Purple */}
-                <p className="font-serif text-xs sm:text-sm text-[#5C4B99] italic leading-tight">
+                <p className="font-serif text-xs sm:text-sm text-[#4C3C82] italic leading-tight">
                   {member.role}
                 </p>
 
                 {/* Class Code & Committee Tag */}
-                <p className="font-tech text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.22em] text-[#5C4B99]/70 pt-1">
+                <p className="font-tech text-xs font-semibold uppercase tracking-[0.18em] text-[#4C3C82] pt-1">
                   {member.classCode} &bull; {member.committee}
                 </p>
               </div>
-            </article>
+            </button>
           ))}
         </div>
 
@@ -233,6 +257,7 @@ export function OurTeamsSection() {
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#3D246C]/60 backdrop-blur-sm animate-in fade-in duration-200"
             role="dialog"
             aria-modal="true"
+            aria-labelledby="member-modal-title"
           >
             <div
               className="fixed inset-0"
@@ -243,9 +268,10 @@ export function OurTeamsSection() {
             <div className="relative w-full max-w-md bg-white border border-[#3D246C]/15 rounded-3xl shadow-2xl p-6 sm:p-8 space-y-6 z-10 text-center animate-in fade-in duration-150">
               {/* Close Button */}
               <button
+                ref={modalCloseBtnRef}
                 type="button"
                 onClick={() => setActiveMember(null)}
-                className="absolute top-4 right-4 p-2 rounded-full text-[#5C4B99] hover:text-[#3D246C] hover:bg-[#FFDBC3]/30 transition-colors"
+                className="absolute top-3 right-3 min-w-[44px] min-h-[44px] flex items-center justify-center p-2 rounded-full text-[#4C3C82] hover:text-[#3D246C] hover:bg-[#FFDBC3]/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
                 aria-label="Close dialog"
               >
                 <X className="w-5 h-5" />
@@ -260,13 +286,13 @@ export function OurTeamsSection() {
                 </div>
 
                 <div className="space-y-1">
-                  <h3 className="font-serif text-2xl font-normal text-[#3D246C]">
+                  <h3 id="member-modal-title" className="font-serif text-2xl font-normal text-[#3D246C]">
                     {activeMember.name}
                   </h3>
-                  <p className="font-serif text-sm sm:text-base text-[#5C4B99] italic">
+                  <p className="font-serif text-sm sm:text-base text-[#4C3C82] italic">
                     {activeMember.role}
                   </p>
-                  <p className="font-tech text-xs text-[#5C4B99]/70 uppercase tracking-[0.2em]">
+                  <p className="font-tech text-xs text-[#4C3C82] uppercase tracking-[0.2em]">
                     {activeMember.classCode} &bull; {activeMember.committee}
                   </p>
                 </div>
@@ -278,7 +304,7 @@ export function OurTeamsSection() {
                   <Building2 className="w-4 h-4 text-[#5C4B99]" />
                   <span className="font-semibold">CHRIST (Deemed to be University)</span>
                 </div>
-                <p className="text-[11px] font-tech text-[#5C4B99] leading-relaxed">
+                <p className="text-xs font-tech text-[#4C3C82] leading-relaxed">
                   School of Sciences Cultural Delegation &bull; Blossoms SOS 2026–27. Coordination desk under the Deanery Secretariat.
                 </p>
               </div>
@@ -287,7 +313,7 @@ export function OurTeamsSection() {
               <div className="pt-1 flex items-center justify-between text-xs">
                 <a
                   href={`mailto:${siteConfig.contactEmail}`}
-                  className="inline-flex items-center gap-1.5 font-tech text-[#5C4B99] hover:text-[#3D246C] hover:underline font-semibold"
+                  className="min-h-[44px] px-2 -ml-2 inline-flex items-center gap-1.5 font-tech text-[#4C3C82] hover:text-[#3D246C] hover:underline font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] rounded"
                 >
                   <Mail className="w-3.5 h-3.5" />
                   <span>Contact Secretariat</span>
@@ -296,7 +322,7 @@ export function OurTeamsSection() {
                 <button
                   type="button"
                   onClick={() => setActiveMember(null)}
-                  className="font-tech px-5 py-2 rounded-xl bg-[#5C4B99] hover:bg-[#4C3C82] text-white font-semibold transition-colors shadow-xs"
+                  className="min-h-[44px] font-tech px-5 py-2.5 rounded-xl bg-[#5C4B99] hover:bg-[#4C3C82] text-white font-semibold transition-colors shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C]"
                 >
                   Close
                 </button>

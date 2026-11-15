@@ -156,8 +156,8 @@
 .circular-carousel__subtitle {
   font-size: 0.75rem;
   font-weight: 600;
-  color: var(--color-primary, #5C4B99);
-  opacity: 0.88;
+  color: var(--color-text-accent, #4C3C82);
+  opacity: 1;
 }
 
 .circular-carousel__count {

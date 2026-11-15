@@ -230,21 +230,20 @@
   border-bottom: 1px solid rgba(61, 36, 108, 0.14);
 }
 
-/* Liquid Glass Pill Navigation with Purple Tint */
+/* Liquid Glass Pill Navigation with High-Contrast Plum Tint */
 .liquid-glass-nav,
 .pill-nav-frosted {
   background: linear-gradient(
     135deg,
-    rgba(61, 36, 108, 0.45) 0%,
-    rgba(92, 75, 153, 0.35) 45%,
-    rgba(126, 99, 196, 0.30) 75%,
-    rgba(45, 25, 82, 0.48) 100%
+    rgba(61, 36, 108, 0.78) 0%,
+    rgba(76, 60, 130, 0.76) 50%,
+    rgba(45, 25, 82, 0.82) 100%
   );
   backdrop-filter: blur(14px) saturate(175%) contrast(105%);
   -webkit-backdrop-filter: blur(14px) saturate(175%) contrast(105%);
   border: 1px solid rgba(255, 255, 255, 0.32);
   box-shadow: 
-    0 14px 34px -8px rgba(61, 36, 108, 0.30),
+    0 14px 34px -8px rgba(61, 36, 108, 0.34),
     0 0 22px -2px rgba(159, 145, 204, 0.25),
     inset 0 1px 1px 0 rgba(255, 255, 255, 0.55),
     inset 0 -1px 1px 0 rgba(255, 255, 255, 0.15);
@@ -253,7 +252,7 @@
 @supports not (backdrop-filter: blur(14px)) {
   .liquid-glass-nav,
   .pill-nav-frosted {
-    background: rgba(61, 36, 108, 0.88);
+    background: rgba(61, 36, 108, 0.92);
   }
 }
 
@@ -261,16 +260,15 @@
 .liquid-glass-register-btn {
   background: linear-gradient(
     135deg,
-    rgba(61, 36, 108, 0.45) 0%,
-    rgba(92, 75, 153, 0.38) 45%,
-    rgba(126, 99, 196, 0.32) 75%,
-    rgba(45, 25, 82, 0.48) 100%
+    rgba(61, 36, 108, 0.78) 0%,
+    rgba(76, 60, 130, 0.76) 50%,
+    rgba(45, 25, 82, 0.82) 100%
   );
   backdrop-filter: blur(14px) saturate(180%) contrast(105%);
   -webkit-backdrop-filter: blur(14px) saturate(180%) contrast(105%);
   border: 1px solid rgba(255, 255, 255, 0.35);
   box-shadow: 
-    0 14px 34px -8px rgba(61, 36, 108, 0.30),
+    0 14px 34px -8px rgba(61, 36, 108, 0.34),
     0 0 22px -2px rgba(159, 145, 204, 0.25),
     inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.65),
     inset 0 -1px 1px 0 rgba(255, 255, 255, 0.15);
@@ -281,9 +279,9 @@
 .liquid-glass-register-btn:hover {
   background: linear-gradient(
     135deg,
-    rgba(92, 75, 153, 0.58) 0%,
-    rgba(126, 99, 196, 0.52) 50%,
-    rgba(61, 36, 108, 0.62) 100%
+    rgba(76, 60, 130, 0.86) 0%,
+    rgba(92, 75, 153, 0.84) 50%,
+    rgba(45, 25, 82, 0.90) 100%
   );
   border-color: rgba(255, 255, 255, 0.60);
   box-shadow: 
@@ -298,8 +296,8 @@
   transform: translateY(1px) scale(0.98);
   background: linear-gradient(
     135deg,
-    rgba(61, 36, 108, 0.70) 0%,
-    rgba(45, 25, 82, 0.75) 100%
+    rgba(61, 36, 108, 0.92) 0%,
+    rgba(45, 25, 82, 0.95) 100%
   );
   box-shadow: 
     0 8px 20px -4px rgba(61, 36, 108, 0.35),
@@ -331,7 +329,7 @@
 
 .clay-btn-accent {
   background: var(--color-accent);
-  color: var(--color-deep-purple);
+  color: oklch(from var(--color-deep-purple) calc(l - 0.07) c h);
   box-shadow: var(--clay-shadow-accent);
   font-weight: 700;
   transition: transform var(--transition-micro), box-shadow var(--transition-micro), background-color var(--transition-micro);
@@ -389,6 +387,16 @@
   box-shadow:
     0 6px 18px -6px rgba(61, 36, 108, 0.12),
     inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+/* Tactile Collegiate Green Baize Surface for CampusGreenBoard */
+.campus-baize-surface {
+  background-color: var(--color-board-felt);
+  background-image:
+    radial-gradient(circle at 25% 20%, color-mix(in srgb, var(--color-board-felt) 72%, #ffffff 28%) 0%, transparent 55%),
+    radial-gradient(circle at 80% 80%, color-mix(in srgb, var(--color-board-felt) 55%, var(--color-deep-purple) 45%) 0%, transparent 60%),
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.028) 0px, rgba(255, 255, 255, 0.028) 1px, transparent 1px, transparent 5px),
+    repeating-linear-gradient(-45deg, rgba(61, 36, 108, 0.08) 0px, rgba(61, 36, 108, 0.08) 1px, transparent 1px, transparent 5px);
 }
 
 /* Keep focus rings crisp inside dark liquid-glass navigation */

@@ -155,7 +155,7 @@ export function WinnersView({ winners }: WinnersViewProps) {
                 type="button"
                 onClick={() => setSearchQuery('')}
                 aria-label="Clear search query"
-                className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-lg text-[#4C3C82] hover:text-[#3D246C] hover:bg-[#FFDBC3]/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C]"
+                className="absolute right-0 top-1/2 -translate-y-1/2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg text-[#4C3C82] hover:text-[#3D246C] hover:bg-[#FFDBC3]/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C]"
               >
                 <X className="w-4 h-4" aria-hidden="true" />
               </button>
@@ -183,7 +183,7 @@ export function WinnersView({ winners }: WinnersViewProps) {
                 type="button"
                 onClick={() => setSelectedPillar(filter.id)}
                 aria-pressed={isSelected}
-                className={`min-h-[40px] px-3.5 py-2 rounded-full text-xs font-tech font-bold border transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C] focus-visible:ring-offset-2 focus-visible:ring-offset-white ${
+                className={`min-h-[44px] px-4 py-2 rounded-full text-xs font-tech font-bold border transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C] focus-visible:ring-offset-2 focus-visible:ring-offset-white ${
                   isSelected
                     ? 'bg-[#5C4B99] text-white border-[#5C4B99] shadow-xs'
                     : 'bg-[#FFFCF5] text-[#3D246C] border-[#3D246C]/20 hover:border-[#5C4B99] hover:bg-[#FFDBC3]/40'

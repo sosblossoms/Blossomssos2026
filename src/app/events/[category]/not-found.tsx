@@ -61,7 +61,7 @@ const VALID_CATEGORIES = [
     slug: 'dance',
     name: 'Dance & Choreography',
     tagline: 'Rhythm, Movement & Choreography',
-    eventsCount: 4,
+    eventsCount: 3,
     icon: Footprints,
     accentColor: '#9F91CC',
     description: 'Indian Classical Dance Group, Indian Folk Group Non-Themed, Dance Duet.',
@@ -75,18 +75,18 @@ export default function CategoryNotFound() {
       <div className="mb-8 flex items-center justify-between">
         <Link 
           href="/events" 
-          className="inline-flex items-center gap-2 text-xs font-semibold text-[#3D246C]/80 hover:text-[#5C4B99] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
+          className="inline-flex items-center gap-2 min-h-[44px] px-2 -ml-2 rounded-lg text-xs font-semibold text-[#3D246C]/85 hover:text-[#5C4B99] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
         >
           <ArrowLeft className="w-4 h-4 text-[#5C4B99]" />
           <span>Return to All Disciplines</span>
         </Link>
-        <span className="text-xs font-mono text-[#5C4B99] font-bold">
+        <span className="text-xs font-mono text-[#4C3C82] font-bold">
           Error 404: Invalid Category
         </span>
       </div>
 
       {/* Main Alert Card */}
-      <div className="p-8 sm:p-12 rounded-3xl bg-white/85 border border-[#3D246C]/15 shadow-xl backdrop-blur-md mb-12 relative overflow-hidden">
+      <div className="p-8 sm:p-12 rounded-3xl bg-white border border-[#3D246C]/15 shadow-xl mb-12 relative overflow-hidden">
         {/* Accent Bar */}
         <div className="absolute top-0 inset-x-0 h-1.5 bg-[#5C4B99]" />
 
@@ -95,7 +95,7 @@ export default function CategoryNotFound() {
             <AlertCircle className="w-8 h-8" />
           </div>
           <div>
-            <div className="inline-block px-3 py-1 rounded-full text-[11px] font-mono font-bold bg-[#FFDBC3]/60 border border-[#3D246C]/20 text-[#3D246C] mb-2">
+            <div className="inline-block px-3 py-1 rounded-full text-xs font-mono font-bold bg-[#FFDBC3]/60 border border-[#3D246C]/20 text-[#3D246C] mb-2">
               DISCIPLINE NOT RECOGNIZED
             </div>
             <h1 className="text-2xl sm:text-4xl font-extrabold text-[#3D246C] tracking-tight">
@@ -104,22 +104,22 @@ export default function CategoryNotFound() {
           </div>
         </div>
 
-        <p className="text-sm sm:text-base text-[#3D246C]/80 leading-relaxed max-w-2xl font-normal">
-          The category slug in your address bar does not correspond to any official Blossoms discipline. Blossoms School of Sciences features five verified pillars with 32 competitions. Please select one of the five approved categories below:
+        <p className="text-sm sm:text-base text-[#3D246C]/85 leading-relaxed max-w-2xl font-normal">
+          The category slug in your address bar does not correspond to any official Blossoms discipline. Blossoms School of Sciences features five verified pillars with 31 competitions. Please select one of the five approved categories below:
         </p>
 
         <div className="mt-6 flex flex-wrap items-center gap-3">
           <BackButton label="Back to Previous View" fallbackUrl="/events" />
           <Link
             href="/events"
-            className="clay-btn-primary px-5 py-2.5 rounded-xl text-xs font-bold text-white flex items-center gap-2 shadow-md"
+            className="clay-btn-primary min-h-[44px] px-5 py-2.5 rounded-xl text-xs font-bold text-white flex items-center gap-2 shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C]"
           >
             <Compass className="w-4 h-4" />
             <span>Disciplines Showcase</span>
           </Link>
           <Link
             href="/"
-            className="px-5 py-2.5 rounded-xl bg-white hover:bg-[#FFDBC3]/50 text-[#3D246C] border border-[#3D246C]/20 text-xs font-bold flex items-center gap-2 shadow-sm"
+            className="min-h-[44px] px-5 py-2.5 rounded-xl bg-white hover:bg-[#FFDBC3]/50 text-[#3D246C] border border-[#3D246C]/20 text-xs font-bold flex items-center gap-2 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
           >
             <Home className="w-4 h-4 text-[#5C4B99]" />
             <span>Festival Home</span>
@@ -133,7 +133,7 @@ export default function CategoryNotFound() {
           <h2 className="text-xl font-bold text-[#3D246C] flex items-center gap-2">
             <span>Official Blossoms Disciplines</span>
           </h2>
-          <span className="text-xs font-mono text-[#5C4B99] font-bold">
+          <span className="text-xs font-mono text-[#4C3C82] font-bold">
             5 Active Categories
           </span>
         </div>
@@ -145,14 +145,14 @@ export default function CategoryNotFound() {
               <Link
                 key={cat.slug}
                 href={`/events/${cat.slug}`}
-                className="group p-6 rounded-2xl bg-white/85 hover:bg-white border border-[#3D246C]/15 hover:border-[#5C4B99] transition-all flex flex-col justify-between shadow-md hover:shadow-xl hover:-translate-y-1 backdrop-blur-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
+                className="group p-6 rounded-2xl bg-white hover:bg-[#FFFCF5] border border-[#3D246C]/15 hover:border-[#5C4B99] transition-all flex flex-col justify-between shadow-md hover:shadow-xl hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
                     <div className="w-11 h-11 rounded-xl bg-[#FFDBC3]/60 text-[#5C4B99] border border-[#3D246C]/15 flex items-center justify-center group-hover:scale-110 transition-transform">
                       <IconComponent className="w-5 h-5" />
                     </div>
-                    <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-bold bg-[#FFDBC3]/60 text-[#5C4B99] border border-[#3D246C]/15">
+                    <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-[#FFDBC3]/60 text-[#4C3C82] border border-[#3D246C]/15">
                       {cat.eventsCount} Events
                     </span>
                   </div>
@@ -160,10 +160,10 @@ export default function CategoryNotFound() {
                   <h3 className="text-lg font-bold text-[#3D246C] group-hover:text-[#5C4B99] transition-colors">
                     {cat.name}
                   </h3>
-                  <p className="text-xs text-[#5C4B99] font-semibold mt-0.5 mb-2">
+                  <p className="text-xs text-[#4C3C82] font-semibold mt-0.5 mb-2">
                     {cat.tagline}
                   </p>
-                  <p className="text-xs text-[#3D246C]/75 leading-relaxed line-clamp-3 font-normal">
+                  <p className="text-xs text-[#3D246C]/85 leading-relaxed line-clamp-3 font-normal">
                     {cat.description}
                   </p>
                 </div>

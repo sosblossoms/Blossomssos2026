@@ -172,7 +172,7 @@ export default async function Image() {
                 key={cat}
                 style={{
                   padding: '6px 14px',
-                  borderRadius: '10px',
+                  borderRadius: '12px',
                   backgroundColor: '#FFFFFF',
                   border: '1px solid rgba(61, 36, 108, 0.2)',
                   color: '#3D246C',

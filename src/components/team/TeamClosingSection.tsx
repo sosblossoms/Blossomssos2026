@@ -15,7 +15,7 @@ export function TeamClosingSection() {
         <div className="relative z-10 max-w-3xl mx-auto text-center space-y-4">
           
           {/* Eyebrow Badge */}
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFDBC3]/60 border border-[#3D246C]/15 text-[11px] font-tech font-bold text-[#5C4B99]">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFDBC3]/60 border border-[#3D246C]/15 text-xs font-tech font-bold text-[#4C3C82]">
             <span>UNITED FOR EXCELLENCE &bull; TEAM ONYX</span>
           </div>
 
@@ -25,7 +25,7 @@ export function TeamClosingSection() {
           </h2>
 
           {/* Supporting Text */}
-          <p className="font-body text-xs sm:text-sm md:text-base text-[#5C4B99] leading-relaxed max-w-xl mx-auto font-medium">
+          <p className="font-body text-xs sm:text-sm md:text-base text-[#4C3C82] leading-relaxed max-w-xl mx-auto font-medium">
             From backstage material transport and scoring tabulation to live photography and arena spotlights, the School of Sciences cultural delegation works tirelessly behind every cheer.
           </p>
 
@@ -38,7 +38,7 @@ export function TeamClosingSection() {
           <div className="flex flex-wrap items-center justify-center gap-3 pt-3">
             <Link
               href="/events"
-              className="clay-btn-primary font-tech px-5 py-2.5 rounded-xl font-bold text-xs flex items-center gap-1.5 shadow-md shadow-[#5C4B99]/20 hover:scale-105 transition-all bg-[#5C4B99] hover:bg-[#4C3C82] text-white"
+              className="clay-btn-primary min-h-[44px] font-tech px-5 py-2.5 rounded-xl font-bold text-xs flex items-center gap-1.5 shadow-md shadow-[#5C4B99]/20 hover:scale-105 transition-all bg-[#5C4B99] hover:bg-[#4C3C82] text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C]"
             >
               <span>Explore Disciplines</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -46,7 +46,7 @@ export function TeamClosingSection() {
 
             <Link
               href="/schedule"
-              className="font-tech px-5 py-2.5 rounded-xl bg-white border border-[#3D246C]/15 hover:bg-[#FFDBC3]/30 text-[#3D246C] font-semibold text-xs flex items-center gap-1.5 shadow-2xs hover:scale-105 transition-all"
+              className="min-h-[44px] font-tech px-5 py-2.5 rounded-xl bg-white border border-[#3D246C]/15 hover:bg-[#FFDBC3]/30 text-[#3D246C] font-semibold text-xs flex items-center gap-1.5 shadow-2xs hover:scale-105 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
             >
               <Calendar className="w-3.5 h-3.5 text-[#5C4B99]" />
               <span>Festival Schedule</span>
@@ -54,7 +54,7 @@ export function TeamClosingSection() {
 
             <a
               href={`mailto:${siteConfig.contactEmail}`}
-              className="font-tech px-5 py-2.5 rounded-xl bg-white border border-[#3D246C]/15 hover:bg-[#FFDBC3]/30 text-[#5C4B99] hover:text-[#3D246C] font-semibold text-xs flex items-center gap-1.5 shadow-2xs hover:scale-105 transition-all"
+              className="min-h-[44px] font-tech px-5 py-2.5 rounded-xl bg-white border border-[#3D246C]/15 hover:bg-[#FFDBC3]/30 text-[#4C3C82] hover:text-[#3D246C] font-semibold text-xs flex items-center gap-1.5 shadow-2xs hover:scale-105 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
             >
               <Mail className="w-3.5 h-3.5 text-[#5C4B99]" />
               <span>Contact Secretariat</span>

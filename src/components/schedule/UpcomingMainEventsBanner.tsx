@@ -267,7 +267,7 @@ export function UpcomingMainEventsBanner({
                   <button
                     type="button"
                     onClick={() => handleInspect(ev)}
-                    className="inline-flex items-center gap-1.5 min-h-[36px] px-1 rounded-md text-xs font-tech font-extrabold text-[#5C4B99] hover:text-[#3D246C] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
+                    className="inline-flex items-center gap-1.5 min-h-[44px] px-2 -ml-1 rounded-md text-xs font-tech font-extrabold text-[#5C4B99] hover:text-[#3D246C] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
                   >
                     <span>Click to Open Poster &amp; Details</span>
                     <ArrowRight
@@ -282,7 +282,7 @@ export function UpcomingMainEventsBanner({
                       rel="noopener noreferrer"
                       aria-label={`Open ${ev.title} poster in Google Drive`}
                       title="Open full poster in Google Drive"
-                      className="inline-flex items-center gap-1.5 px-2.5 py-1.5 min-h-[36px] rounded-lg bg-white hover:bg-[#FFDBC3] border border-[#3D246C]/35 text-xs font-mono font-bold text-[#3D246C] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
+                      className="inline-flex items-center gap-1.5 px-3 py-2 min-h-[44px] rounded-lg bg-white hover:bg-[#FFDBC3] border border-[#3D246C]/35 text-xs font-mono font-bold text-[#3D246C] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
                     >
                       <span>Drive</span>
                       <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />

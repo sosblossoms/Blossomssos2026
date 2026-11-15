@@ -325,7 +325,7 @@ export function Footer() {
                     href={siteConfig.socialLinks.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-tech inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white hover:bg-[#FFDBC3]/30 border border-[#3D246C]/15 text-xs font-semibold text-[#3D246C] hover:text-[#5C4B99] shadow-sm transition-all hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FFFCF5]"
+                    className="font-tech inline-flex items-center gap-2 min-h-[44px] px-3.5 py-2 rounded-xl bg-white hover:bg-[#FFDBC3]/30 border border-[#3D246C]/15 text-xs font-semibold text-[#3D246C] hover:text-[#5C4B99] shadow-sm transition-all hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FFFCF5]"
                     aria-label="Instagram @blossoms_sos"
                   >
                     <svg className="w-4 h-4 fill-current text-[#5C4B99]" viewBox="0 0 24 24" aria-hidden="true">
@@ -402,7 +402,7 @@ export function Footer() {
               <button
                 type="button"
                 onClick={scrollToTop}
-                className="p-2 rounded-xl bg-white hover:bg-[#5C4B99] border border-[#3D246C]/20 text-[#5C4B99] hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FFFCF5] shadow-sm"
+                className="min-w-[44px] min-h-[44px] inline-flex items-center justify-center p-2.5 rounded-xl bg-white hover:bg-[#5C4B99] border border-[#3D246C]/20 text-[#5C4B99] hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FFFCF5] shadow-sm"
                 aria-label="Scroll back to top"
               >
                 <ArrowUp className="w-4 h-4" aria-hidden="true" />

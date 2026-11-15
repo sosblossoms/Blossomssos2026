@@ -175,7 +175,7 @@ export function GalleryBentoGrid() {
 
                   {/* Top-Right Expand Icon on hover/focus */}
                   <div className="absolute top-3 right-3 z-10">
-                    <span className="w-8 h-8 rounded-full bg-black/60 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-all duration-200 shadow-md">
+                    <span className="w-9 h-9 rounded-full bg-[#3D246C]/85 text-white border border-white/25 flex items-center justify-center opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-all duration-200 shadow-md">
                       <Maximize2 className="w-4 h-4" aria-hidden="true" />
                     </span>
                   </div>
@@ -214,7 +214,7 @@ export function GalleryBentoGrid() {
                   type="button"
                   onClick={() => handlePageChange(validatedPage - 1)}
                   disabled={validatedPage <= 1}
-                  className={`inline-flex items-center gap-1 min-h-[40px] px-3 sm:px-3.5 py-2 rounded-xl text-xs sm:text-sm font-tech font-bold border transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FFDBC3] ${
+                  className={`inline-flex items-center gap-1 min-h-[44px] px-3 sm:px-3.5 py-2 rounded-xl text-xs sm:text-sm font-tech font-bold border transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FFDBC3] ${
                     validatedPage <= 1
                       ? 'bg-white/60 text-[#3D246C]/50 border-[#3D246C]/15 cursor-not-allowed'
                       : 'bg-white text-[#3D246C] border-[#3D246C]/20 hover:bg-[#5C4B99] hover:text-white hover:border-[#5C4B99] shadow-xs active:scale-95'
@@ -233,7 +233,7 @@ export function GalleryBentoGrid() {
                       type="button"
                       key={pageNum}
                       onClick={() => handlePageChange(pageNum)}
-                      className={`min-w-[40px] min-h-[40px] px-2 rounded-xl text-xs sm:text-sm font-tech font-bold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FFDBC3] ${
+                      className={`min-w-[44px] min-h-[44px] px-2 rounded-xl text-xs sm:text-sm font-tech font-bold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FFDBC3] ${
                         isActive
                           ? 'bg-[#5C4B99] text-white shadow-md shadow-[#5C4B99]/30 border border-[#5C4B99] scale-105'
                           : 'bg-white text-[#3D246C] hover:bg-[#FFFCF5] hover:border-[#5C4B99] border border-[#3D246C]/20 active:scale-95'
@@ -251,7 +251,7 @@ export function GalleryBentoGrid() {
                   type="button"
                   onClick={() => handlePageChange(validatedPage + 1)}
                   disabled={validatedPage >= totalPages}
-                  className={`inline-flex items-center gap-1 min-h-[40px] px-3 sm:px-3.5 py-2 rounded-xl text-xs sm:text-sm font-tech font-bold border transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FFDBC3] ${
+                  className={`inline-flex items-center gap-1 min-h-[44px] px-3 sm:px-3.5 py-2 rounded-xl text-xs sm:text-sm font-tech font-bold border transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FFDBC3] ${
                     validatedPage >= totalPages
                       ? 'bg-white/60 text-[#3D246C]/50 border-[#3D246C]/15 cursor-not-allowed'
                       : 'bg-white text-[#3D246C] border-[#3D246C]/20 hover:bg-[#5C4B99] hover:text-white hover:border-[#5C4B99] shadow-xs active:scale-95'
@@ -279,8 +279,9 @@ export function GalleryBentoGrid() {
         >
           {/* Floating Close Button */}
           <button
+            type="button"
             onClick={handleCloseModal}
-            className="absolute top-4 right-4 sm:top-6 sm:right-6 z-50 p-2.5 sm:p-3 rounded-full bg-black/60 hover:bg-[#5C4B99] text-white backdrop-blur-md transition-all shadow-xl active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            className="absolute top-4 right-4 sm:top-6 sm:right-6 z-50 min-w-[44px] min-h-[44px] flex items-center justify-center p-2.5 sm:p-3 rounded-full bg-[#3D246C]/85 hover:bg-[#5C4B99] text-white border border-white/25 backdrop-blur-md transition-all shadow-xl active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#3D246C]"
             aria-label="Close Preview"
           >
             <X className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -288,11 +289,12 @@ export function GalleryBentoGrid() {
 
           {/* Floating Previous Arrow Button */}
           <button
+            type="button"
             onClick={(e) => {
               e.stopPropagation();
               handleModalPrev();
             }}
-            className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-50 p-2.5 sm:p-3.5 rounded-full bg-black/60 hover:bg-[#5C4B99] text-white backdrop-blur-md transition-all shadow-xl active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-50 min-w-[44px] min-h-[44px] flex items-center justify-center p-2.5 sm:p-3.5 rounded-full bg-[#3D246C]/85 hover:bg-[#5C4B99] text-white border border-white/25 backdrop-blur-md transition-all shadow-xl active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#3D246C]"
             aria-label="Previous Image"
           >
             <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -300,11 +302,12 @@ export function GalleryBentoGrid() {
 
           {/* Floating Next Arrow Button */}
           <button
+            type="button"
             onClick={(e) => {
               e.stopPropagation();
               handleModalNext();
             }}
-            className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-50 p-2.5 sm:p-3.5 rounded-full bg-black/60 hover:bg-[#5C4B99] text-white backdrop-blur-md transition-all shadow-xl active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-50 min-w-[44px] min-h-[44px] flex items-center justify-center p-2.5 sm:p-3.5 rounded-full bg-[#3D246C]/85 hover:bg-[#5C4B99] text-white border border-white/25 backdrop-blur-md transition-all shadow-xl active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#3D246C]"
             aria-label="Next Image"
           >
             <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -312,7 +315,7 @@ export function GalleryBentoGrid() {
 
           {/* Media Preview Box (Pure Image / Video Preview Only) */}
           <div 
-            className="relative w-full max-w-5xl h-[75vh] sm:h-[82vh] md:h-[86vh] rounded-3xl overflow-hidden shadow-2xl flex items-center justify-center bg-black/40 border border-white/10"
+            className="relative w-full max-w-5xl h-[75vh] sm:h-[82vh] md:h-[86vh] rounded-3xl overflow-hidden shadow-2xl flex items-center justify-center bg-[#231942]/80 border border-white/15"
             onClick={(e) => e.stopPropagation()}
           >
             {activeModalItem.mediaType === 'video' && activeModalItem.driveId ? (

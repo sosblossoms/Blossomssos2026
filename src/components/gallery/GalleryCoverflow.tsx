@@ -139,53 +139,49 @@ export function GalleryCoverflow({ onSelectImage }: GalleryCoverflowProps) {
             return (
               <div
                 key={slide.id}
-                onClick={() => setActiveIndex(idx)}
                 style={{
                   transform: `translateX(${translateX}px) translateZ(${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`,
                   zIndex,
                   opacity,
                 }}
-                className={`absolute w-[240px] sm:w-[300px] md:w-[350px] aspect-[4/5] rounded-3xl overflow-hidden cursor-pointer transition-all duration-500 ease-out will-change-transform shadow-xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#3D246C] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FFDBC3] ${
+                className={`absolute w-[240px] sm:w-[300px] md:w-[350px] aspect-[4/5] rounded-3xl overflow-hidden transition-all duration-500 ease-out will-change-transform shadow-xl focus-within:ring-4 focus-within:ring-[#3D246C] focus-within:ring-offset-2 focus-within:ring-offset-[#FFDBC3] ${
                   isActive
-                    ? 'ring-4 ring-[#5C4B99]/40 shadow-2xl shadow-[#5C4B99]/20 cursor-default'
+                    ? 'ring-4 ring-[#5C4B99]/40 shadow-2xl shadow-[#5C4B99]/20'
                     : 'hover:opacity-90 hover:brightness-105'
                 }`}
-                role="button"
-                tabIndex={0}
-                aria-label={`Slide ${idx + 1} of ${total}: ${slide.title}`}
-                aria-pressed={isActive}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    setActiveIndex(idx);
-                  }
-                }}
               >
                 <div className="relative w-full h-full bg-[#3D246C]">
-                  <Image
-                    src={slide.image}
-                    alt={slide.alt}
-                    fill
-                    sizes="(max-width: 640px) 240px, (max-width: 768px) 300px, 350px"
-                    className="object-cover transition-transform duration-700 ease-out"
-                    priority={absOffset <= 1}
-                  />
-                  {/* Subtle vignette gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#3D246C]/90 via-[#3D246C]/25 to-transparent pointer-events-none" />
+                  <button
+                    type="button"
+                    onClick={() => setActiveIndex(idx)}
+                    aria-label={`Slide ${idx + 1} of ${total}: ${slide.title}`}
+                    aria-pressed={isActive}
+                    className={`relative block w-full h-full text-left focus-visible:outline-none ${
+                      isActive ? 'cursor-default' : 'cursor-pointer'
+                    }`}
+                  >
+                    <Image
+                      src={slide.image}
+                      alt={slide.alt}
+                      fill
+                      sizes="(max-width: 640px) 240px, (max-width: 768px) 300px, 350px"
+                      className="object-cover transition-transform duration-700 ease-out"
+                      priority={absOffset <= 1}
+                    />
+                    {/* Subtle vignette gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#3D246C]/90 via-[#3D246C]/25 to-transparent pointer-events-none" />
+                  </button>
 
-                  {/* Quick Expand Icon if selected */}
+                  {/* Quick Expand Icon if selected (sibling button, never nested) */}
                   {isActive && onSelectImage && (
                     <button
                       type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        onSelectImage(slide);
-                      }}
-                      className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4 z-10 min-w-[36px] min-h-[36px] flex items-center justify-center p-2 rounded-full bg-white/95 hover:bg-white text-[#3D246C] hover:text-[#4C3C82] transition-all shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C]"
+                      onClick={() => onSelectImage(slide)}
+                      className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 min-w-[44px] min-h-[44px] flex items-center justify-center p-2.5 rounded-full bg-white/95 hover:bg-white text-[#3D246C] hover:text-[#4C3C82] transition-all shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C] focus-visible:ring-offset-2 focus-visible:ring-offset-[#3D246C]"
                       title="View Full Resolution"
                       aria-label={`View full resolution for ${slide.title}`}
                     >
-                      <Maximize2 className="w-3.5 h-3.5" aria-hidden="true" />
+                      <Maximize2 className="w-4 h-4" aria-hidden="true" />
                     </button>
                   )}
                 </div>
@@ -207,13 +203,13 @@ export function GalleryCoverflow({ onSelectImage }: GalleryCoverflowProps) {
           </div>
 
           {/* Carousel Slide Indicators */}
-          <div className="flex items-center justify-center gap-1 mt-2" role="group" aria-label="Slide indicators">
+          <div className="flex items-center justify-center gap-0.5 mt-2" role="group" aria-label="Slide indicators">
             {COVERFLOW_SLIDES.map((slide, idx) => (
               <button
                 key={slide.id}
                 type="button"
                 onClick={() => setActiveIndex(idx)}
-                className="p-1.5 flex items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C] focus-visible:ring-offset-1 focus-visible:ring-offset-[#FFDBC3]"
+                className="min-h-[44px] min-w-[28px] px-1.5 py-2 flex items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C] focus-visible:ring-offset-1 focus-visible:ring-offset-[#FFDBC3]"
                 aria-label={`Go to slide ${idx + 1}: ${slide.title}`}
                 aria-current={idx === activeIndex ? 'true' : undefined}
               >

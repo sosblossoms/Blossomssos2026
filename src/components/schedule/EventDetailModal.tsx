@@ -141,7 +141,7 @@ export function EventDetailModal({ event, isOpen, onClose }: EventDetailModalPro
           type="button"
           onClick={onClose}
           aria-label="Close event details"
-          className="absolute top-3.5 right-3.5 sm:top-5 sm:right-5 z-20 inline-flex items-center justify-center min-w-[40px] min-h-[40px] rounded-xl bg-[#FFDBC3] border-2 border-[#3D246C] text-[#3D246C] hover:bg-[#5C4B99] hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FFFCF5]"
+          className="absolute top-3.5 right-3.5 sm:top-5 sm:right-5 z-20 inline-flex items-center justify-center min-w-[44px] min-h-[44px] rounded-xl bg-[#FFDBC3] border-2 border-[#3D246C] text-[#3D246C] hover:bg-[#5C4B99] hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FFFCF5]"
         >
           <X className="w-4 h-4" aria-hidden="true" />
         </button>
