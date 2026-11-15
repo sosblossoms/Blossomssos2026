@@ -13,6 +13,7 @@ import {
 import { EventCategoriesCarouselSkeleton } from '@/components/events/EventCategoriesCarouselSkeleton';
 import { WavyDivider } from '@/components/ui/WavyDivider';
 import { CampusGreenBoard } from '@/components/notice-board/CampusGreenBoard';
+import { UpcomingMainEventsBanner } from '@/components/schedule/UpcomingMainEventsBanner';
 
 // Lazy load the 3D Circular Carousel for peak performance and interactive category ring
 const EventCategoriesCarousel = dynamic(
@@ -180,6 +181,8 @@ export default function HomePage() {
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
+
+          <UpcomingMainEventsBanner />
 
           <CampusGreenBoard mode="mini" />
         </div>

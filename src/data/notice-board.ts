@@ -133,6 +133,68 @@ export const FESTIVAL_WEEKS_2026: FestivalWeek[] = [
 
 export const NOTICE_BOARD_ITEMS: NoticeItem[] = [
   {
+    id: 'nb-2026-potpourri',
+    refCode: 'SOS/BLSM/26-27/16NOV-01',
+    weekId: 'week-2',
+    category: 'weekly-update',
+    categoryLabel: 'Upcoming Main Event',
+    title: 'Potpourri — Monday Main Literary Opener',
+    summary:
+      'Potpourri kicks off Monday, 16 November prelims at 1:30 PM onwards in Room 623 & 615, Block 2.',
+    details: [
+      'Event: Potpourri (School of Sciences Prelims Main Event).',
+      'Date & Time: Monday, 16 November 2026 at 1:30 PM Onwards.',
+      'Venue: Room 623 & 615, Block 2.',
+      'Linked directly with the official Blossoms Drive poster showcase.',
+    ],
+    postedLabel: 'Upcoming Event • Literary Desk',
+    departmentStamp: 'MONDAY MAIN EVENT • ROOM 623 & 615',
+    stampBadge: '16 NOV • 1:30 PM+',
+    pinColor: 'teal',
+    paperTone: 'sticky-yellow',
+    tiltDeg: -0.9,
+    isPinnedTop: true,
+    featuredOnMiniBoard: true,
+    isTentative: true,
+    imageUrl: 'https://lh3.googleusercontent.com/d/1hYyzXyJJ6XqEJnRvS8idqGLcYse2xkJv=w1200',
+    imageAlt: 'Potpourri Blossoms 2026-27 Official Event Poster',
+    linkedEventId: 'sch-2026-02',
+    discipline: 'literary',
+    actionLabel: 'View on Schedule',
+    actionHref: '/schedule?date=2026-11-16',
+  },
+  {
+    id: 'nb-2026-western-acoustic',
+    refCode: 'SOS/BLSM/26-27/16NOV-02',
+    weekId: 'week-2',
+    category: 'weekly-update',
+    categoryLabel: 'Upcoming Main Event',
+    title: 'Western Acoustic Music Group — Panel Room Showcase',
+    summary:
+      'Western Acoustic Music Group takes the stage on Monday, 16 November from 3:45 PM – 5:00 PM at Panel Room.',
+    details: [
+      'Event: Western Acoustic Music Group (School of Sciences Prelims Main Event).',
+      'Date & Time: Monday, 16 November 2026 from 3:45 PM – 5:00 PM.',
+      'Venue: Panel Room.',
+      'Live acoustic ensembles perform ahead of the central campus prelims circuit.',
+    ],
+    postedLabel: 'Upcoming Event • Music Desk',
+    departmentStamp: 'MONDAY MAIN EVENT • PANEL ROOM',
+    stampBadge: '16 NOV • 3:45 PM',
+    pinColor: 'purple',
+    paperTone: 'lavender-slip',
+    tiltDeg: 0.85,
+    isPinnedTop: true,
+    featuredOnMiniBoard: true,
+    isTentative: true,
+    imageUrl: 'https://lh3.googleusercontent.com/d/1UdqHDD2GjjXEd8Wa8SfDqZfzsx02FO1J=w1200',
+    imageAlt: 'Western Acoustic Music Group Blossoms 2026-27 Official Event Poster',
+    linkedEventId: 'sch-2026-03',
+    discipline: 'music',
+    actionLabel: 'View on Schedule',
+    actionHref: '/schedule?date=2026-11-16',
+  },
+  {
     id: 'nb-2026-the-prelude',
     refCode: 'SOS/BLSM/26-27/PRELUDE',
     weekId: 'week-2',
@@ -762,4 +824,33 @@ export function getNextMilestoneEvent(
   }
 
   return null;
+}
+
+/**
+ * Finds all upcoming ScheduleEvents falling on the next upcoming scheduled date relative to `now`.
+ * Ideal for days with multiple headliner events (e.g. Monday 16 Nov: Potpourri & Western Acoustic Music Group).
+ */
+export function getNextUpcomingDayEvents(
+  now: Date = new Date(),
+  events: ScheduleEvent[] = BLOSSOMS_SCHEDULE_2026
+): { dateIso: string; targetDate: Date; events: ScheduleEvent[] } | null {
+  const nextFirst = getNextMilestoneEvent(now, events);
+  if (!nextFirst) return null;
+
+  const targetDateIso = nextFirst.event.date;
+  const dayEvents = events
+    .filter((ev) => {
+      if (ev.date !== targetDateIso) return false;
+      const time = ev.startTime24 || '12:00';
+      return new Date(`${ev.date}T${time}:00`).getTime() > now.getTime();
+    })
+    .sort((a, b) => (a.startTime24 || '12:00').localeCompare(b.startTime24 || '12:00'));
+
+  if (dayEvents.length === 0) return null;
+
+  return {
+    dateIso: targetDateIso,
+    targetDate: nextFirst.targetDate,
+    events: dayEvents,
+  };
 }

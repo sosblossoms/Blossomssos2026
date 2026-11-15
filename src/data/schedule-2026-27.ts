@@ -51,6 +51,17 @@ export const SCHEDULE_CATEGORY_CONFIG: Record<
   },
 };
 
+export const DRIVE_POSTER_FOLDER_URL =
+  'https://drive.google.com/drive/folders/1JylhFuqaiwM2-OnynK3eK4FGPPXv4MbW';
+
+function drivePoster(fileId: string) {
+  return {
+    posterUrl: `https://lh3.googleusercontent.com/d/${fileId}=w1200`,
+    posterFallbackUrl: `https://drive.google.com/thumbnail?id=${fileId}&sz=w1200`,
+    posterDriveUrl: `https://drive.google.com/file/d/${fileId}/view?usp=sharing`,
+  };
+}
+
 export const BLOSSOMS_SCHEDULE_2026: ScheduleEvent[] = [
   {
     id: 'sch-2026-01',
@@ -63,6 +74,7 @@ export const BLOSSOMS_SCHEDULE_2026: ScheduleEvent[] = [
     category: 'ceremony',
     categoryLabel: 'Festival & Ceremonies',
     notes: 'Opening inauguration at Block 1 Quadrangle (Tentative Schedule)',
+    ...drivePoster('1BkC1vGK7KE-ur_DUWOfDPqVqN94QmcnH'),
     status: 'tentative',
     sourceReference: 'BLOSSOMS (Be The Best) 2026-27 School of Science - Prelims Event Schedule TENTATIVE',
   },
@@ -76,6 +88,7 @@ export const BLOSSOMS_SCHEDULE_2026: ScheduleEvent[] = [
     venue: 'Room 623 & 615, Block 2',
     category: 'literary',
     categoryLabel: 'Literary',
+    ...drivePoster('1hYyzXyJJ6XqEJnRvS8idqGLcYse2xkJv'),
     status: 'tentative',
     sourceReference: 'BLOSSOMS (Be The Best) 2026-27 School of Science - Prelims Event Schedule TENTATIVE',
   },
@@ -90,6 +103,7 @@ export const BLOSSOMS_SCHEDULE_2026: ScheduleEvent[] = [
     venue: 'Panel Room',
     category: 'music',
     categoryLabel: 'Music',
+    ...drivePoster('1UdqHDD2GjjXEd8Wa8SfDqZfzsx02FO1J'),
     status: 'tentative',
     sourceReference: 'BLOSSOMS (Be The Best) 2026-27 School of Science - Prelims Event Schedule TENTATIVE',
   },
@@ -103,6 +117,7 @@ export const BLOSSOMS_SCHEDULE_2026: ScheduleEvent[] = [
     venue: 'Room 615, Block 2',
     category: 'art',
     categoryLabel: 'Art',
+    ...drivePoster('1sKJJN7TfxXDafFDwl7KowsPL_WHx8rKg'),
     status: 'tentative',
     sourceReference: 'BLOSSOMS (Be The Best) 2026-27 School of Science - Prelims Event Schedule TENTATIVE',
   },
@@ -116,6 +131,7 @@ export const BLOSSOMS_SCHEDULE_2026: ScheduleEvent[] = [
     venue: 'Room 623, Block 2',
     category: 'literary',
     categoryLabel: 'Literary',
+    ...drivePoster('1qf8cKQiN57SM9_kEElmoGXlApyv2uSKS'),
     status: 'tentative',
     sourceReference: 'BLOSSOMS (Be The Best) 2026-27 School of Science - Prelims Event Schedule TENTATIVE',
   },
@@ -130,6 +146,7 @@ export const BLOSSOMS_SCHEDULE_2026: ScheduleEvent[] = [
     category: 'theatre',
     categoryLabel: 'Theatre',
     notes: 'Theme Reveal',
+    ...drivePoster('1N2_4Xno2zK9UVbb1Q1Uc_DOeRlYahDZb'),
     status: 'tentative',
     sourceReference: 'BLOSSOMS (Be The Best) 2026-27 School of Science - Prelims Event Schedule TENTATIVE',
   },
@@ -143,6 +160,7 @@ export const BLOSSOMS_SCHEDULE_2026: ScheduleEvent[] = [
     venue: 'Room 615 & 623, Block 2',
     category: 'art',
     categoryLabel: 'Art',
+    ...drivePoster('1eiA7RglNh5MoHo5dYB70aX68DqaBum1U'),
     status: 'tentative',
     sourceReference: 'BLOSSOMS (Be The Best) 2026-27 School of Science - Prelims Event Schedule TENTATIVE',
   },
@@ -412,6 +430,7 @@ export const BLOSSOMS_SCHEDULE_2026: ScheduleEvent[] = [
     venue: 'Room 623, Block 2',
     category: 'literary',
     categoryLabel: 'Literary',
+    ...drivePoster('12AnvB6bLfRXKkkGdg6cuUC_eVTXm-ntW'),
     status: 'tentative',
     sourceReference: 'BLOSSOMS (Be The Best) 2026-27 School of Science - Prelims Event Schedule TENTATIVE',
   },

@@ -8,6 +8,7 @@ import {
   AlertTriangle,
   FileText,
   ArrowRight,
+  Image as ImageIcon,
 } from 'lucide-react';
 import { ScheduleEvent } from '@/types/schedule';
 import { SCHEDULE_CATEGORY_CONFIG } from '@/data/schedule-2026-27';
@@ -311,6 +312,12 @@ export function ScheduleCalendarView({
                             {event.categoryLabel}
                           </span>
 
+                          {event.posterUrl && (
+                            <span className="text-[10px] font-mono text-[#5C4B99] font-bold flex items-center gap-1 bg-[#FFF9DB] px-1.5 py-0.5 rounded border border-[#3D246C]/25">
+                              <ImageIcon className="w-3 h-3" /> Poster
+                            </span>
+                          )}
+
                           {event.needsVerification && (
                             <span className="text-[10px] font-mono text-[#5C4B99] font-bold flex items-center gap-1">
                               <AlertTriangle className="w-3 h-3" /> Unconfirmed
@@ -326,7 +333,7 @@ export function ScheduleCalendarView({
                           <div className="mt-2 p-2 rounded-lg bg-[#FFDBC3]/60 border border-[#3D246C]/15 text-[11px] text-[#3D246C] flex items-center gap-1.5">
                             <FileText className="w-3.5 h-3.5 shrink-0 text-[#5C4B99]" />
                             <span className="truncate">
-                              Deadline: {event.submissionDeadline.time}, 1 Dec
+                              {event.submissionDeadline.label}
                             </span>
                           </div>
                         )}

@@ -26,6 +26,9 @@ export interface ScheduleEvent {
   categoryLabel: string;
   notes?: string; // Exact special notes e.g. "Theme Reveal", "Batch 1 & 2"
   submissionDeadline?: ScheduleSubmissionDeadline;
+  posterUrl?: string; // Direct Google Drive image URL
+  posterFallbackUrl?: string; // Fallback Google Drive thumbnail CDN URL
+  posterDriveUrl?: string; // Direct Google Drive file viewer link
   status: 'tentative' | 'confirmed';
   needsVerification?: boolean;
   verificationReason?: string; // Reason flagged for review e.g. "Time listed as 11:45 PM in tentative document; needs confirmation"

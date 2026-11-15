@@ -16,6 +16,7 @@ import {
 import { ScheduleEvent } from '@/types/schedule';
 import { CampusGreenBoard } from './CampusGreenBoard';
 import { EventDetailModal } from '@/components/schedule/EventDetailModal';
+import { UpcomingMainEventsBanner } from '@/components/schedule/UpcomingMainEventsBanner';
 
 /* =========================================================
    SSR-SAFE LIVE CLOCK STORE (30s Granularity, Zero Impurity)
@@ -174,6 +175,14 @@ export function NoticeBoardView() {
           </div>
         </div>
       </section>
+
+      {/* =========================================================
+          NEXT UPCOMING MAIN EVENTS SPOTLIGHT (DRIVE POSTERS)
+          ========================================================= */}
+      <UpcomingMainEventsBanner
+        onSelectEvent={(ev) => setModalEvent(ev)}
+        showFullScheduleLink={true}
+      />
 
       {/* =========================================================
           OFFICIAL INSTAGRAM REEL SPOTLIGHT (IFRAME)

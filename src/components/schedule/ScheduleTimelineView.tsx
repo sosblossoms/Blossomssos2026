@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Clock, MapPin, AlertTriangle, FileText, ChevronRight } from 'lucide-react';
+import { Clock, MapPin, AlertTriangle, FileText, ChevronRight, Image as ImageIcon } from 'lucide-react';
 import { ScheduleEvent } from '@/types/schedule';
 import { SCHEDULE_CATEGORY_CONFIG } from '@/data/schedule-2026-27';
 
@@ -90,6 +90,13 @@ export function ScheduleTimelineView({
                         >
                           {event.categoryLabel}
                         </span>
+
+                        {event.posterUrl && (
+                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-bold font-mono bg-[#FFF9DB] text-[#3D246C] border border-[#3D246C]/30">
+                            <ImageIcon className="w-3 h-3 text-[#5C4B99]" />
+                            <span>Poster</span>
+                          </span>
+                        )}
 
                         {event.needsVerification && (
                           <span

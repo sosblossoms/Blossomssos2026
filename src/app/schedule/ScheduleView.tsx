@@ -20,6 +20,7 @@ import { ScheduleOverviewStats } from '@/components/schedule/ScheduleOverviewSta
 import { ScheduleTimelineView } from '@/components/schedule/ScheduleTimelineView';
 import { ScheduleCalendarView } from '@/components/schedule/ScheduleCalendarView';
 import { EventDetailModal } from '@/components/schedule/EventDetailModal';
+import { UpcomingMainEventsBanner } from '@/components/schedule/UpcomingMainEventsBanner';
 
 export function ScheduleView() {
   const pathname = usePathname();
@@ -136,6 +137,12 @@ export function ScheduleView() {
       <ScheduleOverviewStats
         events={BLOSSOMS_SCHEDULE_2026}
         filteredCount={filteredEvents.length}
+      />
+
+      {/* Tomorrow / Next Upcoming Main Events Spotlight with Drive Posters */}
+      <UpcomingMainEventsBanner
+        onSelectEvent={handleOpenEventModal}
+        showFullScheduleLink={false}
       />
 
       {/* Control Bar: View Switcher, Search Input, and Filters */}
