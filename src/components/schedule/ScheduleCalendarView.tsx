@@ -373,9 +373,9 @@ export function ScheduleCalendarView({
                   <div className="space-y-2">
                     {[
                       { date: '2026-11-12', label: 'Inauguration Ceremony', day: '12 Nov (Thu)' },
-                      { date: '2026-12-02', label: 'Short Film Screening', day: '2 Dec (Wed)' },
-                      { date: '2026-12-05', label: 'Battle of Bands & Music', day: '5 Dec (Sat)' },
-                      { date: '2026-12-11', label: 'Valedictory Ceremony', day: '11 Dec (Fri)' },
+                      { date: '2026-11-26', label: 'Mime & Battle of Bands', day: '26 Nov (Thu)' },
+                      { date: '2026-12-16', label: 'Short Film Screening', day: '16 Dec (Wed)' },
+                      { date: '2026-12-19', label: 'Proscenium Finale', day: '19 Dec (Sat)' },
                     ].map((m) => (
                       <button
                         key={m.date}

@@ -47,7 +47,7 @@ export function ScheduleOverviewStats({
               <span className="text-xs font-normal text-[#3D246C]/70 ml-1.5 font-sans">Days with Events</span>
             </div>
             <div className="text-[11px] text-[#5C4B99] font-mono mt-0.5 font-semibold">
-              Nov 12 – Dec 11
+              Nov 12 – Dec 19
             </div>
           </div>
         </div>
