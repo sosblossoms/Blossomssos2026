@@ -67,7 +67,7 @@ export function WeeklyRadarSection({
   }, [weekEvents, selectedDay, selectedDiscipline]);
 
   return (
-    <div className="rounded-3xl bg-white/88 border border-[#3D246C]/15 backdrop-blur-md shadow-xl p-5 sm:p-8 space-y-6">
+    <div className="rounded-3xl bg-white/95 border border-[#3D246C]/15 shadow-xl p-5 sm:p-8 space-y-6">
       {/* Top Section Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 border-b border-[#3D246C]/12">
         <div className="space-y-1">
@@ -80,7 +80,7 @@ export function WeeklyRadarSection({
           <h3 className="font-angular text-2xl sm:text-3xl font-black text-[#3D246C] tracking-tight">
             {week.title}
           </h3>
-          <p className="font-body text-xs sm:text-sm text-[#3D246C]/80 max-w-2xl leading-relaxed">
+          <p className="font-body text-xs sm:text-sm text-[#3D246C]/85 max-w-2xl leading-relaxed">
             {week.weeklyHighlight}
           </p>
         </div>
@@ -89,7 +89,7 @@ export function WeeklyRadarSection({
       {/* 7-Day Interactive Mon–Sun Strip */}
       <div className="space-y-2.5">
         <div className="flex items-center justify-between text-xs font-tech">
-          <span className="font-bold text-[#3D246C]/80 uppercase tracking-wider text-[11px]">
+          <span className="font-bold text-[#3D246C]/85 uppercase tracking-wider text-xs">
             7-Day Campus Strip {selectedDay ? '• Filtered by Day' : '• Tap a Day to Inspect'}
           </span>
           {selectedDay && (
@@ -115,17 +115,17 @@ export function WeeklyRadarSection({
                 type="button"
                 onClick={() => onSelectDay(isSelected ? null : slot.date)}
                 aria-pressed={isSelected}
-                className={`relative p-3 rounded-2xl border text-left transition-all flex flex-col justify-between min-h-[88px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] ${
+                className={`relative p-3 rounded-2xl border text-left transition-all flex flex-col justify-between min-h-[92px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] ${
                   isSelected
                     ? 'bg-[#5C4B99] text-white border-[#3D246C] shadow-md -translate-y-0.5'
                     : hasEvents
-                    ? 'bg-[#FFDBC3]/45 hover:bg-[#FFDBC3]/80 text-[#3D246C] border-[#3D246C]/20'
-                    : 'bg-white/65 hover:bg-white text-[#3D246C]/70 border-[#3D246C]/10'
+                    ? 'bg-[#FFDBC3]/50 hover:bg-[#FFDBC3]/85 text-[#3D246C] border-[#3D246C]/20'
+                    : 'bg-white/90 hover:bg-white text-[#3D246C]/85 border-[#3D246C]/15'
                 }`}
               >
                 <div className="flex items-center justify-between gap-1 w-full">
                   <span
-                    className={`font-mono text-[10px] font-bold uppercase tracking-wider ${
+                    className={`font-mono text-xs font-bold uppercase tracking-wider ${
                       isSelected ? 'text-[#FFDBC3]' : 'text-[#5C4B99]'
                     }`}
                   >
@@ -133,7 +133,7 @@ export function WeeklyRadarSection({
                   </span>
                   {isToday && (
                     <span
-                      className={`px-1.5 py-0.5 rounded text-[9px] font-mono font-extrabold uppercase ${
+                      className={`px-1.5 py-0.5 rounded text-xs font-mono font-extrabold uppercase ${
                         isSelected
                           ? 'bg-[#FFDBC3] text-[#3D246C]'
                           : 'bg-[#3D246C] text-[#FFDBC3]'
@@ -150,7 +150,7 @@ export function WeeklyRadarSection({
                   </span>{' '}
                   <span
                     className={`font-tech text-xs font-semibold ${
-                      isSelected ? 'text-white/85' : 'text-[#3D246C]/70'
+                      isSelected ? 'text-white/95' : 'text-[#3D246C]/85'
                     }`}
                   >
                     {slot.monthShort}
@@ -159,12 +159,12 @@ export function WeeklyRadarSection({
 
                 <div className="flex items-center justify-between gap-1 pt-1">
                   <span
-                    className={`font-mono text-[10px] font-bold ${
+                    className={`font-mono text-xs font-bold ${
                       isSelected
                         ? 'text-white'
                         : hasEvents
                         ? 'text-[#3D246C]'
-                        : 'text-[#3D246C]/45'
+                        : 'text-[#3D246C]/75'
                     }`}
                   >
                     {hasEvents
@@ -195,7 +195,7 @@ export function WeeklyRadarSection({
       {/* Discipline Filter Pills (When week has competitive events) */}
       {weekEvents.length > 0 && (
         <div className="flex flex-wrap items-center gap-2 pt-1">
-          <span className="text-xs font-mono font-bold text-[#3D246C]/75 inline-flex items-center gap-1.5 mr-1">
+          <span className="text-xs font-mono font-bold text-[#3D246C]/85 inline-flex items-center gap-1.5 mr-1">
             <Filter className="w-3.5 h-3.5 text-[#5C4B99]" />
             <span>Discipline:</span>
           </span>
@@ -207,7 +207,7 @@ export function WeeklyRadarSection({
             className={`px-3 py-1 rounded-full text-xs font-tech transition-all ${
               selectedDiscipline === 'all'
                 ? 'bg-[#5C4B99] text-white font-bold shadow-xs'
-                : 'bg-white text-[#3D246C]/80 border border-[#3D246C]/15 hover:border-[#5C4B99]/40 font-medium'
+                : 'bg-white text-[#3D246C]/90 border border-[#3D246C]/18 hover:border-[#5C4B99]/40 font-medium'
             }`}
           >
             All ({disciplineCounts.all})
@@ -231,7 +231,7 @@ export function WeeklyRadarSection({
                 className={`px-3 py-1 rounded-full text-xs font-tech transition-all ${
                   active
                     ? 'bg-[#5C4B99] text-white font-bold shadow-xs'
-                    : 'bg-white text-[#3D246C]/80 border border-[#3D246C]/15 hover:border-[#5C4B99]/40 font-medium'
+                    : 'bg-white text-[#3D246C]/90 border border-[#3D246C]/18 hover:border-[#5C4B99]/40 font-medium'
                 }`}
               >
                 {cfg.label} ({count})
@@ -253,7 +253,7 @@ export function WeeklyRadarSection({
               <h4 className="font-tech text-base font-extrabold text-[#3D246C]">
                 Lock Your Prelims Registration Slot
               </h4>
-              <p className="font-body text-xs text-[#3D246C]/80 leading-relaxed">
+              <p className="font-body text-xs text-[#3D246C]/85 leading-relaxed">
                 Confirm solo, duet, or group participation across the 31 cultural competitions representing School of Sciences.
               </p>
             </div>
@@ -278,7 +278,7 @@ export function WeeklyRadarSection({
               <h4 className="font-tech text-base font-extrabold text-[#3D246C]">
                 Check Blossoms Rulebook 2026-27 &amp; Rubrics
               </h4>
-              <p className="font-body text-xs text-[#3D246C]/80 leading-relaxed">
+              <p className="font-body text-xs text-[#3D246C]/85 leading-relaxed">
                 Verify time limits, accompaniment guidelines, and judgment criteria in the official Google Drive rulebook before rehearsals.
               </p>
             </div>
@@ -304,7 +304,7 @@ export function WeeklyRadarSection({
               <h4 className="font-tech text-base font-extrabold text-[#3D246C]">
                 Preview Inauguration &amp; Opening Prelims
               </h4>
-              <p className="font-body text-xs text-[#3D246C]/80 leading-relaxed">
+              <p className="font-body text-xs text-[#3D246C]/85 leading-relaxed">
                 Inauguration launches Thu 12 Nov (Block 1 Quadrangle), followed by 8 competitive prelims in Week 2.
               </p>
             </div>
@@ -334,7 +334,7 @@ export function WeeklyRadarSection({
           <p className="font-tech text-sm sm:text-base font-bold text-[#3D246C]">
             No prelims scheduled for this exact day/discipline filter.
           </p>
-          <p className="font-body text-xs text-[#3D246C]/75">
+          <p className="font-body text-xs text-[#3D246C]/85">
             Reset the day or discipline filter to see all {weekEvents.length} events happening in {week.shortLabel}.
           </p>
           <button
@@ -369,22 +369,21 @@ export function WeeklyRadarSection({
                   {/* Top Row: Date + Category + Status */}
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <div className="flex flex-wrap items-center gap-1.5">
-                      <span className="px-2.5 py-0.5 rounded-md bg-[#FFDBC3]/70 text-[#3D246C] font-mono text-[11px] font-bold border border-[#3D246C]/15">
+                      <span className="px-2.5 py-0.5 rounded-md bg-[#FFDBC3]/70 text-[#3D246C] font-mono text-xs font-bold border border-[#3D246C]/15">
                         {prettyDate}
                       </span>
                       <span
-                        className="px-2.5 py-0.5 rounded-md font-mono text-[10px] font-bold uppercase tracking-wider border"
+                        className="px-2.5 py-0.5 rounded-md font-mono text-xs font-bold uppercase tracking-wider border text-[#3D246C]"
                         style={{
-                          backgroundColor: `${catCfg.accentColor}18`,
-                          color: catCfg.accentColor,
-                          borderColor: `${catCfg.accentColor}40`,
+                          backgroundColor: `${catCfg.accentColor}22`,
+                          borderColor: `${catCfg.accentColor}55`,
                         }}
                       >
                         {ev.categoryLabel}
                       </span>
                     </div>
 
-                    <span className="font-mono text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-[#5C4B99]/10 text-[#5C4B99]">
+                    <span className="font-mono text-xs font-bold uppercase px-2 py-0.5 rounded bg-[#5C4B99]/10 text-[#3D246C]">
                       Tentative
                     </span>
                   </div>
@@ -395,7 +394,7 @@ export function WeeklyRadarSection({
                   </h4>
 
                   {/* Time & Venue Metadata */}
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-xs font-body text-[#3D246C]/80">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-xs font-body text-[#3D246C]/85">
                     <span className="inline-flex items-center gap-1.5">
                       <Clock className="w-3.5 h-3.5 text-[#5C4B99] shrink-0" />
                       <span className="font-medium">{ev.timeDisplay}</span>
@@ -410,19 +409,19 @@ export function WeeklyRadarSection({
                   {(ev.submissionDeadline || ev.notes || ev.needsVerification) && (
                     <div className="pt-1 flex flex-wrap items-center gap-1.5">
                       {ev.submissionDeadline && (
-                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-rose-500/12 text-rose-900 border border-rose-600/25 text-[11px] font-tech font-bold">
-                          <AlertCircle className="w-3 h-3" />
+                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-rose-50 text-rose-900 border border-rose-600/30 text-xs font-tech font-bold">
+                          <AlertCircle className="w-3.5 h-3.5" />
                           <span>{ev.submissionDeadline.label}</span>
                         </span>
                       )}
                       {ev.notes && !ev.submissionDeadline && (
-                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-[#9F91CC]/25 text-[#3D246C] border border-[#5C4B99]/25 text-[11px] font-tech font-semibold">
+                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-[#9F91CC]/25 text-[#3D246C] border border-[#5C4B99]/30 text-xs font-tech font-semibold">
                           <span>{ev.notes}</span>
                         </span>
                       )}
                       {ev.needsVerification && (
-                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-amber-500/15 text-amber-950 border border-amber-600/30 text-[11px] font-tech font-bold">
-                          <AlertCircle className="w-3 h-3" />
+                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-amber-50 text-amber-950 border border-amber-600/35 text-xs font-tech font-bold">
+                          <AlertCircle className="w-3.5 h-3.5" />
                           <span>Verify AM/PM Timing</span>
                         </span>
                       )}

@@ -69,13 +69,13 @@ export function NoticeBoardView() {
           ========================================================= */}
       <section
         aria-label="Happening This Week Live Status"
-        className="rounded-3xl bg-white/90 border border-[#3D246C]/18 backdrop-blur-md shadow-xl p-5 sm:p-7"
+        className="rounded-3xl bg-white/95 border border-[#3D246C]/18 shadow-xl p-5 sm:p-7"
       >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
           {/* Left: Current Live Week Overview */}
           <div className="lg:col-span-7 space-y-2.5">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#5C4B99] text-white text-[11px] font-mono font-bold uppercase tracking-wider shadow-xs">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#5C4B99] text-white text-xs font-mono font-bold uppercase tracking-wider shadow-xs">
                 <span className="w-2 h-2 rounded-full bg-[#FFDBC3]" />
                 <span>Happening This Week • {liveWeek.shortLabel}</span>
               </span>
@@ -88,7 +88,7 @@ export function NoticeBoardView() {
               {liveWeek.title}
             </h2>
 
-            <p className="font-body text-xs sm:text-sm text-[#3D246C]/80 leading-relaxed">
+            <p className="font-body text-xs sm:text-sm text-[#3D246C]/85 leading-relaxed">
               {liveWeek.weeklyHighlight}
             </p>
           </div>
@@ -97,7 +97,7 @@ export function NoticeBoardView() {
           <div className="lg:col-span-5">
             {nextMilestone && countdown ? (
               <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-[#3D246C] via-[#4C3285] to-[#5C4B99] text-white shadow-lg space-y-3 border border-white/15">
-                <div className="flex items-center justify-between gap-2 text-[11px] font-mono uppercase tracking-wider text-[#FFDBC3]">
+                <div className="flex items-center justify-between gap-2 text-xs font-mono uppercase tracking-wider text-[#FFDBC3]">
                   <span className="inline-flex items-center gap-1.5 font-bold">
                     <CalendarClock className="w-3.5 h-3.5" />
                     <span>Next Scheduled Milestone</span>
@@ -111,7 +111,7 @@ export function NoticeBoardView() {
                   <h3 className="font-tech text-base sm:text-lg font-extrabold text-white leading-tight">
                     {nextMilestone.event.title}
                   </h3>
-                  <p className="font-body text-xs text-[#FFDBC3]/90 mt-0.5">
+                  <p className="font-body text-xs text-[#FFDBC3] mt-0.5">
                     {nextMilestone.event.timeDisplay} • {nextMilestone.event.venue}
                   </p>
                 </div>
@@ -122,7 +122,7 @@ export function NoticeBoardView() {
                     <div className="font-angular text-lg sm:text-xl font-black text-[#FFDBC3] leading-none">
                       {countdown.days}
                     </div>
-                    <div className="font-mono text-[9px] uppercase tracking-wider text-white/80 mt-1">
+                    <div className="font-mono text-xs uppercase tracking-wider text-white/95 mt-1">
                       Days
                     </div>
                   </div>
@@ -130,7 +130,7 @@ export function NoticeBoardView() {
                     <div className="font-angular text-lg sm:text-xl font-black text-[#FFDBC3] leading-none">
                       {countdown.hours}
                     </div>
-                    <div className="font-mono text-[9px] uppercase tracking-wider text-white/80 mt-1">
+                    <div className="font-mono text-xs uppercase tracking-wider text-white/95 mt-1">
                       Hours
                     </div>
                   </div>
@@ -138,7 +138,7 @@ export function NoticeBoardView() {
                     <div className="font-angular text-lg sm:text-xl font-black text-[#FFDBC3] leading-none">
                       {countdown.mins}
                     </div>
-                    <div className="font-mono text-[9px] uppercase tracking-wider text-white/80 mt-1">
+                    <div className="font-mono text-xs uppercase tracking-wider text-white/95 mt-1">
                       Mins
                     </div>
                   </div>
@@ -155,7 +155,7 @@ export function NoticeBoardView() {
                   </button>
                   <Link
                     href="/schedule"
-                    className="text-white/80 hover:text-white underline text-[11px]"
+                    className="text-white/95 hover:text-white underline text-xs"
                   >
                     Full Schedule
                   </Link>
@@ -167,7 +167,7 @@ export function NoticeBoardView() {
                 <p className="font-tech text-sm font-bold text-[#3D246C]">
                   Blossoms 2026–27 Prelims Cycle Complete
                 </p>
-                <p className="font-body text-xs text-[#3D246C]/75">
+                <p className="font-body text-xs text-[#3D246C]/85">
                   Browse weekly dispatches and archival circulars below.
                 </p>
               </div>
@@ -189,12 +189,12 @@ export function NoticeBoardView() {
           ========================================================= */}
       <section
         aria-label="Official Instagram Reel Teaser"
-        className="rounded-3xl bg-white/95 border-2 border-[#3D246C]/15 backdrop-blur-md shadow-xl overflow-hidden p-5 sm:p-7"
+        className="rounded-3xl bg-white/95 border-2 border-[#3D246C]/15 shadow-xl overflow-hidden p-5 sm:p-7"
       >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
           {/* Left Column: Instagram Reel Embedded Iframe */}
           <div className="lg:col-span-5 flex justify-center">
-            <div className="relative w-full max-w-[340px] aspect-[9/16] max-h-[520px] rounded-2xl overflow-hidden border-2 border-[#3D246C]/20 shadow-xl bg-black">
+            <div className="relative w-full max-w-[340px] aspect-[9/16] max-h-[520px] rounded-2xl overflow-hidden border-2 border-[#3D246C]/20 shadow-xl bg-[#231942]">
               <iframe
                 src="https://www.instagram.com/reel/DfHrjWlypfa/embed"
                 className="w-full h-full"
@@ -209,8 +209,8 @@ export function NoticeBoardView() {
           {/* Right Column: Title, Department Tags & Description */}
           <div className="lg:col-span-7 space-y-4">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] text-white text-[11px] font-mono font-bold uppercase tracking-wider shadow-xs">
-                <Sparkles className="w-3.5 h-3.5" />
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#3D246C] border border-[#9F91CC]/40 text-white text-xs font-mono font-bold uppercase tracking-wider shadow-xs">
+                <Sparkles className="w-3.5 h-3.5 text-[#FFDBC3]" />
                 <span>Official Dance Reel</span>
               </span>
               <span className="text-xs font-mono font-semibold text-[#5C4B99]">
@@ -228,7 +228,7 @@ export function NoticeBoardView() {
 
             {/* Tagged Departments Pills */}
             <div className="space-y-2 pt-1">
-              <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-[#5C4B99] block">
+              <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#5C4B99] block">
                 Tagged Departments &amp; Student Bodies
               </span>
               <div className="flex flex-wrap gap-2">
@@ -244,10 +244,12 @@ export function NoticeBoardView() {
                     href={`https://www.instagram.com/${handle.replace('@', '')}/`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white hover:bg-[#FFDBC3] text-[#3D246C] border border-[#3D246C]/20 text-xs font-mono font-bold shadow-2xs transition-all hover:scale-105"
+                    title={label}
+                    aria-label={`${label} (${handle} on Instagram)`}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white hover:bg-[#FFDBC3] text-[#3D246C] border border-[#3D246C]/20 text-xs font-mono font-bold shadow-2xs transition-all hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
                   >
                     <span>{handle}</span>
-                    <ExternalLink className="w-3 h-3 text-[#5C4B99] opacity-75" />
+                    <ExternalLink className="w-3.5 h-3.5 text-[#5C4B99]" />
                   </a>
                 ))}
               </div>
@@ -285,7 +287,7 @@ export function NoticeBoardView() {
               Weekly Updates Pinboard
             </h2>
           </div>
-          <p className="font-body text-xs text-[#3D246C]/75 max-w-md">
+          <p className="font-body text-xs text-[#3D246C]/85 max-w-md">
             Tap any pinned circular to read full notes, save deadlines to your personal board, or copy formatted updates for WhatsApp class groups.
           </p>
         </div>

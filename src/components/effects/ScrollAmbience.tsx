@@ -83,7 +83,8 @@ export function ScrollAmbience() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (motionQuery.matches) {
       return;
     }
 
@@ -94,10 +95,12 @@ export function ScrollAmbience() {
     if (!ctx) return;
 
     let animId = 0;
+    let resizeRafId = 0;
     let width = window.innerWidth;
     let height = window.innerHeight;
     let dpr = 1;
     let isDisposed = false;
+    let isPaused = false;
 
     const loadSprite = (src: string): Promise<HTMLImageElement> =>
       new Promise((resolve, reject) => {
@@ -108,7 +111,7 @@ export function ScrollAmbience() {
         img.src = src;
       });
 
-    const handleResize = () => {
+    const applyResize = () => {
       dpr = Math.min(window.devicePixelRatio || 1, 2);
       width = window.innerWidth;
       height = window.innerHeight;
@@ -120,10 +123,32 @@ export function ScrollAmbience() {
       ctx.imageSmoothingEnabled = false;
     };
 
-    handleResize();
+    const handleResize = () => {
+      if (resizeRafId !== 0) return;
+      resizeRafId = window.requestAnimationFrame(() => {
+        resizeRafId = 0;
+        if (!isDisposed && !isPaused) {
+          applyResize();
+        }
+      });
+    };
+
+    applyResize();
     window.addEventListener('resize', handleResize, { passive: true });
 
     let cleanupListeners: (() => void) | null = null;
+
+    const handleMotionChange = (e: MediaQueryListEvent) => {
+      if (e.matches) {
+        isPaused = true;
+        cancelAnimationFrame(animId);
+        animId = 0;
+        ctx.clearRect(0, 0, width, height);
+        cleanupListeners?.();
+        cleanupListeners = null;
+      }
+    };
+    motionQuery.addEventListener('change', handleMotionChange);
 
     Promise.all([
       loadSprite('/sprites/sakura_blossoms.png'),
@@ -132,7 +157,7 @@ export function ScrollAmbience() {
       loadSprite('/sprites/butterflies.png'),
     ])
       .then(([blossomSheet, petalSheet, branchSheet, butterflySheet]) => {
-        if (isDisposed) return;
+        if (isDisposed || isPaused) return;
 
         const initialMobile = width < 768;
         const baseParticleCount = initialMobile ? 22 : 40;
@@ -297,18 +322,29 @@ export function ScrollAmbience() {
           mouseActive = false;
         };
 
+        const handleVisibilityChange = () => {
+          if (document.hidden) {
+            cancelAnimationFrame(animId);
+            animId = 0;
+          } else if (!isDisposed && !isPaused && animId === 0) {
+            lastTime = performance.now();
+            animId = requestAnimationFrame(render);
+          }
+        };
+
         window.addEventListener('scroll', handleScroll, { passive: true });
         window.addEventListener('mousemove', handleMouseMove, { passive: true });
         window.addEventListener('mouseleave', handleMouseLeave, { passive: true });
+        document.addEventListener('visibilitychange', handleVisibilityChange);
 
         const idleInterval = setInterval(() => {
-          if (!document.hidden && butterflies.length < 2) {
+          if (!document.hidden && !isPaused && butterflies.length < 2) {
             spawnButterflies(2);
           }
         }, 10500);
 
         const greetTimeout = setTimeout(() => {
-          if (!isDisposed) {
+          if (!isDisposed && !isPaused) {
             spawnButterflies(3);
           }
         }, 350);
@@ -319,6 +355,7 @@ export function ScrollAmbience() {
           window.removeEventListener('scroll', handleScroll);
           window.removeEventListener('mousemove', handleMouseMove);
           window.removeEventListener('mouseleave', handleMouseLeave);
+          document.removeEventListener('visibilitychange', handleVisibilityChange);
         };
 
         const drawSakuraBranches = (dtMs: number) => {
@@ -331,7 +368,7 @@ export function ScrollAmbience() {
           }
 
           const isMobileNow = width < 768;
-          const scrollYNow = Math.max(0, window.scrollY);
+          const scrollYNow = Math.max(0, lastScrollY);
           const belowLogoY = getBelowLogoY();
           const cornerY = isMobileNow ? -5 : -7;
 
@@ -397,13 +434,16 @@ export function ScrollAmbience() {
         let lastTime = performance.now();
 
         const render = (now: number) => {
-          if (isDisposed) return;
+          if (isDisposed || isPaused) {
+            animId = 0;
+            return;
+          }
 
           const dtMs = Math.min(now - lastTime, 50);
           lastTime = now;
 
           if (document.hidden) {
-            animId = requestAnimationFrame(render);
+            animId = 0;
             return;
           }
 
@@ -581,7 +621,9 @@ export function ScrollAmbience() {
     return () => {
       isDisposed = true;
       cancelAnimationFrame(animId);
+      if (resizeRafId !== 0) cancelAnimationFrame(resizeRafId);
       window.removeEventListener('resize', handleResize);
+      motionQuery.removeEventListener('change', handleMotionChange);
       if (cleanupListeners) cleanupListeners();
     };
   }, []);

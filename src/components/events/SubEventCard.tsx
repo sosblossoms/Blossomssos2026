@@ -10,46 +10,46 @@ interface SubEventCardProps {
 
 export function SubEventCard({ event }: SubEventCardProps) {
   return (
-    <article 
-      className="p-6 rounded-2xl bg-white/85 backdrop-blur-md border border-[#3D246C]/15 hover:border-[#5C4B99]/40 transition-all duration-200 flex flex-col justify-between group shadow-sm hover:shadow-lg"
+    <article
+      className="p-6 rounded-2xl bg-white border border-[rgba(61,36,108,0.16)] hover:border-[rgba(92,75,153,0.38)] transition-all duration-200 flex flex-col justify-between group shadow-xs hover:shadow-md"
       aria-labelledby={`event-${event.id}-title`}
     >
       <div>
-        {/* Top Badges */}
-        <div className="flex items-center justify-between gap-2 mb-3">
-          <span 
-            className="px-2.5 py-0.5 rounded-full text-xs font-bold tracking-wide border border-[#3D246C]/20 bg-[#FFDBC3]/70 text-[#3D246C]"
+        {/* Top Metadata Pills (>= 12px) */}
+        <div className="flex items-center justify-between gap-2 mb-3.5 flex-wrap">
+          <span
+            className="px-3 py-1 rounded-full text-xs font-tech font-bold tracking-wider uppercase border border-[rgba(61,36,108,0.16)] bg-[#FFDBC3] text-[#3D246C]"
           >
-            {event.category.toUpperCase()}
+            {event.category}
           </span>
-          <span className="inline-flex items-center gap-1.5 text-xs text-[#3D246C] font-medium bg-white/80 px-2.5 py-1 rounded-md border border-[#3D246C]/15">
+          <span className="inline-flex items-center gap-1.5 text-xs text-[#3D246C] font-tech font-semibold bg-[#FFFCF5] px-3 py-1 rounded-full border border-[rgba(61,36,108,0.16)]">
             <Users className="w-3.5 h-3.5 text-[#5C4B99]" />
             <span>{event.teamSize}</span>
           </span>
         </div>
 
         {/* Title */}
-        <h3 
+        <h3
           id={`event-${event.id}-title`}
-          className="text-lg font-bold text-[#3D246C] mb-2 group-hover:text-[#5C4B99] transition-colors"
+          className="font-tech text-lg sm:text-xl font-bold text-[#3D246C] mb-2 group-hover:text-[#5C4B99] transition-colors leading-snug"
         >
           {event.name}
         </h3>
 
         {/* Short Description */}
-        <p className="text-xs text-[#3D246C]/80 leading-relaxed mb-4 font-normal">
+        <p className="text-sm text-[#3D246C]/85 leading-relaxed mb-4 font-normal">
           {event.shortDescription}
         </p>
 
         {/* Evaluation Criteria Checklist */}
-        <div className="space-y-1.5 pt-2 border-t border-[#3D246C]/15">
-          <span className="text-[11px] font-semibold text-[#5C4B99] uppercase tracking-wider block mb-1">
-            Core Evaluation Points
+        <div className="rounded-xl bg-[#FFFCF5] border border-[rgba(61,36,108,0.16)] p-4">
+          <span className="text-xs font-tech font-bold text-[#5C4B99] uppercase tracking-wider block mb-2.5">
+            Judging Criteria &amp; Rules
           </span>
-          <ul className="space-y-1 text-xs text-[#3D246C]/85">
+          <ul className="space-y-2 text-xs sm:text-sm text-[#3D246C]">
             {event.points.slice(0, 4).map((pt, idx) => (
               <li key={idx} className="flex items-start gap-2">
-                <CheckCircle2 className="w-3.5 h-3.5 text-[#5C4B99] shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-[#5C4B99] shrink-0 mt-0.5" />
                 <span className="leading-snug">{pt}</span>
               </li>
             ))}
@@ -57,31 +57,39 @@ export function SubEventCard({ event }: SubEventCardProps) {
         </div>
       </div>
 
-      {/* Historical Timing & Registration Notice Footer */}
-      <div className="mt-6 pt-4 border-t border-[#3D246C]/15 flex flex-col gap-2 text-xs">
-        {event.historicalVenue && (
-          <div className="flex items-center gap-1.5 text-[11px] text-[#3D246C]/75">
-            <MapPin className="w-3.5 h-3.5 text-[#5C4B99] shrink-0" />
-            <span>Venue: <strong className="text-[#3D246C]">{event.historicalVenue}</strong></span>
+      {/* Venue, Slot & Registration CTA Footer */}
+      <div className="mt-5 pt-4 border-t border-[rgba(61,36,108,0.16)] flex flex-col gap-2.5 text-xs">
+        {(event.historicalVenue || event.historicalTiming) && (
+          <div className="flex flex-col gap-2">
+            {event.historicalVenue && (
+              <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-[#FFFCF5] border border-[rgba(61,36,108,0.16)] text-xs text-[#3D246C]">
+                <MapPin className="w-3.5 h-3.5 text-[#5C4B99] shrink-0" />
+                <span>
+                  Venue: <strong className="font-tech font-bold text-[#3D246C]">{event.historicalVenue}</strong>
+                </span>
+              </div>
+            )}
+            {event.historicalTiming && (
+              <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-[#FFFCF5] border border-[rgba(61,36,108,0.16)] text-xs text-[#3D246C]">
+                <Clock className="w-3.5 h-3.5 text-[#5C4B99] shrink-0" />
+                <span>
+                  Slot: <strong className="font-tech font-bold text-[#3D246C]">{event.historicalTiming}</strong>
+                </span>
+              </div>
+            )}
           </div>
         )}
-        {event.historicalTiming && (
-          <div className="flex items-center gap-1.5 text-[11px] text-[#3D246C]/75">
-            <Clock className="w-3.5 h-3.5 text-[#5C4B99] shrink-0" />
-            <span>Time: <strong className="text-[#3D246C]">{event.historicalTiming}</strong></span>
-          </div>
-        )}
-        
+
         {/* Action Button */}
         {siteConfig.registrationUrl && (
-          <div className="mt-2 pt-2">
+          <div className="pt-1.5">
             <a
               href={siteConfig.registrationUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="clay-btn-primary bg-[#5C4B99] hover:bg-[#4C3C82] text-white inline-flex items-center justify-center w-full text-center py-2 px-3 rounded-xl text-xs font-bold transition-all shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C]"
+              className="clay-btn-primary min-h-[44px] bg-[#5C4B99] hover:bg-[#4C3C82] text-white inline-flex items-center justify-center w-full text-center py-2.5 px-4 rounded-xl text-xs sm:text-sm font-tech font-bold transition-all shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C]"
             >
-              <span>Register for this Event</span>
+              <span>Register for {event.name}</span>
             </a>
           </div>
         )}

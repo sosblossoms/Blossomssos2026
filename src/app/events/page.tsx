@@ -59,28 +59,32 @@ export default function EventsPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       {/* Page Header */}
-      <div className="text-center max-w-3xl mx-auto mb-10">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 border border-[#3D246C]/20 text-xs font-semibold text-[#3D246C] mb-4 shadow-sm">
-          <span>Curated Disciplines • {totalEvents} Official Sub-Events</span>
+      <div className="text-center max-w-3xl mx-auto mb-12">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FFFCF5] border border-[rgba(61,36,108,0.16)] text-xs font-tech font-bold uppercase tracking-wider text-[#3D246C] mb-5 shadow-xs">
+          <span>School of Sciences • {totalEvents} Official Competitions</span>
         </div>
-        <h1 className="text-4xl sm:text-5xl font-extrabold text-[#3D246C] tracking-tight leading-tight">
-          Explore Festival Disciplines.
+        <h1 className="font-angular-bold text-4xl sm:text-5xl md:text-6xl text-[#3D246C] tracking-tight leading-none">
+          Festival Disciplines
         </h1>
-        <p className="mt-4 text-base text-[#3D246C]/80 leading-relaxed font-normal max-w-2xl mx-auto">
-          Blossoms SOS brings together five foundational creative and expressive pillars. Interact with the 3D discipline ring below or toggle the grid view to discover competition formats, evaluation criteria, and performance parameters.
+        <p className="mt-3 font-serif italic text-xl sm:text-2xl font-medium text-[#5C4B99] leading-snug">
+          Five expressive arenas across Art, Literary, Music, Theatre, and Dance — from flames to flights.
+        </p>
+        <p className="mt-4 text-sm sm:text-base text-[#3D246C]/85 leading-relaxed font-normal max-w-2xl mx-auto">
+          Interact with the 3D discipline ring below or toggle the grid view to explore competition formats, evaluation criteria, and performance guidelines.
         </p>
 
         {/* Registration Notice */}
-        <div className="mt-6 p-4 rounded-xl bg-white/85 border border-[#3D246C]/15 backdrop-blur-sm text-xs text-[#3D246C]/85 flex items-center justify-between flex-wrap gap-3 max-w-2xl mx-auto text-left">
-          <p>
-            <strong className="text-[#3D246C]">Registration Open:</strong> Slots for School of Sciences preliminary auditions are active. Fill the official form to participate.
+        <div className="mt-7 p-4 sm:p-5 rounded-2xl bg-[#FFFCF5] border border-[rgba(61,36,108,0.16)] shadow-sm text-xs sm:text-sm text-[#3D246C] flex items-center justify-between flex-wrap gap-4 max-w-2xl mx-auto text-left">
+          <p className="leading-relaxed">
+            <strong className="font-tech font-bold text-[#3D246C]">Registration Open:</strong>{' '}
+            <span className="text-[#3D246C]/85">Slots for School of Sciences preliminary rounds are active. Submit the official form to participate.</span>
           </p>
           {siteConfig.registrationUrl && (
             <a
               href={siteConfig.registrationUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="clay-btn-primary bg-[#5C4B99] hover:bg-[#4C3C82] text-white px-4 py-1.5 rounded-lg text-xs font-bold"
+              className="clay-btn-primary min-h-[44px] inline-flex items-center justify-center bg-[#5C4B99] hover:bg-[#4C3C82] text-white px-5 py-2.5 rounded-xl text-xs sm:text-sm font-tech font-bold shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C]"
             >
               Register Now
             </a>
@@ -94,24 +98,26 @@ export default function EventsPage() {
       </div>
 
       {/* Informational Callout */}
-      <div className="mt-16 p-8 rounded-3xl bg-white/90 border border-[#3D246C]/20 backdrop-blur-md shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
+      <div className="mt-16 p-6 sm:p-8 rounded-3xl bg-[#FFFCF5] border border-[rgba(61,36,108,0.16)] shadow-md flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="flex items-start gap-4">
-          <div className="p-3 rounded-2xl bg-[#9F91CC]/25 border border-[#3D246C]/20 text-[#5C4B99] shrink-0">
+          <div className="p-3 rounded-2xl bg-[#FFDBC3] border border-[rgba(61,36,108,0.16)] text-[#5C4B99] shrink-0">
             <Info className="w-6 h-6" />
           </div>
           <div>
-            <h3 className="text-lg font-bold text-[#3D246C]">Looking for Competition Timelines?</h3>
-            <p className="text-xs sm:text-sm text-[#3D246C]/75 mt-1 max-w-xl leading-relaxed font-normal">
-              Event venues, timings, and prelims schedules for all 31 competitions are available in the festival schedule view.
+            <h2 className="font-tech text-lg sm:text-xl font-bold text-[#3D246C]">
+              Looking for Competition Timelines?
+            </h2>
+            <p className="text-sm text-[#3D246C]/85 mt-1 max-w-xl leading-relaxed font-normal">
+              Event venues, timings, and tentative prelims schedules for all {totalEvents} competitions are available in the festival schedule view.
             </p>
           </div>
         </div>
         <Link
           href="/schedule"
-          className="shrink-0 clay-btn-primary bg-[#5C4B99] hover:bg-[#4C3C82] text-white px-5 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5"
+          className="shrink-0 clay-btn-primary min-h-[48px] bg-[#5C4B99] hover:bg-[#4C3C82] text-white px-6 py-3 rounded-2xl text-xs sm:text-sm font-tech font-bold transition-all flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C]"
         >
           <span>View Schedule</span>
-          <ArrowRight className="w-3.5 h-3.5" />
+          <ArrowRight className="w-4 h-4" />
         </Link>
       </div>
     </div>

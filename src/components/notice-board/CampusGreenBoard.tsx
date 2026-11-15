@@ -46,7 +46,7 @@ function ThumbtackSvg({ color, idSuffix }: { color: PinColor; idSuffix: string }
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
-      className="drop-shadow-[0_3px_3px_rgba(0,0,0,0.45)] select-none pointer-events-none"
+      className="drop-shadow-[0_3px_3px_rgba(61,36,108,0.42)] select-none pointer-events-none"
     >
       <defs>
         <radialGradient id={gradId} cx="35%" cy="30%" r="68%">
@@ -56,7 +56,7 @@ function ThumbtackSvg({ color, idSuffix }: { color: PinColor; idSuffix: string }
         </radialGradient>
       </defs>
       {/* Cast shadow on paper */}
-      <ellipse cx="15.5" cy="24.5" rx="5.5" ry="2.5" fill="rgba(0,0,0,0.24)" />
+      <ellipse cx="15.5" cy="24.5" rx="5.5" ry="2.5" fill="#3D246C" fillOpacity="0.24" />
       {/* Steel needle */}
       <path d="M13.2 17L14 25.5L14.8 17H13.2Z" fill="#94A3B8" />
       {/* Cylindrical collar */}

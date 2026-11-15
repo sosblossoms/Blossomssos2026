@@ -153,9 +153,9 @@ export default function RootLayout({
       <body className="relative min-h-screen flex flex-col bg-[#FFDBC3] text-[#3D246C] font-sans antialiased selection:bg-[#5C4B99] selection:text-white" style={{ backgroundColor: "#FFDBC3" }}>
 
         {/* Skip to Content for WCAG 2.2 AA Keyboard Accessibility */}
-        <a 
-          href="#main-content" 
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-50 px-4 py-2 bg-[#5C4B99] text-white font-bold rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-[#3D246C]"
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-[70] px-4 py-2.5 bg-[#3D246C] text-white text-xs sm:text-sm font-tech font-bold rounded-lg shadow-xl border border-white/25 focus:outline-none focus:ring-2 focus:ring-[#FFDBC3] focus:ring-offset-2 focus:ring-offset-[#3D246C]"
         >
           Skip to main content
         </a>

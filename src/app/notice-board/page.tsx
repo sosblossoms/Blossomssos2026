@@ -54,7 +54,7 @@ export default function NoticeBoardPage() {
 
       {/* Page Header */}
       <header className="text-center max-w-3xl mx-auto mb-10 sm:mb-12 space-y-4">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/85 border border-[#3D246C]/20 text-xs font-bold text-[#3D246C] shadow-xs">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/95 border border-[#3D246C]/20 text-xs font-bold text-[#3D246C] shadow-xs">
           <Pin className="w-3.5 h-3.5 text-[#5C4B99]" />
           <span className="font-mono uppercase tracking-wider">
             OFFICIAL NOTICE BOARD • {SCHEDULE_METADATA_2026.edition}
@@ -65,7 +65,7 @@ export default function NoticeBoardPage() {
           Notice Board &amp; Weekly Radar.
         </h1>
 
-        <p className="font-body text-sm sm:text-base text-[#3D246C]/80 leading-relaxed max-w-2xl mx-auto">
+        <p className="font-body text-sm sm:text-base text-[#3D246C]/85 leading-relaxed max-w-2xl mx-auto">
           Follow weekly dispatches from the Blossoms Core Committee, check what competitions are happening this week, and inspect pinned circulars on our School of Sciences green board.
         </p>
       </header>
@@ -73,9 +73,9 @@ export default function NoticeBoardPage() {
       {/* Interactive Notice Board Hub */}
       <Suspense
         fallback={
-          <div className="p-16 text-center rounded-3xl bg-white/85 border border-[#3D246C]/15 flex flex-col items-center justify-center gap-3">
+          <div className="p-16 text-center rounded-3xl bg-white/95 border border-[#3D246C]/15 flex flex-col items-center justify-center gap-3">
             <Loader2 className="w-8 h-8 text-[#5C4B99] animate-spin" />
-            <p className="text-xs text-[#3D246C]/70 font-mono">Loading Campus Notice Board...</p>
+            <p className="text-xs text-[#3D246C]/85 font-mono">Loading Campus Notice Board...</p>
           </div>
         }
       >
