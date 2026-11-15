@@ -111,7 +111,7 @@ export function NoticeBoardView() {
                   <h3 className="font-tech text-base sm:text-lg font-extrabold text-white leading-tight">
                     {nextMilestone.event.title}
                   </h3>
-                  <p className="font-body text-xs text-[#FFDBC3] mt-0.5">
+                  <p className="font-body text-xs text-white/95 mt-0.5">
                     {nextMilestone.event.timeDisplay} • {nextMilestone.event.venue}
                   </p>
                 </div>
@@ -119,7 +119,7 @@ export function NoticeBoardView() {
                 {/* Countdown Digits */}
                 <div className="grid grid-cols-3 gap-2 pt-1">
                   <div className="p-2 rounded-xl bg-white/12 border border-white/15 text-center">
-                    <div className="font-angular text-lg sm:text-xl font-black text-[#FFDBC3] leading-none">
+                    <div className="font-angular text-lg sm:text-xl font-black text-white leading-none">
                       {countdown.days}
                     </div>
                     <div className="font-mono text-xs uppercase tracking-wider text-white/95 mt-1">
@@ -127,7 +127,7 @@ export function NoticeBoardView() {
                     </div>
                   </div>
                   <div className="p-2 rounded-xl bg-white/12 border border-white/15 text-center">
-                    <div className="font-angular text-lg sm:text-xl font-black text-[#FFDBC3] leading-none">
+                    <div className="font-angular text-lg sm:text-xl font-black text-white leading-none">
                       {countdown.hours}
                     </div>
                     <div className="font-mono text-xs uppercase tracking-wider text-white/95 mt-1">
@@ -135,7 +135,7 @@ export function NoticeBoardView() {
                     </div>
                   </div>
                   <div className="p-2 rounded-xl bg-white/12 border border-white/15 text-center">
-                    <div className="font-angular text-lg sm:text-xl font-black text-[#FFDBC3] leading-none">
+                    <div className="font-angular text-lg sm:text-xl font-black text-white leading-none">
                       {countdown.mins}
                     </div>
                     <div className="font-mono text-xs uppercase tracking-wider text-white/95 mt-1">

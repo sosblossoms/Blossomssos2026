@@ -148,7 +148,7 @@ export function WinnersView({ winners }: WinnersViewProps) {
               placeholder="Search event, student name, class, or register ID..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full min-h-[44px] pl-10 pr-10 py-2.5 rounded-xl bg-[#FFFCF5] border border-[#3D246C]/20 text-sm font-body text-[#3D246C] placeholder:text-[#3D246C]/65 focus:outline-none focus:ring-2 focus:ring-[#5C4B99] focus:border-[#5C4B99]"
+              className="w-full min-h-[44px] pl-10 pr-10 py-2.5 rounded-xl bg-[#FFFCF5] border border-[#3D246C]/20 text-sm font-body text-[#3D246C] placeholder:text-[#3D246C]/75 focus:outline-none focus:ring-2 focus:ring-[#5C4B99] focus:border-[#5C4B99]"
             />
             {searchQuery && (
               <button
