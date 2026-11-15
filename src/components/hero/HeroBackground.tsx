@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
+import { usePrefersReducedMotion } from '@/lib/hooks';
 
 // Dynamically import GhostFibers with SSR disabled for WebGL canvas
 const GhostFibers = dynamic(() => import('./GhostFibers'), {
@@ -23,16 +24,20 @@ interface HeroBackgroundProps {
  * - Fiber Line: Royal Purple (#5C4B99 / #7A66B0)
  * - Secondary Accent: Royal Purple (#5C4B99)
  * 
- * Includes scroll-driven auto-hide transitions:
+ * Includes scroll-driven auto-hide transitions and reduced-motion support:
  * - Fibers smoothly dissolve as user scrolls down away from hero
  * - Fully autohidden (opacity: 0, visibility: hidden, WebGL paused) when offscreen
- * - Seamless bottom gradient fade into adjacent page sections
+ * - Strictly pointer-events-none and aria-hidden so foreground CTAs are never blocked
+ * - Respects prefers-reduced-motion: reduce
  */
 export function HeroBackground({ children }: HeroBackgroundProps) {
   const heroRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
+    if (prefersReducedMotion) return;
+
     let rafId = 0;
 
     const handleScroll = () => {
@@ -57,25 +62,29 @@ export function HeroBackground({ children }: HeroBackgroundProps) {
       cancelAnimationFrame(rafId);
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [prefersReducedMotion]);
 
-  const isHidden = scrollProgress >= 1;
-  const fiberOpacity = Math.max(0, 0.75 * (1 - scrollProgress));
-  const fiberTranslateY = scrollProgress * 55; // gentle downward parallax dissipation
+  const effectiveProgress = prefersReducedMotion ? 0 : scrollProgress;
+  const isHidden = effectiveProgress >= 1;
+  const fiberOpacity = prefersReducedMotion ? 0.45 : Math.max(0, 0.7 * (1 - effectiveProgress));
+  const fiberTranslateY = prefersReducedMotion ? 0 : effectiveProgress * 55;
 
   return (
     <div 
       ref={heroRef}
-      className="relative w-full min-h-[640px] md:min-h-[720px] flex items-center justify-center overflow-hidden bg-[#FFDBC3]"
+      className="relative w-full min-h-[600px] sm:min-h-[640px] md:min-h-[680px] flex items-center justify-center overflow-hidden bg-[#FFDBC3]"
     >
       {/* Layer 0: React Bits GhostFibers Canvas with Scroll-Driven Auto-Hide */}
       <div 
-        className="absolute inset-0 z-0 pointer-events-auto will-change-transform"
+        className="absolute inset-0 z-0 pointer-events-none will-change-transform"
+        aria-hidden="true"
         style={{
           opacity: fiberOpacity,
-          transform: `translate3d(0, ${fiberTranslateY}px, 0)`,
+          transform: prefersReducedMotion ? 'none' : `translate3d(0, ${fiberTranslateY}px, 0)`,
           visibility: isHidden ? 'hidden' : 'visible',
-          transition: 'opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+          transition: prefersReducedMotion
+            ? 'none'
+            : 'opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
         }}
       >
         <GhostFibers
@@ -93,38 +102,39 @@ export function HeroBackground({ children }: HeroBackgroundProps) {
           sparkle={0}
           pulseOnClick={false}
           hoverEffect="focus"
-          intro={true}
-          mouseInteraction={true}
+          intro={!prefersReducedMotion}
+          mouseInteraction={!prefersReducedMotion}
           speed={0.22}
-          brightness={1.05}
-          glow={0.9}
+          brightness={1.02}
+          glow={0.85}
           lightMode={true}
-          paused={isHidden}
+          paused={isHidden || prefersReducedMotion}
           vignette={0.25}
           grain={0}
         />
       </div>
 
-      {/* Layer 1: Ambient Soft Blend into Page Canvas */}
+      {/* Layer 1: Center Peach Scrim & Ambient Blend for Crisp Hero Typography Contrast */}
       <div 
         className="absolute inset-0 z-1 pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse 80% 70% at 50% 50%, transparent 30%, rgba(255, 219, 195, 0.5) 65%, #FFDBC3 95%)',
+          background:
+            'radial-gradient(ellipse 68% 58% at 50% 48%, rgba(255, 219, 195, 0.72) 0%, rgba(255, 219, 195, 0.42) 55%, #FFDBC3 96%)',
         }}
         aria-hidden="true"
       />
 
       {/* Layer 1.5: Linear Bottom Transition into subsequent section */}
       <div 
-        className="absolute inset-x-0 bottom-0 h-40 z-1 pointer-events-none"
+        className="absolute inset-x-0 bottom-0 h-36 z-1 pointer-events-none"
         style={{
-          background: 'linear-gradient(to bottom, transparent 0%, rgba(255, 219, 195, 0.5) 45%, #FFDBC3 100%)',
+          background: 'linear-gradient(to bottom, transparent 0%, rgba(255, 219, 195, 0.55) 48%, #FFDBC3 100%)',
         }}
         aria-hidden="true"
       />
 
       {/* Layer 2: Foreground Content (relative z-10 for unblocked clicks) */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12 sm:pt-28 sm:pb-16">
         {children}
       </div>
     </div>
