@@ -52,14 +52,14 @@ export default function SchedulePage() {
       {/* Page Header */}
       <header className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
         {/* Tentative Status Badge (Config-driven) */}
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/80 border border-[#3D246C]/20 text-xs font-bold text-[#3D246C] mb-4 shadow-sm">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#5C4B99]" />
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FFFCF5] border border-[rgba(61,36,108,0.16)] text-xs font-bold text-[#3D246C] mb-4 shadow-xs">
+          <span className="w-2 h-2 rounded-full bg-[#5C4B99]" aria-hidden="true" />
           <span className="font-mono uppercase tracking-wider">{SCHEDULE_METADATA_2026.statusLabel}</span>
         </div>
 
         {/* Angular / Bold Heading */}
-        <div className="space-y-1">
-          <div className="text-xs sm:text-sm font-mono tracking-widest uppercase text-[#5C4B99] font-semibold">
+        <div className="space-y-1.5">
+          <div className="text-xs sm:text-sm font-mono tracking-widest uppercase text-[#4C3C82] font-bold">
             BLOSSOMS {SCHEDULE_METADATA_2026.edition}
           </div>
           <h1 className="text-3xl sm:text-5xl font-black text-[#3D246C] tracking-tight leading-tight">
@@ -68,7 +68,7 @@ export default function SchedulePage() {
         </div>
 
         {/* Supporting Subtitle */}
-        <p className="mt-4 text-sm sm:text-base text-[#3D246C]/80 leading-relaxed font-normal max-w-2xl mx-auto">
+        <p className="mt-4 text-sm sm:text-base text-[#3D246C]/85 leading-relaxed font-normal max-w-2xl mx-auto">
           Explore the events, find your venue, and plan your Blossoms experience.
         </p>
       </header>
@@ -76,9 +76,9 @@ export default function SchedulePage() {
       {/* Main Schedule Interactive View Wrapped in Suspense */}
       <Suspense
         fallback={
-          <div className="p-16 text-center rounded-2xl bg-white/80 border border-[#3D246C]/15 flex flex-col items-center justify-center gap-3">
+          <div className="p-16 text-center rounded-2xl bg-white border border-[rgba(61,36,108,0.16)] flex flex-col items-center justify-center gap-3 shadow-xs">
             <Loader2 className="w-8 h-8 text-[#5C4B99] animate-spin" />
-            <p className="text-xs text-[#3D246C]/70 font-mono">Loading Prelims Schedule...</p>
+            <p className="text-xs sm:text-sm text-[#3D246C]/85 font-mono font-medium">Loading Prelims Schedule...</p>
           </div>
         }
       >

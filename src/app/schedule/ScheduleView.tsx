@@ -146,11 +146,11 @@ export function ScheduleView() {
       />
 
       {/* Control Bar: View Switcher, Search Input, and Filters */}
-      <div className="p-4 sm:p-5 rounded-2xl bg-white/90 border border-[#3D246C]/15 backdrop-blur-md shadow-lg shadow-[#3D246C]/5 space-y-4">
+      <div className="p-4 sm:p-5 rounded-2xl bg-white border border-[rgba(61,36,108,0.16)] shadow-sm space-y-4">
         {/* Top Control Row: View Mode Toggle & Search Input */}
         <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
           {/* View Mode Switcher (Timeline vs. Calendar) */}
-          <div className="flex items-center gap-1.5 p-1 rounded-xl bg-[#FFDBC3]/50 border border-[#3D246C]/15 self-start sm:self-auto">
+          <div className="flex items-center gap-1.5 p-1 rounded-xl bg-[#FFDBC3]/60 border border-[rgba(61,36,108,0.16)] self-start sm:self-auto">
             <button
               type="button"
               onClick={() => {
@@ -158,72 +158,82 @@ export function ScheduleView() {
                 setSelectedDate(null);
               }}
               aria-pressed={viewMode === 'timeline'}
-              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+              className={`flex items-center gap-2 px-3.5 py-2 min-h-[44px] rounded-lg text-xs font-semibold transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] ${
                 viewMode === 'timeline'
-                  ? 'bg-[#5C4B99] text-white shadow-sm font-bold'
-                  : 'text-[#3D246C]/75 hover:text-[#3D246C]'
+                  ? 'bg-[#5C4B99] text-white shadow-xs font-bold'
+                  : 'text-[#3D246C]/85 hover:text-[#3D246C] hover:bg-white/75'
               }`}
             >
-              <ListFilter className="w-4 h-4" />
+              <ListFilter className="w-4 h-4" aria-hidden="true" />
               <span>Timeline View</span>
             </button>
             <button
               type="button"
               onClick={() => setViewMode('calendar')}
               aria-pressed={viewMode === 'calendar'}
-              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+              className={`flex items-center gap-2 px-3.5 py-2 min-h-[44px] rounded-lg text-xs font-semibold transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] ${
                 viewMode === 'calendar'
-                  ? 'bg-[#5C4B99] text-white shadow-sm font-bold'
-                  : 'text-[#3D246C]/75 hover:text-[#3D246C]'
+                  ? 'bg-[#5C4B99] text-white shadow-xs font-bold'
+                  : 'text-[#3D246C]/85 hover:text-[#3D246C] hover:bg-white/75'
               }`}
             >
-              <CalendarDays className="w-4 h-4" />
+              <CalendarDays className="w-4 h-4" aria-hidden="true" />
               <span>Calendar View</span>
             </button>
           </div>
 
           {/* Search Box */}
           <div className="relative flex-1 max-w-md">
-            <Search className="w-4 h-4 text-[#5C4B99] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <Search
+              className="w-4 h-4 text-[#5C4B99] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"
+              aria-hidden="true"
+            />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search by event, venue, or note (e.g. Debate, Block 2, Quiz)..."
               aria-label="Search schedule events"
-              className="w-full pl-9 pr-9 py-2 rounded-xl bg-white border border-[#3D246C]/20 text-base sm:text-xs text-[#3D246C] placeholder-[#3D246C]/40 focus:outline-none focus:ring-2 focus:ring-[#5C4B99] transition-all"
+              className="w-full min-h-[44px] pl-10 pr-10 py-2 rounded-xl bg-[#FFFCF5] border border-[rgba(61,36,108,0.16)] text-base sm:text-sm text-[#3D246C] placeholder-[#3D246C]/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] focus:bg-white transition-all"
             />
             {searchQuery && (
               <button
                 type="button"
                 onClick={() => setSearchQuery('')}
                 aria-label="Clear search query"
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-[#3D246C]/50 hover:text-[#3D246C] p-0.5"
+                className="absolute right-2 top-1/2 -translate-y-1/2 text-[#3D246C]/80 hover:text-[#3D246C] p-1.5 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
               >
-                <X className="w-3.5 h-3.5" />
+                <X className="w-4 h-4" />
               </button>
             )}
           </div>
         </div>
 
         {/* Category Filter Pills */}
-        <div className="pt-2 border-t border-[#3D246C]/10 flex flex-wrap items-center gap-2">
-          <span className="text-xs text-[#3D246C]/70 font-semibold font-mono flex items-center gap-1.5 mr-1 shrink-0">
-            <Filter className="w-3.5 h-3.5 text-[#5C4B99]" />
+        <div className="pt-3 border-t border-[rgba(61,36,108,0.12)] flex flex-wrap items-center gap-2">
+          <span className="text-xs text-[#3D246C]/85 font-semibold font-mono tracking-wider uppercase flex items-center gap-1.5 mr-1 shrink-0">
+            <Filter className="w-3.5 h-3.5 text-[#5C4B99]" aria-hidden="true" />
             Category:
           </span>
 
           <button
             type="button"
             onClick={() => setSelectedCategory('all')}
-            className={`px-3 py-1 rounded-lg text-xs font-mono transition-all flex items-center gap-1.5 ${
+            aria-pressed={selectedCategory === 'all'}
+            className={`px-3.5 py-2 min-h-[40px] sm:min-h-[44px] rounded-xl text-xs font-mono transition-all flex items-center gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] ${
               selectedCategory === 'all'
-                ? 'bg-[#5C4B99] text-white font-bold shadow-sm'
-                : 'bg-white/80 text-[#3D246C]/80 hover:text-[#3D246C] border border-[#3D246C]/15'
+                ? 'bg-[#5C4B99] text-white font-bold shadow-xs border border-[#5C4B99]'
+                : 'bg-[#FFFCF5] text-[#3D246C] hover:bg-[#FFDBC3]/40 border border-[rgba(61,36,108,0.16)]'
             }`}
           >
             <span>All Arenas</span>
-            <span className="text-[10px] opacity-75 font-sans">({categoryCounts.all})</span>
+            <span
+              className={`text-xs font-sans font-semibold ${
+                selectedCategory === 'all' ? 'text-white/90' : 'text-[#5C4B99]'
+              }`}
+            >
+              ({categoryCounts.all})
+            </span>
           </button>
 
           {(
@@ -241,14 +251,21 @@ export function ScheduleView() {
                 key={catKey}
                 type="button"
                 onClick={() => setSelectedCategory(catKey)}
-                className={`px-3 py-1 rounded-lg text-xs font-mono transition-all flex items-center gap-1.5 ${
+                aria-pressed={isSelected}
+                className={`px-3.5 py-2 min-h-[40px] sm:min-h-[44px] rounded-xl text-xs font-mono transition-all flex items-center gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] ${
                   isSelected
-                    ? 'bg-[#5C4B99] text-white font-bold shadow-sm'
-                    : 'bg-white/80 text-[#3D246C]/80 hover:text-[#3D246C] border border-[#3D246C]/15'
+                    ? 'bg-[#5C4B99] text-white font-bold shadow-xs border border-[#5C4B99]'
+                    : 'bg-[#FFFCF5] text-[#3D246C] hover:bg-[#FFDBC3]/40 border border-[rgba(61,36,108,0.16)]'
                 }`}
               >
                 <span>{config.label}</span>
-                <span className="text-[10px] opacity-75 font-sans">({count})</span>
+                <span
+                  className={`text-xs font-sans font-semibold ${
+                    isSelected ? 'text-white/90' : 'text-[#5C4B99]'
+                  }`}
+                >
+                  ({count})
+                </span>
               </button>
             );
           })}
@@ -256,42 +273,47 @@ export function ScheduleView() {
 
         {/* Active Filter Indicators & Clear All Action */}
         {hasActiveFilters && (
-          <div className="pt-2 border-t border-[#3D246C]/10 flex flex-wrap items-center justify-between gap-2 text-xs">
+          <div className="pt-3 border-t border-[rgba(61,36,108,0.12)] flex flex-wrap items-center justify-between gap-2 text-xs">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="text-[#3D246C]/60 text-[11px] font-mono">Active filters:</span>
+              <span className="text-[#3D246C]/85 text-xs font-mono font-semibold uppercase tracking-wider">
+                Active filters:
+              </span>
               {selectedCategory !== 'all' && (
-                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-white border border-[#3D246C]/20 text-[#3D246C] text-xs font-medium">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#FFFCF5] border border-[rgba(61,36,108,0.16)] text-[#3D246C] text-xs font-medium">
                   Category: {SCHEDULE_CATEGORY_CONFIG[selectedCategory].label}
                   <button
                     type="button"
                     onClick={() => setSelectedCategory('all')}
-                    className="hover:text-[#5C4B99]"
+                    aria-label="Clear category filter"
+                    className="p-0.5 rounded hover:text-[#5C4B99] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
                   >
-                    <X className="w-3 h-3" />
+                    <X className="w-3.5 h-3.5" />
                   </button>
                 </span>
               )}
               {viewMode === 'timeline' && selectedDate && (
-                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-white border border-[#3D246C]/20 text-[#3D246C] text-xs font-medium">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#FFFCF5] border border-[rgba(61,36,108,0.16)] text-[#3D246C] text-xs font-medium">
                   Date: {selectedDate}
                   <button
                     type="button"
                     onClick={() => setSelectedDate(null)}
-                    className="hover:text-[#5C4B99]"
+                    aria-label="Clear date filter"
+                    className="p-0.5 rounded hover:text-[#5C4B99] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
                   >
-                    <X className="w-3 h-3" />
+                    <X className="w-3.5 h-3.5" />
                   </button>
                 </span>
               )}
               {searchQuery.trim() && (
-                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-white border border-[#3D246C]/20 text-[#3D246C] text-xs font-medium">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#FFFCF5] border border-[rgba(61,36,108,0.16)] text-[#3D246C] text-xs font-medium">
                   &ldquo;{searchQuery.trim()}&rdquo;
                   <button
                     type="button"
                     onClick={() => setSearchQuery('')}
-                    className="hover:text-[#5C4B99]"
+                    aria-label="Clear search term"
+                    className="p-0.5 rounded hover:text-[#5C4B99] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
                   >
-                    <X className="w-3 h-3" />
+                    <X className="w-3.5 h-3.5" />
                   </button>
                 </span>
               )}
@@ -300,9 +322,9 @@ export function ScheduleView() {
             <button
               type="button"
               onClick={handleClearAllFilters}
-              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold text-[#3D246C] hover:text-white bg-[#5C4B99]/20 hover:bg-[#5C4B99] border border-[#5C4B99]/30 transition-colors"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 min-h-[36px] rounded-lg text-xs font-semibold text-[#3D246C] hover:text-white bg-[#FFDBC3]/65 hover:bg-[#5C4B99] border border-[rgba(61,36,108,0.20)] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
             >
-              <RotateCcw className="w-3 h-3" />
+              <RotateCcw className="w-3.5 h-3.5" aria-hidden="true" />
               <span>Reset All Filters</span>
             </button>
           </div>
@@ -316,23 +338,23 @@ export function ScheduleView() {
 
       {/* Main View Display: Timeline or Calendar */}
       {filteredEvents.length === 0 ? (
-        <div className="p-12 sm:p-16 text-center rounded-2xl bg-white/85 border border-[#3D246C]/15 backdrop-blur-sm space-y-4">
-          <div className="inline-flex p-3 rounded-2xl bg-[#FFDBC3]/60 border border-[#3D246C]/15 text-[#5C4B99]">
-            <Search className="w-6 h-6" />
+        <div className="p-12 sm:p-16 text-center rounded-2xl bg-white border border-[rgba(61,36,108,0.16)] shadow-sm space-y-4">
+          <div className="inline-flex p-3 rounded-2xl bg-[#FFDBC3]/65 border border-[rgba(61,36,108,0.16)] text-[#5C4B99]">
+            <Search className="w-6 h-6" aria-hidden="true" />
           </div>
           <h3 className="text-lg font-bold text-[#3D246C]">
             No Scheduled Events Match Your Criteria
           </h3>
-          <p className="text-xs sm:text-sm text-[#3D246C]/75 max-w-md mx-auto leading-relaxed">
+          <p className="text-sm text-[#3D246C]/85 max-w-md mx-auto leading-relaxed">
             Try adjusting your search terms, changing the active arena category, or clearing the selected date filter.
           </p>
           <div className="pt-2">
             <button
               type="button"
               onClick={handleClearAllFilters}
-              className="clay-btn-primary inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold text-white transition-colors"
+              className="clay-btn-primary inline-flex items-center gap-2 px-5 py-2.5 min-h-[44px] rounded-xl text-xs font-bold text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C]"
             >
-              <RotateCcw className="w-3.5 h-3.5" />
+              <RotateCcw className="w-3.5 h-3.5" aria-hidden="true" />
               <span>Clear All Active Filters</span>
             </button>
           </div>

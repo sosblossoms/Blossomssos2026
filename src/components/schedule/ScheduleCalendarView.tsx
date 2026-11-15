@@ -110,24 +110,25 @@ export function ScheduleCalendarView({
       {/* Calendar & Selected Date Events Split Layout with stable fixed height */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         {/* Left Column: Interactive Month Calendar (7 cols on lg) - Locked stable dimensions */}
-        <div className="lg:col-span-7 rounded-2xl bg-white/90 border border-[#3D246C]/20 p-4 sm:p-6 backdrop-blur-md shadow-xl shadow-[#3D246C]/5 flex flex-col min-h-[540px] lg:h-[590px]">
+        <div className="lg:col-span-7 rounded-2xl bg-white border border-[rgba(61,36,108,0.16)] p-4 sm:p-6 shadow-sm flex flex-col min-h-[540px] lg:h-[600px]">
           {/* Month Switcher Header */}
-          <div className="flex items-center justify-between gap-4 mb-4 pb-3 border-b border-[#3D246C]/15 shrink-0">
+          <div className="flex items-center justify-between gap-4 mb-4 pb-3 border-b border-[rgba(61,36,108,0.16)] shrink-0">
             <div className="flex items-center gap-2">
-              <CalendarIcon className="w-5 h-5 text-[#5C4B99]" />
+              <CalendarIcon className="w-5 h-5 text-[#5C4B99]" aria-hidden="true" />
               <h2 className="text-base sm:text-lg font-bold text-[#3D246C] font-mono tracking-tight">
                 {activeMonth.name}
               </h2>
             </div>
 
-            <div className="flex items-center gap-1.5 p-1 rounded-xl bg-[#FFDBC3]/50 border border-[#3D246C]/15">
+            <div className="flex items-center gap-1.5 p-1 rounded-xl bg-[#FFDBC3]/60 border border-[rgba(61,36,108,0.16)]">
               <button
                 type="button"
                 onClick={() => setActiveMonthIndex(0)}
-                className={`px-3 py-1 rounded-lg text-xs font-semibold font-mono transition-all ${
+                aria-pressed={activeMonthIndex === 0}
+                className={`px-3 py-1.5 min-h-[36px] rounded-lg text-xs font-semibold font-mono transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] ${
                   activeMonthIndex === 0
-                    ? 'bg-[#5C4B99] text-white shadow-sm'
-                    : 'text-[#3D246C]/70 hover:text-[#3D246C]'
+                    ? 'bg-[#5C4B99] text-white shadow-xs'
+                    : 'text-[#3D246C]/85 hover:text-[#3D246C] hover:bg-white/75'
                 }`}
               >
                 Nov &apos;26
@@ -135,10 +136,11 @@ export function ScheduleCalendarView({
               <button
                 type="button"
                 onClick={() => setActiveMonthIndex(1)}
-                className={`px-3 py-1 rounded-lg text-xs font-semibold font-mono transition-all ${
+                aria-pressed={activeMonthIndex === 1}
+                className={`px-3 py-1.5 min-h-[36px] rounded-lg text-xs font-semibold font-mono transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] ${
                   activeMonthIndex === 1
-                    ? 'bg-[#5C4B99] text-white shadow-sm'
-                    : 'text-[#3D246C]/70 hover:text-[#3D246C]'
+                    ? 'bg-[#5C4B99] text-white shadow-xs'
+                    : 'text-[#3D246C]/85 hover:text-[#3D246C] hover:bg-white/75'
                 }`}
               >
                 Dec &apos;26
@@ -151,7 +153,7 @@ export function ScheduleCalendarView({
             {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((d) => (
               <div
                 key={d}
-                className="text-[11px] font-mono font-bold text-[#3D246C]/60 uppercase tracking-wider py-1"
+                className="text-xs font-mono font-bold text-[#3D246C]/85 uppercase tracking-wider py-1"
               >
                 {d}
               </div>
@@ -164,7 +166,7 @@ export function ScheduleCalendarView({
             {Array.from({ length: activeMonth.startDayOfWeek }).map((_, idx) => (
               <div
                 key={`empty-${idx}`}
-                className="aspect-square sm:aspect-[4/3] rounded-xl bg-transparent border-2 border-transparent"
+                className="aspect-square sm:aspect-[4/3] rounded-xl bg-transparent border border-transparent"
                 aria-hidden="true"
               />
             ))}
@@ -191,30 +193,36 @@ export function ScheduleCalendarView({
                   }`}
                   className={`group relative aspect-square sm:aspect-[4/3] p-1.5 sm:p-2 rounded-xl flex flex-col justify-between text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] transition-all duration-150 ${
                     isSelected
-                      ? 'bg-white text-[#3D246C] border-2 border-[#5C4B99] shadow-md ring-2 ring-[#5C4B99]/20'
+                      ? 'bg-[#FFFCF5] text-[#3D246C] border-2 border-[#5C4B99] shadow-md ring-2 ring-[#5C4B99]/25'
                       : hasEvents
-                      ? 'bg-white hover:bg-[#FFDBC3]/30 text-[#3D246C] border-2 border-[#3D246C]/15 hover:border-[#5C4B99]/60 cursor-pointer shadow-sm'
-                      : 'bg-transparent text-[#3D246C]/30 hover:text-[#3D246C]/60 border-2 border-transparent'
+                      ? 'bg-white hover:bg-[#FFDBC3]/35 text-[#3D246C] border border-[rgba(61,36,108,0.22)] hover:border-[#5C4B99] cursor-pointer shadow-xs'
+                      : 'bg-[#FFFCF5] hover:bg-[#FFDBC3]/25 text-[#3D246C]/80 border border-[rgba(61,36,108,0.12)]'
                   }`}
                 >
-                  <span className="text-xs sm:text-sm font-mono font-semibold text-[#3D246C]">
+                  <span
+                    className={`text-xs sm:text-sm font-mono leading-none ${
+                      isSelected || hasEvents
+                        ? 'font-bold text-[#3D246C]'
+                        : 'font-medium text-[#3D246C]/80'
+                    }`}
+                  >
                     {dayNum}
                   </span>
 
                   {/* Scheduled events indicators */}
                   {hasEvents && (
-                    <div className="flex items-center gap-1 mt-auto">
+                    <div className="flex items-center gap-1 mt-auto w-full min-w-0">
                       <span
-                        className={`inline-flex items-center justify-center text-[10px] sm:text-[11px] font-bold font-mono px-1.5 py-0.2 rounded-full ${
+                        className={`inline-flex items-center justify-center shrink-0 text-xs font-bold font-mono px-1.5 py-0.5 rounded-full leading-none ${
                           isSelected
                             ? 'bg-[#5C4B99] text-white'
-                            : 'bg-[#FFDBC3] text-[#3D246C] border border-[#3D246C]/20'
+                            : 'bg-[#FFDBC3] text-[#3D246C] border border-[rgba(61,36,108,0.20)]'
                         }`}
                       >
                         {dayEvents.length}
                       </span>
-                      <span className="hidden sm:inline text-[9px] font-mono uppercase tracking-tight truncate opacity-80 text-[#3D246C]">
-                        {dayEvents.length === 1 ? 'event' : 'events'}
+                      <span className="hidden md:inline text-xs font-mono font-semibold truncate text-[#3D246C]/85 leading-none">
+                        {dayEvents.length === 1 ? 'evt' : 'evts'}
                       </span>
                     </div>
                   )}
@@ -224,16 +232,16 @@ export function ScheduleCalendarView({
           </div>
 
           {/* Quick Legend pinned cleanly to the bottom */}
-          <div className="mt-auto pt-4 border-t border-[#3D246C]/15 flex flex-wrap items-center justify-between gap-3 text-xs text-[#3D246C]/70 min-h-[32px] shrink-0">
+          <div className="mt-auto pt-4 border-t border-[rgba(61,36,108,0.16)] flex flex-wrap items-center justify-between gap-3 text-xs text-[#3D246C]/85 min-h-[32px] shrink-0">
             <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#5C4B99] inline-block" />
-              <span>Dates with scheduled events</span>
+              <span className="w-2.5 h-2.5 rounded-full bg-[#5C4B99] inline-block" aria-hidden="true" />
+              <span className="font-medium">Dates with scheduled events</span>
             </div>
             {selectedDate && (
               <button
                 type="button"
-                onClick={() => setSelectedDate(null)}
-                className="text-xs text-[#5C4B99] hover:underline font-mono font-semibold"
+                onClick={() => handleDateClick(selectedDate)}
+                className="text-xs text-[#5C4B99] hover:text-[#3D246C] hover:underline font-mono font-bold focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] rounded px-1"
               >
                 Clear date selection
               </button>
@@ -242,20 +250,20 @@ export function ScheduleCalendarView({
         </div>
 
         {/* Right Column: Events on Selected Date - Identical locked height to eliminate shrinking & shifting */}
-        <div className="lg:col-span-5 rounded-2xl bg-white/90 border border-[#3D246C]/20 p-5 sm:p-6 backdrop-blur-md shadow-xl shadow-[#3D246C]/5 flex flex-col min-h-[540px] lg:h-[590px]">
+        <div className="lg:col-span-5 rounded-2xl bg-white border border-[rgba(61,36,108,0.16)] p-5 sm:p-6 shadow-sm flex flex-col min-h-[540px] lg:h-[600px]">
           {selectedDate ? (
             <div className="flex flex-col h-full space-y-4">
               {/* Header */}
-              <div className="flex items-center justify-between pb-3 border-b border-[#3D246C]/15 shrink-0">
+              <div className="flex items-center justify-between gap-2 pb-3 border-b border-[rgba(61,36,108,0.16)] shrink-0">
                 <div>
-                  <span className="text-[11px] font-mono uppercase text-[#5C4B99] tracking-wider block font-semibold">
+                  <span className="text-xs font-mono uppercase text-[#5C4B99] tracking-wider block font-semibold leading-snug">
                     Selected Date
                   </span>
                   <h3 className="text-base sm:text-lg font-bold text-[#3D246C]">
                     {formattedSelectedDate}
                   </h3>
                 </div>
-                <span className="px-2.5 py-1 rounded-lg text-xs font-mono font-bold bg-[#FFDBC3]/60 text-[#3D246C] border border-[#3D246C]/20 shrink-0">
+                <span className="px-2.5 py-1 rounded-lg text-xs font-mono font-bold bg-[#FFDBC3]/65 text-[#3D246C] border border-[rgba(61,36,108,0.20)] shrink-0">
                   {selectedDateEvents.length} {selectedDateEvents.length === 1 ? 'Event' : 'Events'}
                 </span>
               </div>
@@ -263,19 +271,19 @@ export function ScheduleCalendarView({
               {selectedDateEvents.length === 0 ? (
                 /* Vertically centered empty state ensuring the panel never shrinks */
                 <div className="flex-1 flex flex-col items-center justify-center text-center p-6 space-y-3">
-                  <div className="p-3 rounded-full bg-[#FFDBC3]/50 text-[#5C4B99]">
-                    <CalendarIcon className="w-6 h-6" />
+                  <div className="p-3 rounded-full bg-[#FFDBC3]/55 text-[#5C4B99]">
+                    <CalendarIcon className="w-6 h-6" aria-hidden="true" />
                   </div>
                   <div>
                     <h4 className="text-sm font-bold text-[#3D246C]">No Prelims Scheduled</h4>
-                    <p className="text-xs text-[#3D246C]/70 mt-1 max-w-xs leading-relaxed">
+                    <p className="text-xs sm:text-sm text-[#3D246C]/85 mt-1 max-w-xs leading-relaxed">
                       No official competitions are scheduled for this date.
                     </p>
                   </div>
                   <button
                     type="button"
-                    onClick={() => setSelectedDate(null)}
-                    className="px-3.5 py-1.5 rounded-xl bg-white text-[#3D246C] border border-[#3D246C]/20 text-xs font-semibold hover:bg-[#FFDBC3]/40 transition-colors shadow-sm"
+                    onClick={() => handleDateClick(selectedDate)}
+                    className="px-4 py-2 min-h-[40px] rounded-xl bg-[#FFFCF5] text-[#3D246C] border border-[rgba(61,36,108,0.20)] text-xs font-semibold hover:bg-[#FFDBC3]/40 transition-colors shadow-xs focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
                   >
                     Reset Date Selection
                   </button>
@@ -298,53 +306,53 @@ export function ScheduleCalendarView({
                             onSelectEvent(event);
                           }
                         }}
-                        className="group p-3.5 sm:p-4 rounded-xl bg-white hover:bg-white/95 border border-[#3D246C]/15 hover:border-[#5C4B99]/40 transition-all cursor-pointer shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
+                        className="group p-4 rounded-xl bg-[#FFFCF5] hover:bg-white border border-[rgba(61,36,108,0.16)] hover:border-[rgba(92,75,153,0.45)] transition-all cursor-pointer shadow-xs focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
                       >
-                        <div className="flex items-center justify-between gap-2 mb-2">
+                        <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
                           <span
-                            className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider font-mono border"
+                            className="px-2.5 py-0.5 rounded text-xs font-bold uppercase tracking-wider font-mono border leading-snug"
                             style={{
                               backgroundColor: `${categoryConfig.accentColor}18`,
                               color: '#3D246C',
-                              borderColor: `${categoryConfig.accentColor}35`,
+                              borderColor: `${categoryConfig.accentColor}40`,
                             }}
                           >
                             {event.categoryLabel}
                           </span>
 
                           {event.posterUrl && (
-                            <span className="text-[10px] font-mono text-[#5C4B99] font-bold flex items-center gap-1 bg-[#FFF9DB] px-1.5 py-0.5 rounded border border-[#3D246C]/25">
-                              <ImageIcon className="w-3 h-3" /> Poster
+                            <span className="text-xs font-mono text-[#3D246C] font-bold flex items-center gap-1 bg-[#FFF9DB] px-2 py-0.5 rounded border border-[#3D246C]/25 leading-snug">
+                              <ImageIcon className="w-3.5 h-3.5 text-[#5C4B99]" aria-hidden="true" /> Poster
                             </span>
                           )}
 
                           {event.needsVerification && (
-                            <span className="text-[10px] font-mono text-[#5C4B99] font-bold flex items-center gap-1">
-                              <AlertTriangle className="w-3 h-3" /> Unconfirmed
+                            <span className="text-xs font-mono text-[#5C4B99] font-bold flex items-center gap-1 leading-snug">
+                              <AlertTriangle className="w-3.5 h-3.5" aria-hidden="true" /> Unconfirmed
                             </span>
                           )}
                         </div>
 
-                        <h4 className="text-sm font-bold text-[#3D246C] group-hover:text-[#5C4B99] transition-colors leading-snug">
+                        <h4 className="text-sm sm:text-base font-bold text-[#3D246C] group-hover:text-[#5C4B99] transition-colors leading-snug">
                           {event.title}
                         </h4>
 
                         {event.submissionDeadline && (
-                          <div className="mt-2 p-2 rounded-lg bg-[#FFDBC3]/60 border border-[#3D246C]/15 text-[11px] text-[#3D246C] flex items-center gap-1.5">
-                            <FileText className="w-3.5 h-3.5 shrink-0 text-[#5C4B99]" />
-                            <span className="truncate">
+                          <div className="mt-2 p-2.5 rounded-lg bg-[#FFDBC3]/60 border border-[rgba(61,36,108,0.16)] text-xs text-[#3D246C] flex items-center gap-1.5">
+                            <FileText className="w-3.5 h-3.5 shrink-0 text-[#5C4B99]" aria-hidden="true" />
+                            <span className="truncate font-medium">
                               {event.submissionDeadline.label}
                             </span>
                           </div>
                         )}
 
-                        <div className="mt-3 pt-2 border-t border-[#3D246C]/10 flex items-center justify-between text-xs text-[#3D246C]/75">
+                        <div className="mt-3 pt-2.5 border-t border-[rgba(61,36,108,0.12)] flex items-center justify-between gap-2 text-xs text-[#3D246C]/90 font-medium">
                           <span className="flex items-center gap-1 font-mono">
-                            <Clock className="w-3 h-3 text-[#5C4B99]" />
+                            <Clock className="w-3.5 h-3.5 text-[#5C4B99]" aria-hidden="true" />
                             {event.timeDisplay}
                           </span>
                           <span className="flex items-center gap-1 truncate max-w-[50%]">
-                            <MapPin className="w-3 h-3 text-[#5C4B99]" />
+                            <MapPin className="w-3.5 h-3.5 text-[#5C4B99] shrink-0" aria-hidden="true" />
                             <span className="truncate">{event.venue}</span>
                           </span>
                         </div>
@@ -358,15 +366,15 @@ export function ScheduleCalendarView({
             /* Default Overview State matching the full container height */
             <div className="flex flex-col h-full justify-between space-y-4">
               <div className="space-y-4">
-                <div className="flex items-center gap-3 pb-3 border-b border-[#3D246C]/15">
-                  <div className="p-2.5 rounded-xl bg-[#9F91CC]/25 border border-[#3D246C]/20 text-[#5C4B99] shrink-0">
-                    <CalendarIcon className="w-5 h-5" />
+                <div className="flex items-center gap-3 pb-3 border-b border-[rgba(61,36,108,0.16)]">
+                  <div className="p-2.5 rounded-xl bg-[#9F91CC]/25 border border-[rgba(61,36,108,0.16)] text-[#5C4B99] shrink-0">
+                    <CalendarIcon className="w-5 h-5" aria-hidden="true" />
                   </div>
                   <div>
                     <h3 className="text-sm sm:text-base font-bold text-[#3D246C]">
                       Select a Date on the Calendar
                     </h3>
-                    <p className="text-xs text-[#3D246C]/70 mt-0.5">
+                    <p className="text-xs text-[#3D246C]/85 mt-0.5 leading-relaxed">
                       Click any highlighted date to inspect competitions and venues for that day.
                     </p>
                   </div>
@@ -374,7 +382,7 @@ export function ScheduleCalendarView({
 
                 {/* Key Schedule Milestones */}
                 <div>
-                  <span className="text-[11px] font-mono uppercase text-[#5C4B99] tracking-wider block mb-2 font-semibold">
+                  <span className="text-xs font-mono uppercase text-[#5C4B99] tracking-wider block mb-2.5 font-semibold leading-snug">
                     Key Schedule Milestones
                   </span>
                   <div className="space-y-2">
@@ -392,13 +400,16 @@ export function ScheduleCalendarView({
                           setActiveMonthIndex(mDate.getMonth() === 10 ? 0 : 1);
                           handleDateClick(m.date);
                         }}
-                        className="w-full flex items-center justify-between p-2.5 rounded-xl bg-white hover:bg-[#FFDBC3]/40 border border-[#3D246C]/15 text-xs text-[#3D246C] group transition-all text-left shadow-sm"
+                        className="w-full flex items-center justify-between p-3 rounded-xl bg-[#FFFCF5] hover:bg-[#FFDBC3]/40 border border-[rgba(61,36,108,0.16)] text-xs text-[#3D246C] group transition-all text-left shadow-xs focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
                       >
-                        <span className="font-mono text-[#5C4B99] font-semibold">{m.day}</span>
-                        <span className="font-medium text-[#3D246C] group-hover:text-[#5C4B99] transition-colors truncate mx-2">
+                        <span className="font-mono text-[#5C4B99] font-bold">{m.day}</span>
+                        <span className="font-semibold text-[#3D246C] group-hover:text-[#5C4B99] transition-colors truncate mx-2">
                           {m.label}
                         </span>
-                        <ArrowRight className="w-3.5 h-3.5 text-[#3D246C]/40 group-hover:translate-x-0.5 transition-transform shrink-0" />
+                        <ArrowRight
+                          className="w-4 h-4 text-[#5C4B99] group-hover:translate-x-0.5 transition-transform shrink-0"
+                          aria-hidden="true"
+                        />
                       </button>
                     ))}
                   </div>
@@ -406,7 +417,7 @@ export function ScheduleCalendarView({
               </div>
 
               {/* Informative footer helper card */}
-              <div className="p-3 rounded-xl bg-[#FFDBC3]/40 border border-[#3D246C]/10 text-[11px] text-[#3D246C]/75 font-mono">
+              <div className="p-3.5 rounded-xl bg-[#FFDBC3]/45 border border-[rgba(61,36,108,0.16)] text-xs text-[#3D246C]/90 font-mono leading-relaxed">
                 Click any calendar cell with an event counter to inspect full event formats and timings.
               </div>
             </div>
