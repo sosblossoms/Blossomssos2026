@@ -264,11 +264,7 @@ async function verifyLiveEndpoints(baseUrl) {
 async function main() {
   runStaticChecks();
 
-  const existingPort3000 = await isBlossomsServerRunning('http://localhost:3000');
-  if (existingPort3000) {
-    console.log('Live Blossoms SOS server detected on http://localhost:3000, performing endpoint validation...');
-    await verifyLiveEndpoints('http://localhost:3000');
-  } else if (shouldSpawnServer) {
+  if (shouldSpawnServer) {
     const distDir = process.env.NEXT_DIST_DIR || '.next';
     const buildIdPath = path.resolve(process.cwd(), distDir, 'BUILD_ID');
     assert(
@@ -289,7 +285,13 @@ async function main() {
       console.log('✔ Cleanly terminated temporary Next.js server.');
     }
   } else {
-    console.log('No live Blossoms SOS server detected on http://localhost:3000; skipped live endpoint checks.');
+    const existingPort3000 = await isBlossomsServerRunning('http://localhost:3000');
+    if (existingPort3000) {
+      console.log('Live Blossoms SOS server detected on http://localhost:3000, performing endpoint validation...');
+      await verifyLiveEndpoints('http://localhost:3000');
+    } else {
+      console.log('No live Blossoms SOS server detected on http://localhost:3000; skipped live endpoint checks.');
+    }
   }
 
   console.log('All route and 404 checks passed successfully!');
