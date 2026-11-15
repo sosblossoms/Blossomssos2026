@@ -16,11 +16,13 @@ node_modules/
 .DS_Store
 Thumbs.db
 
-# Markdown documentation files except README
+# Markdown documentation files except README and Impeccable project design docs
 *.md
 **/*.md
 !README.md
 !**/README.md
+!PRODUCT.md
+!DESIGN.md
 
 # Agent configs
 .agents/
