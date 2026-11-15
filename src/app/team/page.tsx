@@ -109,36 +109,37 @@ export default function TeamPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
 
-      <div
-        className="min-h-screen pt-28 pb-20 md:pt-36 md:pb-28 bg-[#FFDBC3] text-[#3D246C] selection:bg-[#5C4B99] selection:text-white"
-        style={{ backgroundColor: '#FFDBC3' }}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-          
-          {/* ── Page Header (Clean, Pure Theme Typography — No Sparkles or Decorative Symbols) ── */}
-          <div className="text-center max-w-2xl mx-auto space-y-3">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/85 border border-[#3D246C]/15 text-xs font-semibold text-[#5C4B99] shadow-xs font-tech">
+      <div className="min-h-screen pt-28 pb-20 md:pt-36 md:pb-28 bg-[#FFDBC3] text-[#3D246C] selection:bg-[#5C4B99] selection:text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
+
+          {/* ── Page Header (Experience / Persuade Editorial Pacing) ── */}
+          <header className="text-center max-w-3xl mx-auto space-y-3.5">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-[#3D246C]/20 text-xs font-semibold text-[#4C3C82] shadow-xs font-tech uppercase tracking-wider">
               <span>School of Sciences &bull; Technical &amp; Digital Media</span>
             </div>
+
+            <span className="font-serif italic text-xl sm:text-2xl text-[#4C3C82] block tracking-wide">
+              Crafted Behind the Curtain
+            </span>
 
             <h1 className="font-angular text-4xl sm:text-5xl md:text-6xl font-black text-[#3D246C] tracking-tight leading-tight">
               Website Development Team
             </h1>
 
-            <p className="font-body text-sm sm:text-base text-[#3D246C]/85 leading-relaxed font-normal">
+            <p className="font-body text-sm sm:text-base text-[#3D246C]/90 leading-relaxed font-normal max-w-[65ch] mx-auto">
               Meet the student engineers and UI/UX developers from the School of Sciences who architected and built the official Blossoms SOS platform.
             </p>
-          </div>
+          </header>
 
-          {/* ── Reference Component Cards Grid (Responsive 1/2/3 Columns) ── */}
+          {/* ── Team Cards Grid (Responsive 1/2/3 Columns) ── */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch">
             {DEV_TEAM.map((member) => (
-              <div
+              <article
                 key={member.name}
-                className="bg-white rounded-[32px] sm:rounded-[36px] border border-[#3D246C]/12 shadow-[0_8px_30px_rgb(0,0,0,0.06)] p-8 sm:p-9 flex flex-col items-center text-center transition-all duration-300 hover:shadow-[0_16px_40px_rgba(61,36,108,0.12)] hover:-translate-y-1"
+                className="bg-white rounded-[32px] border border-[#3D246C]/16 shadow-[0_8px_30px_rgba(61,36,108,0.07)] p-8 sm:p-9 flex flex-col items-center text-center transition-all duration-300 hover:shadow-[0_16px_40px_rgba(61,36,108,0.14)] hover:border-[#5C4B99]/40 hover:-translate-y-1"
               >
                 {/* 1. Rounded Square Portrait with Smooth Corner Radius */}
-                <div className="relative w-44 h-44 sm:w-48 sm:h-48 rounded-[28px] overflow-hidden bg-neutral-100 border border-neutral-200/80 shadow-inner mb-6 shrink-0">
+                <div className="relative w-44 h-44 sm:w-48 sm:h-48 rounded-[28px] overflow-hidden bg-[#FFDBC3]/35 border border-[#3D246C]/15 shadow-inner mb-6 shrink-0">
                   <Image
                     src={member.image}
                     alt={member.name}
@@ -150,29 +151,30 @@ export default function TeamPage() {
                 </div>
 
                 {/* 2. Member Name & Class Code */}
-                <h2 className="text-xl sm:text-[21px] font-extrabold text-[#0F172A] tracking-tight mb-2 leading-snug">
-                  {member.name} <span className="font-bold text-[#1E293B]">({member.classCode})</span>
+                <h2 className="font-tech text-xl font-extrabold text-[#3D246C] tracking-tight mb-2 leading-snug">
+                  {member.name}{' '}
+                  <span className="font-bold text-[#4C3C82]">({member.classCode})</span>
                 </h2>
 
-                {/* 3. Role Title (Accent Red / Crimson) */}
-                <div className="text-[13px] sm:text-sm font-black uppercase tracking-wider text-[#DC2626] mb-1.5">
+                {/* 3. Role Title */}
+                <div className="font-tech text-sm font-bold uppercase tracking-wider text-[#5C4B99] mb-1.5">
                   {member.role}
                 </div>
 
-                {/* 4. Department Name (Subtle Muted Slate) */}
-                <div className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-[#64748B] mb-8">
+                {/* 4. Department Name */}
+                <div className="font-tech text-xs font-semibold uppercase tracking-wider text-[#4C3C82] mb-8">
                   {member.department}
                 </div>
 
                 {/* 5. Separator Line */}
-                <div className="w-full border-t border-neutral-200/70 mt-auto pt-6">
+                <div className="w-full border-t border-[#3D246C]/15 mt-auto pt-5">
                   {/* 6. Social Action Icons (Mail, LinkedIn, GitHub) */}
-                  <div className="flex items-center justify-center gap-6 text-[#64748B]">
+                  <div className="flex items-center justify-center gap-4 text-[#4C3C82]">
                     {member.email && (
                       <a
                         href={member.email}
                         aria-label={`Email ${member.name}`}
-                        className="p-1 text-[#64748B] hover:text-[#0F172A] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] rounded"
+                        className="min-w-[44px] min-h-[44px] inline-flex items-center justify-center rounded-xl text-[#4C3C82] hover:text-[#3D246C] hover:bg-[#FFDBC3]/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C]"
                       >
                         <MailIcon className="w-4 h-4" />
                       </a>
@@ -183,7 +185,7 @@ export default function TeamPage() {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`${member.name} LinkedIn Profile`}
-                        className="p-1 text-[#64748B] hover:text-[#0A66C2] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] rounded"
+                        className="min-w-[44px] min-h-[44px] inline-flex items-center justify-center rounded-xl text-[#4C3C82] hover:text-[#3D246C] hover:bg-[#FFDBC3]/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C]"
                       >
                         <LinkedInIcon className="w-4 h-4" />
                       </a>
@@ -194,29 +196,29 @@ export default function TeamPage() {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`${member.name} GitHub Profile`}
-                        className="p-1 text-[#64748B] hover:text-[#0F172A] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] rounded"
+                        className="min-w-[44px] min-h-[44px] inline-flex items-center justify-center rounded-xl text-[#4C3C82] hover:text-[#3D246C] hover:bg-[#FFDBC3]/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C]"
                       >
                         <GitHubIcon className="w-4 h-4" />
                       </a>
                     )}
                   </div>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
 
           {/* ── Subtitle / Institutional Notice ── */}
-          <footer className="border-t border-[#3D246C]/15 pt-8 mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-tech text-[#5C4B99]">
-            <p className="font-serif italic text-sm text-[#3D246C]">
+          <footer className="border-t border-[#3D246C]/15 pt-8 mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-tech text-[#4C3C82]">
+            <p className="font-serif italic text-base text-[#3D246C]">
               &ldquo;From Flames to Flights, White Onyx Ignites&rdquo;
             </p>
-            <div className="flex items-center gap-4 text-xs font-tech">
-              <span className="text-[#3D246C]/75">CHRIST (Deemed to be University), Bangalore</span>
+            <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-tech">
+              <span className="text-[#3D246C]/90">CHRIST (Deemed to be University), Bangalore</span>
               <a
                 href={`mailto:${siteConfig.contactEmail}`}
-                className="text-[#3D246C] hover:text-[#5C4B99] hover:underline flex items-center gap-1 font-semibold"
+                className="text-[#3D246C] hover:text-[#4C3C82] hover:underline inline-flex items-center gap-1.5 font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C] rounded px-1"
               >
-                <Mail className="w-3.5 h-3.5 text-[#5C4B99]" />
+                <Mail className="w-3.5 h-3.5 text-[#4C3C82]" aria-hidden="true" />
                 <span>{siteConfig.contactEmail}</span>
               </a>
             </div>

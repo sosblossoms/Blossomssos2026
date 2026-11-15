@@ -62,64 +62,68 @@ export function GalleryCoverflow({ onSelectImage }: GalleryCoverflowProps) {
   const currentSlide = COVERFLOW_SLIDES[activeIndex];
 
   return (
-    <section 
-      aria-label="Interactive 3D Stage Exhibition" 
+    <section
+      aria-label="Interactive 3D Stage Exhibition"
       className="relative w-full py-10 sm:py-16 overflow-hidden select-none bg-[#FFDBC3]"
-      style={{ backgroundColor: '#FFDBC3' }}
       ref={containerRef}
     >
       {/* 1. Giant Background Editorial Watermark (Themed to Deep Purple #3D246C) */}
-      <div 
+      <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[65%] w-full pointer-events-none z-0 flex flex-col items-center justify-center opacity-[0.06] sm:opacity-[0.07]"
         aria-hidden="true"
       >
         <span className="font-angular text-[18vw] font-black tracking-tighter text-[#3D246C] leading-none whitespace-nowrap text-center">
           BLOSSOMS
         </span>
-        <span className="font-sans text-[2vw] tracking-[0.45em] uppercase font-bold text-[#5C4B99] -mt-2">
+        <span className="font-tech text-[2vw] tracking-[0.45em] uppercase font-bold text-[#4C3C82] -mt-2">
           CENTRAL CAMPUS STAGE ARCHIVE
         </span>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
+        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12 space-y-1.5">
+          <span className="font-serif italic text-lg sm:text-xl text-[#4C3C82] block">
+            Stage Exhibition
+          </span>
           <h2 className="font-angular text-3xl sm:text-5xl font-black text-[#3D246C] tracking-tight">
             The Spotlight Carousel
           </h2>
-          <p className="mt-2 text-sm sm:text-base text-[#5C4B99] font-body font-medium">
+          <p className="pt-1 text-sm sm:text-base text-[#3D246C]/90 font-body font-medium max-w-[60ch] mx-auto">
             Swipe or use arrow keys to navigate highlighted festival performances and central stage captures.
           </p>
         </div>
 
         {/* 2. 3D Curved Perspective Carousel Stage */}
-        <div 
+        <div
           className="relative w-full h-[320px] sm:h-[420px] md:h-[480px] flex items-center justify-center perspective-[1200px]"
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
         >
           {/* Left Arrow Navigation Button (Beside Images) */}
           <button
+            type="button"
             onClick={handlePrev}
-            className="absolute left-1 sm:left-4 md:left-6 lg:left-10 top-1/2 -translate-y-1/2 z-40 p-2.5 sm:p-3.5 rounded-full bg-white/90 hover:bg-white text-[#3D246C] hover:text-[#5C4B99] border border-[#3D246C]/15 hover:border-[#5C4B99]/40 shadow-lg backdrop-blur-md transition-all active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
+            className="absolute left-1 sm:left-4 md:left-6 lg:left-10 top-1/2 -translate-y-1/2 z-40 min-w-[44px] min-h-[44px] flex items-center justify-center p-2.5 sm:p-3.5 rounded-full bg-white/95 hover:bg-white text-[#3D246C] hover:text-[#4C3C82] border border-[#3D246C]/20 hover:border-[#5C4B99]/50 shadow-lg transition-all active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FFDBC3]"
             aria-label="Previous Highlight"
           >
-            <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+            <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" aria-hidden="true" />
           </button>
 
           {/* Right Arrow Navigation Button (Beside Images) */}
           <button
+            type="button"
             onClick={handleNext}
-            className="absolute right-1 sm:right-4 md:right-6 lg:right-10 top-1/2 -translate-y-1/2 z-40 p-2.5 sm:p-3.5 rounded-full bg-white/90 hover:bg-white text-[#3D246C] hover:text-[#5C4B99] border border-[#3D246C]/15 hover:border-[#5C4B99]/40 shadow-lg backdrop-blur-md transition-all active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
+            className="absolute right-1 sm:right-4 md:right-6 lg:right-10 top-1/2 -translate-y-1/2 z-40 min-w-[44px] min-h-[44px] flex items-center justify-center p-2.5 sm:p-3.5 rounded-full bg-white/95 hover:bg-white text-[#3D246C] hover:text-[#4C3C82] border border-[#3D246C]/20 hover:border-[#5C4B99]/50 shadow-lg transition-all active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FFDBC3]"
             aria-label="Next Highlight"
           >
-            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" aria-hidden="true" />
           </button>
 
           {COVERFLOW_SLIDES.map((slide, idx) => {
             const offset = idx - activeIndex;
             const absOffset = Math.abs(offset);
-            
+
             // Only render items within 3 steps of active
             if (absOffset > 3) return null;
 
@@ -141,16 +145,18 @@ export function GalleryCoverflow({ onSelectImage }: GalleryCoverflowProps) {
                   zIndex,
                   opacity,
                 }}
-                className={`absolute w-[240px] sm:w-[300px] md:w-[350px] aspect-[4/5] rounded-3xl overflow-hidden cursor-pointer transition-all duration-500 ease-out will-change-transform shadow-xl ${
-                  isActive 
-                    ? 'ring-4 ring-[#5C4B99]/40 shadow-2xl shadow-[#5C4B99]/20 cursor-default' 
+                className={`absolute w-[240px] sm:w-[300px] md:w-[350px] aspect-[4/5] rounded-3xl overflow-hidden cursor-pointer transition-all duration-500 ease-out will-change-transform shadow-xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#3D246C] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FFDBC3] ${
+                  isActive
+                    ? 'ring-4 ring-[#5C4B99]/40 shadow-2xl shadow-[#5C4B99]/20 cursor-default'
                     : 'hover:opacity-90 hover:brightness-105'
                 }`}
                 role="button"
                 tabIndex={0}
-                aria-label={`Slide ${idx + 1}: ${slide.title}`}
+                aria-label={`Slide ${idx + 1} of ${total}: ${slide.title}`}
+                aria-pressed={isActive}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
                     setActiveIndex(idx);
                   }
                 }}
@@ -170,15 +176,16 @@ export function GalleryCoverflow({ onSelectImage }: GalleryCoverflowProps) {
                   {/* Quick Expand Icon if selected */}
                   {isActive && onSelectImage && (
                     <button
+                      type="button"
                       onClick={(e) => {
                         e.stopPropagation();
                         onSelectImage(slide);
                       }}
-                      className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4 z-10 p-2 rounded-full bg-white/95 hover:bg-white text-[#3D246C] hover:text-[#5C4B99] transition-all shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99]"
+                      className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4 z-10 min-w-[36px] min-h-[36px] flex items-center justify-center p-2 rounded-full bg-white/95 hover:bg-white text-[#3D246C] hover:text-[#4C3C82] transition-all shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C]"
                       title="View Full Resolution"
-                      aria-label="View Full Resolution"
+                      aria-label={`View full resolution for ${slide.title}`}
                     >
-                      <Maximize2 className="w-3.5 h-3.5" />
+                      <Maximize2 className="w-3.5 h-3.5" aria-hidden="true" />
                     </button>
                   )}
                 </div>
@@ -188,28 +195,36 @@ export function GalleryCoverflow({ onSelectImage }: GalleryCoverflowProps) {
         </div>
 
         {/* 3. Active Caption & Slide Indicators */}
-        <div className="max-w-2xl mx-auto mt-6 sm:mt-10 flex flex-col items-center text-center">
+        <div className="max-w-2xl mx-auto mt-6 sm:mt-10 flex flex-col items-center text-center" aria-live="polite">
           {/* Active Details Card */}
-          <div className="w-full px-3 sm:px-6 mb-3">
+          <div className="w-full px-3 sm:px-6 mb-3 space-y-1">
+            <span className="text-xs font-tech font-bold uppercase tracking-wider text-[#4C3C82] block">
+              {currentSlide.pillar} &bull; {activeIndex + 1} / {total}
+            </span>
             <h3 className="font-angular text-xl sm:text-2xl font-black text-[#3D246C] tracking-tight">
               {currentSlide.title}
             </h3>
           </div>
 
           {/* Carousel Slide Indicators */}
-          <div className="flex items-center justify-center gap-1.5 mt-2" aria-label="Slide indicators">
-            {COVERFLOW_SLIDES.map((_, idx) => (
+          <div className="flex items-center justify-center gap-1 mt-2" role="group" aria-label="Slide indicators">
+            {COVERFLOW_SLIDES.map((slide, idx) => (
               <button
-                key={idx}
+                key={slide.id}
+                type="button"
                 onClick={() => setActiveIndex(idx)}
-                className={`h-2 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5C4B99] ${
-                  idx === activeIndex 
-                    ? 'w-7 bg-[#5C4B99]' 
-                    : 'w-2 bg-[#3D246C]/20 hover:bg-[#5C4B99]/40'
-                }`}
-                aria-label={`Go to slide ${idx + 1}`}
+                className="p-1.5 flex items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C] focus-visible:ring-offset-1 focus-visible:ring-offset-[#FFDBC3]"
+                aria-label={`Go to slide ${idx + 1}: ${slide.title}`}
                 aria-current={idx === activeIndex ? 'true' : undefined}
-              />
+              >
+                <span
+                  className={`h-2 rounded-full transition-all duration-300 block ${
+                    idx === activeIndex
+                      ? 'w-7 bg-[#4C3C82]'
+                      : 'w-2 bg-[#3D246C]/30 hover:bg-[#4C3C82]/60'
+                  }`}
+                />
+              </button>
             ))}
           </div>
         </div>

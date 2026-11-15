@@ -134,99 +134,94 @@ export function GalleryBentoGrid() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header & Subtitle */}
-        <div className="text-center max-w-2xl mx-auto mb-10">
+        <div className="text-center max-w-2xl mx-auto mb-10 space-y-1.5">
+          <span className="font-serif italic text-lg sm:text-xl text-[#4C3C82] block">
+            Curated Zine Collage
+          </span>
           <h2 id="bento-heading" className="font-angular text-3xl sm:text-5xl font-black text-[#3D246C] tracking-tight">
             The Festival Mosaic
           </h2>
-          <p className="mt-2 text-sm sm:text-base text-[#5C4B99] font-body font-medium">
+          <p className="pt-1 text-sm sm:text-base text-[#3D246C]/90 font-body font-medium max-w-[60ch] mx-auto">
             Browse high-resolution captures from dance stages, music arenas, street theatre circles, and deanery processions.
           </p>
         </div>
 
         {/* Bento Grid Container */}
-        <div 
-          className="p-4 sm:p-6 lg:p-8 rounded-3xl bg-[#FFDBC3] border border-[#3D246C]/15 shadow-sm"
-          style={{ backgroundColor: '#FFDBC3' }}
-        >
+        <div className="p-4 sm:p-6 lg:p-8 rounded-3xl bg-[#FFDBC3] border border-[#3D246C]/15 shadow-sm">
           <div className="grid grid-cols-12 gap-3 sm:gap-4 md:gap-5">
             {displayedItems.map((item, index) => {
               const cellClasses = getBentoClasses(index, displayedItems.length);
 
               return (
-                <div
+                <button
+                  type="button"
                   key={item.id}
                   id={item.id}
                   onClick={() => handleOpenModal(item)}
-                  className={`group relative rounded-2xl overflow-hidden cursor-pointer bg-[#3D246C] border border-[#3D246C]/15 transition-all duration-300 hover:shadow-xl hover:border-[#5C4B99]/50 ${cellClasses}`}
-                  role="button"
-                  tabIndex={0}
-                  aria-label={`Preview capture ${startRecord + index}`}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      handleOpenModal(item);
-                    }
-                  }}
+                  className={`group relative rounded-2xl overflow-hidden cursor-pointer bg-[#3D246C] border border-[#3D246C]/15 transition-all duration-300 hover:shadow-xl hover:border-[#5C4B99]/60 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#3D246C] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FFDBC3] text-left ${cellClasses}`}
+                  aria-label={`Preview capture ${startRecord + index}: ${item.title}`}
                 >
                   <Image
                     src={item.image}
                     alt={item.alt}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                    className="object-cover group-hover:scale-105 group-focus-visible:scale-105 transition-transform duration-500 ease-out"
                     loading={index < 4 ? 'eager' : 'lazy'}
                   />
 
-                  {/* Subtle Gradient Scrim on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#3D246C]/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                  {/* Subtle Gradient Scrim on hover/focus */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#3D246C]/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
-                  {/* Top-Right Expand Icon on hover */}
+                  {/* Top-Right Expand Icon on hover/focus */}
                   <div className="absolute top-3 right-3 z-10">
-                    <span className="w-8 h-8 rounded-full bg-black/50 backdrop-blur-md text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 shadow-md">
-                      <Maximize2 className="w-4 h-4" />
+                    <span className="w-8 h-8 rounded-full bg-black/60 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-all duration-200 shadow-md">
+                      <Maximize2 className="w-4 h-4" aria-hidden="true" />
                     </span>
                   </div>
 
                   {/* Video Play Button Overlay */}
                   {item.mediaType === 'video' && (
                     <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
-                      <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#5C4B99]/85 text-white flex items-center justify-center backdrop-blur-sm shadow-lg group-hover:scale-110 group-hover:bg-[#5C4B99] transition-transform">
-                        <Play className="w-5 h-5 sm:w-6 sm:h-6 fill-current translate-x-0.5" />
+                      <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#5C4B99]/90 text-white flex items-center justify-center shadow-lg group-hover:scale-110 group-focus-visible:scale-110 group-hover:bg-[#5C4B99] transition-transform">
+                        <Play className="w-5 h-5 sm:w-6 sm:h-6 fill-current translate-x-0.5" aria-hidden="true" />
                       </div>
                     </div>
                   )}
-                </div>
+                </button>
               );
             })}
           </div>
 
           {/* Validated Pagination Controls */}
           {totalPages > 1 && (
-            <div className="mt-10 sm:mt-12 flex flex-col md:flex-row items-center justify-between gap-4 pt-6 border-t border-[#3D246C]/10">
+            <div className="mt-10 sm:mt-12 flex flex-col md:flex-row items-center justify-between gap-4 pt-6 border-t border-[#3D246C]/15">
               {/* Counter status label */}
               <div className="text-center md:text-left">
-                <p className="text-xs sm:text-sm font-semibold text-[#5C4B99]">
+                <p className="text-xs sm:text-sm font-tech font-semibold text-[#4C3C82]">
                   Showing <span className="text-[#3D246C] font-bold">{startRecord}</span> to{' '}
                   <span className="text-[#3D246C] font-bold">{endRecord}</span> of{' '}
                   <span className="text-[#3D246C] font-bold">{totalItems}</span> captures
-                  <span className="mx-2 text-[#3D246C]/30">•</span>
+                  <span className="mx-2 text-[#3D246C]/50" aria-hidden="true">•</span>
                   <span className="text-[#3D246C] font-bold">Page {validatedPage} of {totalPages}</span>
                 </p>
               </div>
 
               {/* Navigation buttons and page numbers */}
-              <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+              <nav aria-label="Gallery pages" className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5">
                 {/* Previous Page Button (Validated Disabled when on page 1) */}
                 <button
+                  type="button"
                   onClick={() => handlePageChange(validatedPage - 1)}
                   disabled={validatedPage <= 1}
-                  className={`inline-flex items-center gap-1 px-3 sm:px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold border transition-all ${
+                  className={`inline-flex items-center gap-1 min-h-[40px] px-3 sm:px-3.5 py-2 rounded-xl text-xs sm:text-sm font-tech font-bold border transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FFDBC3] ${
                     validatedPage <= 1
-                      ? 'bg-white/40 text-[#3D246C]/30 border-[#3D246C]/10 cursor-not-allowed opacity-50'
-                      : 'bg-white text-[#3D246C] border-[#3D246C]/15 hover:bg-[#5C4B99] hover:text-white hover:border-[#5C4B99] shadow-xs active:scale-95'
+                      ? 'bg-white/60 text-[#3D246C]/50 border-[#3D246C]/15 cursor-not-allowed'
+                      : 'bg-white text-[#3D246C] border-[#3D246C]/20 hover:bg-[#5C4B99] hover:text-white hover:border-[#5C4B99] shadow-xs active:scale-95'
                   }`}
                   aria-label="Previous Page"
                 >
-                  <ChevronLeft className="w-4 h-4" />
+                  <ChevronLeft className="w-4 h-4" aria-hidden="true" />
                   <span className="hidden sm:inline">Prev</span>
                 </button>
 
@@ -235,12 +230,13 @@ export function GalleryBentoGrid() {
                   const isActive = pageNum === validatedPage;
                   return (
                     <button
+                      type="button"
                       key={pageNum}
                       onClick={() => handlePageChange(pageNum)}
-                      className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl text-xs sm:text-sm font-bold transition-all ${
+                      className={`min-w-[40px] min-h-[40px] px-2 rounded-xl text-xs sm:text-sm font-tech font-bold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FFDBC3] ${
                         isActive
                           ? 'bg-[#5C4B99] text-white shadow-md shadow-[#5C4B99]/30 border border-[#5C4B99] scale-105'
-                          : 'bg-white text-[#3D246C] hover:bg-white/80 border border-[#3D246C]/15 active:scale-95'
+                          : 'bg-white text-[#3D246C] hover:bg-[#FFFCF5] hover:border-[#5C4B99] border border-[#3D246C]/20 active:scale-95'
                       }`}
                       aria-label={`Page ${pageNum}`}
                       aria-current={isActive ? 'page' : undefined}
@@ -252,19 +248,20 @@ export function GalleryBentoGrid() {
 
                 {/* Next Page Button (Validated Disabled when on last page) */}
                 <button
+                  type="button"
                   onClick={() => handlePageChange(validatedPage + 1)}
                   disabled={validatedPage >= totalPages}
-                  className={`inline-flex items-center gap-1 px-3 sm:px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold border transition-all ${
+                  className={`inline-flex items-center gap-1 min-h-[40px] px-3 sm:px-3.5 py-2 rounded-xl text-xs sm:text-sm font-tech font-bold border transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3D246C] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FFDBC3] ${
                     validatedPage >= totalPages
-                      ? 'bg-white/40 text-[#3D246C]/30 border-[#3D246C]/10 cursor-not-allowed opacity-50'
-                      : 'bg-white text-[#3D246C] border-[#3D246C]/15 hover:bg-[#5C4B99] hover:text-white hover:border-[#5C4B99] shadow-xs active:scale-95'
+                      ? 'bg-white/60 text-[#3D246C]/50 border-[#3D246C]/15 cursor-not-allowed'
+                      : 'bg-white text-[#3D246C] border-[#3D246C]/20 hover:bg-[#5C4B99] hover:text-white hover:border-[#5C4B99] shadow-xs active:scale-95'
                   }`}
                   aria-label="Next Page"
                 >
                   <span className="hidden sm:inline">Next</span>
-                  <ChevronRight className="w-4 h-4" />
+                  <ChevronRight className="w-4 h-4" aria-hidden="true" />
                 </button>
-              </div>
+              </nav>
             </div>
           )}
         </div>
