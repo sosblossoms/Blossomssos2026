@@ -7,8 +7,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
+    "lint:strict": "eslint . --max-warnings=0",
     "typecheck": "tsc --noEmit",
-    "test": "node scripts/verify-routes.mjs"
+    "detect:ui": "npx --yes impeccable detect src",
+    "test": "node scripts/verify-routes.mjs",
+    "verify:live": "node scripts/verify-routes.mjs --spawn-server",
+    "verify:all": "npx next typegen && npm run typecheck && npm run lint:strict && npm run build && npm run verify:live"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
