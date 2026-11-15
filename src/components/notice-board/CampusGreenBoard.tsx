@@ -456,6 +456,10 @@ export function CampusGreenBoard({
                             <span className="bg-black/60 backdrop-blur-xs px-1.5 py-0.5 rounded border border-white/20 flex items-center gap-1 font-semibold">
                               {notice.embedUrl ? (
                                 <span>💃 Dance Reel Preview</span>
+                              ) : notice.id === 'nb-2026-the-prelude' ? (
+                                <span>🎭 The Prelude Poster</span>
+                              ) : notice.id === 'nb-2026-blossoms-stall' ? (
+                                <span>🎪 Blossoms Stall Poster</span>
                               ) : notice.id === 'nb-2026-flash-mob' ? (
                                 <span>⚡ Flash Mob Poster</span>
                               ) : notice.id === 'nb-2026-inauguration-dance' || notice.id === 'nb-2026-02' ? (
@@ -491,6 +495,10 @@ export function CampusGreenBoard({
                           <p className="font-tech font-bold text-xs text-[#231942] leading-snug line-clamp-2">
                             {notice.id === 'nb-2026-launch' ? (
                               <>🌐 Official Launch of Blossoms Website &amp; Social Media Page — Flames to Flight, White Onyx Ignites!</>
+                            ) : notice.id === 'nb-2026-the-prelude' ? (
+                              <>🎭 Inauguration: The Prelude — 16th Nov at 12:45 PM, In Front of Block 2!</>
+                            ) : notice.id === 'nb-2026-blossoms-stall' ? (
+                              <>🎪 SOS Blossoms Stall — 16th Nov, 9:00 AM Onward at Garden Street!</>
                             ) : notice.id === 'nb-2026-flash-mob' ? (
                               <>⚡ Flash Mob: Come at 12:45 at Block 1 Island!</>
                             ) : (
